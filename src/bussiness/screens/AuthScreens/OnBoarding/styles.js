@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import {Colors} from '../../../theme/colors';
 import {
   widthPercentageToDP as wp,
@@ -12,7 +12,10 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     alignItems: 'center',
   },
-  mapView: {height: '100%', width: '100%'},
+  mapView: {
+    height: '100%',
+    width: '100%',
+  },
   bottomView: {
     bottom: hp(4),
     position: 'absolute',
@@ -25,20 +28,21 @@ export const styles = StyleSheet.create({
     width: wp(5),
   },
   searchView: {
-    // backgroundColor: Colors.red,
-    backgroundColor: '#f2f2f3',
-    width: wp(85),
+    backgroundColor: Colors.lightGray,
+    width: wp(80),
     marginLeft: wp(10),
-    borderRadius: 100,
+    borderRadius: 20,
     fontSize: hp(2),
+    overflow:'hidden'
   },
   serachWrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: wp(4),
     width: wp(100),
     paddingVertical: hp(3),
+    backgroundColor: Colors.white,
   },
   serachModal: {flex: 1, backgroundColor: Colors.white},
   marker: {
@@ -54,6 +58,7 @@ export const styles = StyleSheet.create({
     color: Colors.lightGray,
     paddingBottom: hp(1),
     marginBottom: hp(2),
+    marginTop:hp(3)
   },
   map: {width: wp(100), height: wp(40)},
   editView: {
@@ -82,10 +87,10 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.lightGray2,
     paddingHorizontal: wp(4),
-    width:wp(40),
+    width: wp(40),
     paddingVertical: hp(2),
     borderRadius: 10,
-    justifyContent:'space-between',
-    alignItems:'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

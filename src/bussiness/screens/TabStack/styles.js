@@ -85,13 +85,12 @@ export const styles = StyleSheet.create({
   },
 
   //New Tab
-  newTab: {paddingHorizontal: wp(3), paddingTop: hp(3), backgroundColor:Colors.white},
+  newTab: {paddingHorizontal: wp(3), paddingTop: hp(3)},
   bookingView: {
     marginBottom: hp(2),
     borderBottomWidth: 2,
     borderBottomColor: Colors.border,
     paddingBottom: hp(5),
-    backgroundColor:Colors.white
   },
   row: {
     flexDirection: 'row',

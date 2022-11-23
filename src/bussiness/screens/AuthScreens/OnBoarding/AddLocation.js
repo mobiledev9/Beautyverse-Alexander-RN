@@ -1,14 +1,7 @@
-import React, {useState} from 'react';
-import {
-  View,
-  SafeAreaView,
-  Modal,
-  TouchableOpacity,
-  Image,
-  Text,
-} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
-import PlacesInput from 'react-native-places-input';
+import React, {useState, useEffect} from 'react';
+import {View, SafeAreaView, Modal, TouchableOpacity, Image} from 'react-native';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {styles} from './styles';
 import Header from '../../../components/Header';
 import Button from '../../../components/Button';
@@ -17,12 +10,19 @@ import {Colors} from '../../../theme/colors';
 import SearchField from '../../../components/SearchField';
 import {Images} from '../../../theme/images';
 import {Config} from '../../../../../config';
+import Icon from '../../../components/Icon';
+import Label from '../../../components/Label';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from '../../../theme/layout';
 
 const AddLocation = ({navigation}) => {
   const [isSearchModal, setSerachModal] = useState(false);
   const [latitude, setLatitude] = useState(-37.8136);
   const [longitude, setLongitude] = useState(144.9631);
   const [place, setPlace] = useState('');
+  const [bottom, setBottom] = useState(1);
 
   return (
     <SafeAreaView style={styles.conatiner}>
@@ -31,15 +31,17 @@ const AddLocation = ({navigation}) => {
         headerTitle={Strings.businessAddress}
       />
       <MapView
-        style={styles.mapView}
+        provider={PROVIDER_GOOGLE}
+        style={{...styles.mapView, paddingTop: bottom}}
         region={{
           latitude: latitude,
           longitude: longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        showsUserLocation={true}
         showsMyLocationButton={true}
-        showsUserLocation={true}>
+        onMapReady={() => setBottom(5)}>
         <Marker
           coordinate={{
             latitude: latitude,
@@ -49,11 +51,7 @@ const AddLocation = ({navigation}) => {
         </Marker>
       </MapView>
       <View style={styles.bottomView}>
-        <SearchField
-          onTouchStart={() => setSerachModal(true)}
-          // onChangeText={text => setSerachModal(true)}
-          value={place}
-        />
+        <SearchField onTouchStart={() => setSerachModal(true)} value={place} />
         <Button
           onPress={() =>
             navigation.navigate('Addressdetails', {
@@ -69,22 +67,92 @@ const AddLocation = ({navigation}) => {
         />
       </View>
 
-      <Modal visible={isSearchModal} animationType="slide">
+      <Modal
+        visible={isSearchModal}
+        animationType="slide"
+        onRequestClose={() => setSerachModal(false)}>
         <SafeAreaView style={styles.serachModal}>
           <View style={styles.serachWrapper}>
-            <TouchableOpacity onPress={() => setSerachModal(false)}>
+            <TouchableOpacity
+              onPress={() => setSerachModal(false)}
+              style={{paddingTop: hp(2)}}>
               <Image source={Images.back} style={styles.backBtn} />
             </TouchableOpacity>
-            <PlacesInput
-              googleApiKey={Config.GOOGLE_API_KEY}
-              placeHolder={Strings.searchLocation}
-              stylesInput={styles.searchView}
-              onSelect={place => {
-                setLatitude(place.result.geometry.location.lat);
-                setLongitude(place.result.geometry.location.lng);
-                setPlace(place.result.formatted_address);
+
+            <GooglePlacesAutocomplete
+              GooglePlacesDetailsQuery={{fields: 'geometry'}}
+              fetchDetails={true}
+              placeholder={Strings.searchLocation}
+              onPress={(data, details = null) => {
+                const geometry = details?.geometry?.location;
+                setLongitude(geometry.lng);
+                setLatitude(geometry.lat);
+                setPlace(data.description);
                 setSerachModal(false);
               }}
+              styles={{
+                container: {
+                  overflow: 'hidden',
+                  backgroundColor: Colors.white,
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginLeft: wp(3),
+                  flex: 1,
+                },
+                textInputContainer: {
+                  backgroundColor: Colors.lightGray,
+                  borderRadius: 100,
+                  paddingHorizontal: wp(4),
+                },
+                textInput: {
+                  backgroundColor: Colors.lightGray,
+                  marginLeft: wp(2),
+                },
+              }}
+              query={{
+                key: Config.GOOGLE_API_KEY,
+                language: 'en',
+              }}
+              renderRow={result => (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: Colors.lightGray,
+                      height: hp(5),
+                      width: hp(5),
+                      borderRadius: 100,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Icon source={Images.location} size={hp(3)} />
+                  </View>
+
+                  <View style={{marginLeft: wp(3)}}>
+                    <Label
+                      label={result.description}
+                      left
+                      bold
+                      size={hp(2)}
+                      color={Colors.primary_dark1}
+                    />
+                    <Label
+                      label={Strings.detailedLocation}
+                      left
+                      size={hp(1.9)}
+                      color={Colors.gray}
+                    />
+                  </View>
+                </View>
+              )}
+              renderLeftButton={() => (
+                <View style={{alignSelf: 'center'}}>
+                  <Icon source={Images.search} size={hp(3)} />
+                </View>
+              )}
             />
           </View>
         </SafeAreaView>

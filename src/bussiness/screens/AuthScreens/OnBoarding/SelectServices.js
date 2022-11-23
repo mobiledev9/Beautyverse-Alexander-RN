@@ -59,7 +59,7 @@ const SelectServices = ({navigation}) => {
         />
       </View>
       <Button
-        onPress={() => navigation.navigate('BottomTabs')}
+        onPress={() => navigation.navigate('PaymentMethod')}
         title={Strings.finish}
         bgColor={Colors.primary}
         titleColor={Colors.white}

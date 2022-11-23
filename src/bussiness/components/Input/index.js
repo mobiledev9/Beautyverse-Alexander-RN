@@ -1,28 +1,31 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {Colors} from '../../theme/colors';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from '../../theme/layout';
 
-const Index = ({placeholder, onChangeText, value, label, width}) => {
+const Index = ({
+  placeholder,
+  onChangeText,
+  value,
+  label,
+  width,
+  onTouchStart,
+  size
+}) => {
   return (
     <TextInput
       label={label}
       value={value}
+      onTouchStart={onTouchStart}
       onChangeText={onChangeText}
       mode="outlined"
       defaultValue={label}
       outlineColor={Colors.lightGray2}
       activeOutlineColor={Colors.primary}
       placeholder={placeholder}
-      style={{width: width}}
+      style={{width: width, fontSize: size}}
     />
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Index;

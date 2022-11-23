@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: wp(100),
     height: hp(7),
-    // paddingVertical:hp(2),
     paddingHorizontal: wp(5),
   },
   line: {
@@ -47,9 +46,9 @@ const styles = StyleSheet.create({
     color: Colors.primary_dark,
   },
   logo: {
-    height: hp(15),
-    width: hp(15),
-    resizeMode: 'contain',
+    height: hp(4),
+    width: wp(40),
+    resizeMode: 'cover',
   },
 });
 

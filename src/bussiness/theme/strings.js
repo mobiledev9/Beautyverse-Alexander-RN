@@ -58,4 +58,17 @@ export const Strings = {
   serviceLocation: 'Service Location',
   noteCustomer: 'Note from customer:',
   note: 'Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae eleifend ac.',
+  detailedLocation: 'Detailed location goes here',
+  addpaymentMethod: 'Add Paymnet Method',
+  debitCreditCard: 'Debit/Credit Card',
+  giftCard: 'Gift Card',
+  payPal: 'PayPal',
+  applePay: 'Apple Pay',
+  addDebitCreditCard: 'Add Debit/Credit Card',
+  nameOnCard : 'Name on card',
+  cardNumber: 'Card Number',
+  cardExpiry: 'Card Expiry',
+  CVV :'CVV',
+  saveCard :'Save card',
+  addLater :'Add Later'
 };

@@ -120,7 +120,7 @@ const Home = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor:Colors.white}}>
+    <SafeAreaView style={{flex: 1}}>
       <AppHeader hide />
       <Tab.Navigator
         tabBarOptions={{

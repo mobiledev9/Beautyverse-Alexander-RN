@@ -1,7 +1,16 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 
-const Icon = ({source, size, color, radius}) => {
+const Icon = ({
+  source,
+  size,
+  color,
+  radius,
+  alignSelf,
+  bgColor,
+  vertical,
+  horizontal,
+}) => {
   return (
     <View>
       <Image
@@ -11,6 +20,10 @@ const Icon = ({source, size, color, radius}) => {
           width: size,
           tintColor: color,
           borderRadius: radius,
+          alignSelf: alignSelf,
+          backgroundColor: bgColor,
+          paddingVertical: vertical,
+          paddingHorizontal: horizontal,
         }}
       />
     </View>
