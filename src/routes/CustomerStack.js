@@ -22,6 +22,10 @@ import OrdersHome from '../customer/screens/OrdersPage/OdrdersHome';
 import Checkout from '../customer/screens/BusinessPage/Checkout';
 import ConfirmBooking from '../customer/screens/BusinessPage/ConfirmBooking';
 import OrderDetails from '../customer/screens/OrdersPage/OrderDetails';
+import RescheduleOrder from '../customer/screens/OrdersPage/RescheduleOder';
+
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +39,12 @@ export function CustomerStack() {
       name: 'OrderDetails',
       component: OrderDetails,
     },
+    {
+      name: 'RescheduleOrder',
+      component: RescheduleOrder,
+    },
+ 
+   
 
     {
       name: 'BottomTabs',

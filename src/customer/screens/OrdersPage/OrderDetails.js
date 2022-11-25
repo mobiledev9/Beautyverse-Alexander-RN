@@ -24,17 +24,20 @@ import ServiceDetails from '../../components/BusinessPage/ServiceDetails';
 import {Images} from '../../theme/Images';
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
+import Button from '../../components/AuthComponents/FilledButton';
+import { OrderStyles } from './OderStyles';
+
 
 const OrderDetails = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-         <HeaderTop 
-         onPress={()=>{
-            navigation.goBack();
-         }}
-         HeaderText={'Order Details'} />
-      <ScrollView style={{flexGrow: 1}}>
-       
+      <HeaderTop
+        onPress={() => {
+          navigation.goBack();
+        }}
+        HeaderText={'Order Details'}
+      />
+      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: hp(15)}}>
         <View
           style={[
             BusinessPageStyles.detailsmainview,
@@ -89,7 +92,7 @@ const OrderDetails = ({navigation}) => {
               StyleView={{marginVertical: 8}}
               AmountStyle={{color: Colors.primaryDark}}
               showprice="show"
-              maintext={'Price'}
+              maintext={'Straight Hair'}
               Amounttext={'$60.00'}
             />
             <ServiceDetails
@@ -110,10 +113,10 @@ const OrderDetails = ({navigation}) => {
         </View>
 
         <SemiBold
-            FontSize={hp(2.8)}
-            AllStyle={{marginLeft:wp(5),marginTop:hp(1)}}
-            EnterText={'Address'}
-          />
+          FontSize={hp(2.8)}
+          AllStyle={{marginLeft: wp(5), marginTop: hp(1)}}
+          EnterText={'Address'}
+        />
 
         <View style={BusinessPageStyles.headerMapView}>
           <MapView
@@ -144,31 +147,44 @@ const OrderDetails = ({navigation}) => {
           </View>
         </View>
 
-        <View style={BusinessPageStyles.costCard}>
-            <SemiBold
-              FontSize={hp(2.8)}
-              AllStyle={{marginTop:hp(1)}}
-              EnterText={'Payment Method'}
-            />
-        <View style={{flexDirection:'row',alignItems:'center',padding:10,width:wp(90),alignSelf:'center',borderRadius:15,   backgroundColor: Colors.white,
-    shadowOffset: {width: 2, height: 5},
-    shadowOpacity: 0.2,
-    elevation: 2,}}>
+        <View
+          style={[
+            BusinessPageStyles.costCard,
+            {borderTopWidth: 1, marginTop: hp(1)},
+          ]}>
+          <SemiBold
+            FontSize={hp(2.8)}
+            AllStyle={{marginTop: hp(1)}}
+            EnterText={'Payment Method'}
+          />
+          <View
+            style={OrderStyles.paymentmethodcard}>
             <Image
-            resizeMode='contain'
-            style={{height:hp(6),width:hp(6),marginRight:wp(5)}}
-            source={Images.Debit}
+              resizeMode="contain"
+              style={{height: hp(6), width: hp(6), marginRight: wp(5)}}
+              source={Images.Debit}
             />
-            <SemiBold
-            FontSize={hp(2.2)}
-            EnterText={'**** **** **** 1234'}
-            />
+            <SemiBold FontSize={hp(2.2)} EnterText={'**** **** **** 1234'} />
           </View>
-        
         </View>
-         
-
       </ScrollView>
+
+      <View style={{alignSelf: 'center', position: 'absolute', bottom: hp(0)}}>
+        <Button
+          onPress={() => {
+            navigation.navigate('RescheduleOrder');
+          }}
+          bgColor={Colors.primary}
+          title={'RescheduleOrder'}
+          titleColor={Colors.white}
+          btnStyle={{width: wp(90)}}
+        />
+        <Button
+          title={'Cancel Appointment'}
+          titleColor={Colors.primary}
+          btnStyle={{width: wp(90)}}
+        />
+      </View>
     </SafeAreaView>
   );
 };

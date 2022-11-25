@@ -60,5 +60,5 @@ export const Strings = {
   directions:'Direnctions',
   svLoc:'Save Location',
   confbooking:'Confirm Booking',
-
+  reschedule:'Reschedule',
 };
