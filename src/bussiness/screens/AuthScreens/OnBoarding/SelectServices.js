@@ -37,8 +37,15 @@ const SelectServices = ({navigation}) => {
         onPressBack={() => navigation.goBack()}
         headerTitle={Strings.services}
       />
-      <View style={{width: wp(100), paddingHorizontal: wp(4)}}>
-        <Label label={Strings.servicesOffer} bold size={hp(2.5)} left />
+      <View style={styles.services}>
+        <Label
+          label={Strings.servicesOffer}
+          bold
+          size={hp(2.5)}
+          left
+          color={Colors.primary_dark}
+          paddingVertical={hp(2)}
+        />
         <FlatList
           data={services}
           keyExtractor={item => item.id}

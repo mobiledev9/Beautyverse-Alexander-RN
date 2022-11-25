@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, SafeAreaView, Text, ScrollView} from 'react-native';
+import {View, SafeAreaView, ScrollView} from 'react-native';
 import {Switch} from 'react-native-paper';
 import Header from '../../../components/Header';
 import {Strings} from '../../../theme/strings';
@@ -34,49 +34,61 @@ const BusinessTiming = ({navigation}) => {
         onPressBack={() => navigation.goBack()}
         headerTitle={Strings.businessTimings}
       />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{marginBottom: hp(10)}}>
-        {DATA.map((item, index) => (
-          <View key={index}>
-            <View style={styles.inputWrapper}>
-              <Label label={item.day} bold size={hp(2)} />
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: wp(25),
-                }}>
-                <Label label={item.opne ? 'Open' : 'Close'} medium />
-                <Switch
-                  value={isSwitchOn}
-                  onValueChange={onToggleSwitch}
-                  color={Colors.primary}
+      <View style={{height: hp(75), backgroundColor: Colors.white}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {DATA.map((item, index) => (
+            <View key={index}>
+              <View style={styles.inputWrapper}>
+                <Label
+                  label={item.day}
+                  bold
+                  size={hp(2)}
+                  color={Colors.primary_dark}
                 />
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: wp(25),
+                  }}>
+                  <Label
+                    label={item.opne ? 'Open' : 'Close'}
+                    medium
+                    color={Colors.primary_dark}
+                  />
+                  <Switch
+                    value={isSwitchOn}
+                    onValueChange={onToggleSwitch}
+                    color={Colors.primary}
+                  />
+                </View>
+              </View>
+              <View style={styles.inputWrapper}>
+                <View style={styles.dropdown}>
+                  <Label
+                    label={item.fromTime}
+                    medium
+                    color={Colors.lightGray3}
+                  />
+                  <Icon
+                    source={item.opne ? Images.menushow : Images.menuhide}
+                    size={wp(3)}
+                  />
+                </View>
+                <Label label={Strings.to} medium color={Colors.lightGray3} />
+                <View style={styles.dropdown}>
+                  <Label label={item.toTime} medium color={Colors.lightGray3} />
+                  <Icon
+                    source={item.opne ? Images.menushow : Images.menuhide}
+                    size={wp(3)}
+                  />
+                </View>
               </View>
             </View>
-            <View style={styles.inputWrapper}>
-              <View style={styles.dropdown}>
-                <Label label={item.fromTime} medium />
-                <Icon
-                  source={item.opne ? Images.menushow : Images.menuhide}
-                  size={wp(3)}
-                />
-              </View>
-              <Text>{Strings.to}</Text>
-              <View style={styles.dropdown}>
-                <Label label={item.toTime} medium />
-                <Icon
-                  source={item.opne ? Images.menushow : Images.menuhide}
-                  size={wp(3)}
-                />
-              </View>
-            </View>
-          </View>
-        ))}
-      </ScrollView>
-
+          ))}
+        </ScrollView>
+      </View>
       <Button
         onPress={() => navigation.navigate('SelectServices')}
         title={Strings.saveLocationTime}

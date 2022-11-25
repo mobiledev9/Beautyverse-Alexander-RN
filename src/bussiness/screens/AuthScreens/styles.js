@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   optionView: {
-    bottom: 0,
+    bottom: hp(3),
     position: 'absolute',
   },
   logo: {

@@ -15,6 +15,7 @@ const Index = ({onChangeText, value, style, inputStyle, onTouchStart}) => {
       <TextInput
         onTouchStart={onTouchStart}
         placeholder={Strings.searchLocation}
+        placeholderTextColor={Colors.lightGray3}
         onChangeText={onChangeText}
         value={value}
         style={[styles.input, inputStyle]}
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     width: wp(70),
     marginLeft: wp(2),
+    color:Colors.primary_dark,
     paddingVertical: hp(2),
   },
   searchImg: {width: wp(6), height: wp(6)},

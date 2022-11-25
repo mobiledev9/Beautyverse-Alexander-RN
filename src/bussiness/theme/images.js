@@ -36,4 +36,15 @@ export const Images = {
   //booking details
   customer: require('../assets/customer.png'),
   rating: require('../assets/rating.png'),
+  rightarrow: require('../assets/rightarrow.png'),
+  paypal: require('../assets/paypal.png'),
+  card: require('../assets/card.png'),
+  gift: require('../assets/gift.png'),
+  applepay: require('../assets/applepay.png'),
+  credit: require('../assets/credit.png'),
+  plus: require('../assets/plus.png'),
+  user: require('../assets/user.png'),
+  bell: require('../assets/bell.png'),
+  grid: require('../assets/grid.png'),
+  col: require('../assets/col.png'),
 };

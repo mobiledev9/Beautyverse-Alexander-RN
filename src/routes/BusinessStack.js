@@ -9,7 +9,8 @@ import BottomTabs from '../bussiness/screens/TabStack/BottomTabs';
 import BookingDetails from '../bussiness/screens/TabStack/BookingDetails/BookingDetails';
 import PaymentMethod from '../bussiness/screens/AuthScreens/Payment/PaymentMethod';
 import AddCard from '../bussiness/screens/AuthScreens/Payment/AddCard';
-
+import BookService from '../bussiness/screens/TabStack/BookService/BookService';
+import Calender from '../bussiness/screens/TabStack/Calender/Calender';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,14 @@ export function BusinessStack() {
     {
       name: 'AddCard',
       component: AddCard,
+    },
+    {
+      name: 'BookService',
+      component: BookService,
+    },
+    {
+      name: 'Calender',
+      component: Calender,
     },
   ];
   return (

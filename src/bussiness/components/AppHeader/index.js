@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Image, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Text,
+  Platform,
+} from 'react-native';
 import {Colors} from '../../theme/colors';
 import {Images} from '../../theme/images';
 import {
@@ -28,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: wp(100),
-    height: hp(7),
+    height: Platform.OS == 'android' ? hp(10) : hp(7),
     paddingHorizontal: wp(5),
   },
   line: {
@@ -36,9 +43,9 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.lightGray2,
   },
   backBtn: {
-    height: hp(3),
-    width: hp(3),
-    resizeMode: 'cover',
+    height: hp(4),
+    width: hp(4),
+    resizeMode: 'contain',
   },
   txt: {
     fontSize: hp(2.5),
@@ -46,9 +53,9 @@ const styles = StyleSheet.create({
     color: Colors.primary_dark,
   },
   logo: {
-    height: hp(4),
+    height: hp(5),
     width: wp(40),
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
 });
 

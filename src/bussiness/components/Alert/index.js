@@ -2,7 +2,6 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Button from '../Button';
 import Label from '../Label';
-import {Strings} from '../../theme/strings';
 import {Colors} from '../../theme/colors';
 import {
   widthPercentageToDP as wp,
@@ -12,7 +11,7 @@ import {
 const Index = ({title, leftBtn, rightBtn, onLeftPress, onRightPress}) => {
   return (
     <View style={styles.container}>
-      <Label label={title} bold size={hp(2)} marginBottom={hp(1)} />
+      <Label label={title} bold size={hp(2)} marginBottom={hp(1)} color={Colors.primary_dark}/>
       <View style={styles.btnWrapper}>
         <Button
           onPress={onLeftPress}

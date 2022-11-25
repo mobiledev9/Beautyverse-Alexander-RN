@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     marginLeft: wp(10),
     borderRadius: 20,
     fontSize: hp(2),
-    overflow:'hidden'
+    overflow: 'hidden',
   },
   serachWrapper: {
     flexDirection: 'row',
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     color: Colors.lightGray,
     paddingBottom: hp(1),
     marginBottom: hp(2),
-    marginTop:hp(3)
+    marginTop: hp(3),
   },
   map: {width: wp(100), height: wp(40)},
   editView: {
@@ -92,5 +92,12 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+
+  services: {
+    width: wp(100),
+    paddingHorizontal: wp(4),
+    paddingTop: hp(1),
+    backgroundColor: Colors.white,
   },
 });

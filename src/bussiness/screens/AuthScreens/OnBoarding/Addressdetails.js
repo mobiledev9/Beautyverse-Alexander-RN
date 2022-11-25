@@ -3,8 +3,6 @@ import {
   View,
   SafeAreaView,
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Header from '../../../components/Header';
@@ -67,7 +65,7 @@ const Addressdetails = ({navigation, route}) => {
                 left
                 color={Colors.primary_dark1}
               />
-              <Label label={params.place} medium />
+              <Label label={params.place} medium color={Colors.lightGray3}/>
             </View>
             <Icon source={Images.edit} size={wp(6)} />
           </View>

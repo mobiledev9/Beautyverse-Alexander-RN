@@ -18,7 +18,7 @@ import {
 
 const Tab = createMaterialTopTabNavigator();
 
-const Home = ({navigation}) => {
+const Home = () => {
   const ItemWrapper = ({img, label}) => (
     <View
       style={{
@@ -28,7 +28,12 @@ const Home = ({navigation}) => {
         marginBottom: hp(1),
       }}>
       <Icon source={img} size={hp(2)} color={Colors.gray} />
-      <Label label={label} left marginLeft={wp(2)} />
+      <Label
+        label={label}
+        left
+        marginLeft={wp(2)}
+        color={Colors.primary_dark}
+      />
     </View>
   );
 
@@ -36,12 +41,21 @@ const Home = ({navigation}) => {
     const [isAlert, setAlert] = useState(false);
     return (
       <View style={styles.newTab}>
-        <Label label={Strings.newBookings} bold size={hp(2.5)} left paddingVertical={hp(2)}/>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <Label
+          label={Strings.newBookings}
+          bold
+          size={hp(2.5)}
+          left
+          paddingVertical={hp(2)}
+          color={Colors.primary_dark}
+        />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{paddingBottom: hp(5)}}>
           {bookings.map((item, index) => (
             <View key={index} style={styles.bookingView}>
               <View style={styles.row}>
-                <Icon size={hp(12)} source={item.banner} radius={20}/>
+                <Icon size={hp(12)} source={item.banner} radius={20} />
                 <View>
                   <Label
                     label={item.label}
@@ -50,27 +64,37 @@ const Home = ({navigation}) => {
                     marginLeft={wp(2)}
                     paddingVertical={hp(1)}
                     size={hp(2)}
+                    color={Colors.primary_dark}
                   />
                   <ItemWrapper img={item.s_icon} label={item.service} />
                   <ItemWrapper img={item.t_icon} label={item.time} />
                   <ItemWrapper img={item.l_icon} label={item.location} />
                 </View>
               </View>
-              <View style={styles.btnWrapper}>
+              {item.reschedule ? (
                 <Button
-                  onPress={() => setAlert(true)}
-                  title={Strings.reject}
+                  title={Strings.reschedule}
                   bgColor={Colors.lightRed}
-                  titleColor={Colors.red}
-                  btnStyle={styles.btn}
+                  titleColor={Colors.primary}
+                  btnStyle={{alignSelf: 'center', width:wp(95)}}
                 />
-                <Button
-                  title={Strings.accept}
-                  bgColor={Colors.primary}
-                  titleColor={Colors.white}
-                  btnStyle={styles.btn}
-                />
-              </View>
+              ) : (
+                <View style={styles.btnWrapper}>
+                  <Button
+                    onPress={() => setAlert(true)}
+                    title={Strings.reject}
+                    bgColor={Colors.lightRed}
+                    titleColor={Colors.red}
+                    btnStyle={styles.btn}
+                  />
+                  <Button
+                    title={Strings.accept}
+                    bgColor={Colors.primary}
+                    titleColor={Colors.white}
+                    btnStyle={styles.btn}
+                  />
+                </View>
+              )}
             </View>
           ))}
         </ScrollView>
@@ -90,15 +114,24 @@ const Home = ({navigation}) => {
   const Upcoming = ({navigation}) => {
     return (
       <View style={styles.newTab}>
-        <Label label={Strings.upcomingBookings} bold size={hp(2.5)} left paddingVertical={hp(2)}/>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <Label
+          label={Strings.upcomingBookings}
+          bold
+          size={hp(2.5)}
+          left
+          paddingVertical={hp(2)}
+          color={Colors.primary_dark}
+        />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{paddingBottom: hp(5)}}>
           {bookings.map((item, index) => (
             <TouchableOpacity
               onPress={() => navigation.navigate('BookingDetails')}
               key={index}
               style={[styles.bookingView, {paddingBottom: hp(2)}]}>
               <View style={styles.row}>
-                <Icon size={hp(12)} source={item.banner} radius={20}/>
+                <Icon size={hp(12)} source={item.banner} radius={20} />
                 <View>
                   <Label
                     label={item.label}
@@ -106,6 +139,7 @@ const Home = ({navigation}) => {
                     left
                     marginLeft={wp(2)}
                     size={hp(2)}
+                    color={Colors.primary_dark}
                   />
                   <ItemWrapper img={item.s_icon} label={item.service} />
                   <ItemWrapper img={item.t_icon} label={item.time} />
@@ -138,7 +172,12 @@ const Home = ({navigation}) => {
             tabBarLabel: ({focused}) => (
               <View
                 style={focused ? styles.tabBarLabelActive : styles.tabBarLabel}>
-                <Label label={Strings.new} bold size={hp(2)} />
+                <Label
+                  label={Strings.new}
+                  bold
+                  size={hp(2)}
+                  color={Colors.black}
+                />
               </View>
             ),
           }}
@@ -150,7 +189,12 @@ const Home = ({navigation}) => {
             tabBarLabel: ({focused}) => (
               <View
                 style={focused ? styles.tabBarLabelActive : styles.tabBarLabel}>
-                <Label label={Strings.upcoming} bold size={hp(2)} />
+                <Label
+                  label={Strings.upcoming}
+                  bold
+                  size={hp(2)}
+                  color={Colors.black}
+                />
               </View>
             ),
           }}

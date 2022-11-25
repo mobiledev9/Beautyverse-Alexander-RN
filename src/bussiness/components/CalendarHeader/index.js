@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Text,
-  Platform,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, Platform} from 'react-native';
 import {Colors} from '../../theme/colors';
 import {Images} from '../../theme/images';
 import {FONTS} from '../../theme/fonts';
@@ -16,19 +9,27 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 
-const Index = ({onPressBack, headerTitle, noBack, hide}) => {
+const Index = ({onPressBack, headerTitle, hide}) => {
   return (
     <View
       style={hide ? styles.container : [styles.container, styles.separator]}>
-      {noBack ? (
-        <View style={styles.backBtn}></View>
-      ) : (
-        <TouchableOpacity onPress={onPressBack}>
-          <Image source={Images.back} style={styles.backBtn} />
-        </TouchableOpacity>
-      )}
-      <Text style={styles.txt}>{headerTitle}</Text>
-      <View style={styles.backBtn}></View>
+      <TouchableOpacity onPress={onPressBack}>
+        <Icon source={Images.back} size={hp(2.5)} />
+      </TouchableOpacity>
+
+      <View style={styles.row}>
+        <Text style={styles.txt}>{headerTitle}</Text>
+        <Icon source={Images.menushow} size={hp(2)} />
+      </View>
+
+      <View
+        style={{
+          ...styles.row,
+          width: wp(18),
+        }}>
+        <Icon source={Images.grid} size={hp(3)} />
+        <Icon source={Images.col} size={hp(3)} />
+      </View>
     </View>
   );
 };
@@ -48,15 +49,21 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.lightGray2,
   },
   backBtn: {
-    height: hp(3),
-    width: hp(3),
+    height: hp(2),
+    width: hp(2),
     tintColor: Colors.primary_dark,
   },
   txt: {
-    fontSize: hp(3),
+    fontSize: hp(2),
     fontWeight: '600',
     color: Colors.primary_dark,
     fontFamily: FONTS.Inte,
+    marginRight: wp(2),
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 

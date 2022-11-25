@@ -82,7 +82,10 @@ const AddLocation = ({navigation}) => {
             <GooglePlacesAutocomplete
               GooglePlacesDetailsQuery={{fields: 'geometry'}}
               fetchDetails={true}
-              placeholder={Strings.searchLocation}
+              textInputProps={{
+                placeholder: Strings.searchLocation,
+                placeholderTextColor: Colors.primary_dark,
+              }}
               onPress={(data, details = null) => {
                 const geometry = details?.geometry?.location;
                 setLongitude(geometry.lng);
@@ -107,6 +110,7 @@ const AddLocation = ({navigation}) => {
                 textInput: {
                   backgroundColor: Colors.lightGray,
                   marginLeft: wp(2),
+                  color: Colors.primary_dark,
                 },
               }}
               query={{

@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Colors} from '../../../theme/colors';
 import {
   widthPercentageToDP as wp,
@@ -16,5 +16,15 @@ export const styles = StyleSheet.create({
     width: wp(90),
     bottom: hp(5),
     position: 'absolute',
+  },
+  rowWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: Colors.white,
+  },
+  cardView: {
+    width: wp(90),
+    paddingVertical: hp(2),
   },
 });
