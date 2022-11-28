@@ -8,7 +8,7 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  Text
+  Text,
 } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import {Images} from '../../theme/Images';
@@ -21,13 +21,16 @@ import {Colors} from '../../theme/colors';
 import MapSearch from '../../components/SearchComponents/MapSearch';
 import Button from '../../components/AuthComponents/FilledButton';
 import {Strings} from '../../theme/strings';
-import { BusinessPageStyles } from './BusinessPageStyles';
-import PlacesInput from 'react-native-places-input';
-import { config } from '../../../../config';
+import {BusinessPageStyles} from './BusinessPageStyles';
+
+import {Config} from '../../../../config';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import {styles} from '../../../bussiness/screens/AuthScreens/OnBoarding/styles';
+import Icon from '../../../bussiness/components/Icon';
+import Label from '../../../bussiness/components/Label';
 
 // create a component
 const AddAddress = ({navigation}) => {
-
   const map = useRef();
 
   const [isSearchModal, setSearchModal] = useState(false);
@@ -57,7 +60,7 @@ const AddAddress = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <MapView
         followsUserLocation={true}
         showsUserLocation={true}
@@ -87,9 +90,7 @@ const AddAddress = ({navigation}) => {
           alignItems: 'center',
           left: wp(5),
         }}>
-        <TouchableOpacity
-          onPress={() => {}}
-          style={{alignSelf: 'flex-end', marginBottom: hp(2)}}>
+        <TouchableOpacity style={BusinessPageStyles.maplocbutton}>
           <Image
             resizeMode="contain"
             style={{
@@ -99,19 +100,20 @@ const AddAddress = ({navigation}) => {
             source={Images.mylocation}
           />
         </TouchableOpacity>
-        <MapSearch 
-        onTouchStart={()=>{
-        setSearchModal(true)
-        }}
-        // onChangeText={text => setSearchModal(true)} 
-        value={place} />
+        <MapSearch
+          onTouchStart={() => {
+            setSearchModal(true);
+          }}
+          // onChangeText={text => setSearchModal(true)}
+          value={place}
+        />
         <Button
-          onPress={()=> {
+          onPress={() => {
             navigation.navigate('InsertAdd', {
-                latitude: latitude,
-                longitude: longitude,
-                place: place ? place : 'Melbourne, VIC, Australia',
-              })
+              latitude: latitude,
+              longitude: longitude,
+              place: place ? place : 'Melbourne, VIC, Australia',
+            });
           }}
           titleColor={Colors.white}
           btnStyle={{width: wp(90)}}
@@ -120,36 +122,99 @@ const AddAddress = ({navigation}) => {
         />
       </View>
 
-      <Modal 
-      visible={isSearchModal} 
-      animationType="slide"
-      >
-        <SafeAreaView style={BusinessPageStyles.serachModal}>
-          <View style={BusinessPageStyles.serachWrapper}>
+      <Modal visible={isSearchModal} animationType="slide">
+        <SafeAreaView style={styles.serachModal}>
+          <View style={styles.serachWrapper}>
             <TouchableOpacity
-            onPress={()=>{
-                setSearchModal(false);
-            }}
-            hitSlop={{left:100,right:100,top:100,bottom:100}}
-            // style={{marginLeft:10}}
-            >
-                <Image
-                resizeMode='contain'
-                style={{height:hp(4),width:hp(4)}}
-                source={Images.back}
-                />
+              onPress={() => setSearchModal(false)}
+              style={{paddingTop: hp(2)}}>
+              <Image source={Images.back} style={styles.backBtn} />
             </TouchableOpacity>
-            <PlacesInput
-              
-              googleApiKey={config.GOOGLE_API_KEY}
-              placeHolder={Strings.searchLocation}
-              stylesInput={BusinessPageStyles.searchView}
-              onSelect={place => {
-                setLatitude(place.result.geometry.location.lat);
-                setLongitude(place.result.geometry.location.lng);
-                setPlace(place.result.formatted_address);
-                setSearchModal(false);
+
+            <GooglePlacesAutocomplete
+              GooglePlacesDetailsQuery={{fields: 'geometry'}}
+              fetchDetails={true}
+              textInputProps={{
+                placeholder: Strings.searchLocation,
+                placeholderTextColor: Colors.primaryDark,
               }}
+              onPress={(data, details = null) => {
+                const geometry = details?.geometry?.location;
+                setLongitude(geometry.lng);
+                setLatitude(geometry.lat);
+                setPlace(data.description);
+                setSerachModal(false);
+              }}
+              styles={{
+                listView:{
+                  width:'100%'
+                },
+                container: {
+                  
+                  overflow: 'hidden',
+                  backgroundColor: Colors.white,
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginLeft: wp(3),
+                  flex: 1,
+                  
+                },
+                textInputContainer: {
+                  backgroundColor: Colors.lightgrey,
+                  borderRadius: 100,
+                  paddingHorizontal: wp(4),
+                  borderRadius:30,
+                },
+                textInput: {
+                  backgroundColor: Colors.lightGray,
+                  marginLeft: wp(2),
+                  color: Colors.primaryDark,
+                },
+              }}
+              query={{
+                key: Config.GOOGLE_API_KEY,
+                language: 'en',
+              }}
+              renderRow={result => (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: Colors.lightGray,
+                      height: hp(5),
+                      width: hp(5),
+                      borderRadius: 100,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Icon source={Images.location} size={hp(3)} />
+                  </View>
+
+                  <View style={{marginLeft: wp(3)}}>
+                    <Label
+                      label={result.description}
+                      left
+                      bold
+                      size={hp(2)}
+                      color={Colors.primary_dark1}
+                    />
+                    <Label
+                      label={Strings.detailedLocation}
+                      left
+                      size={hp(1.9)}
+                      color={Colors.gray}
+                    />
+                  </View>
+                </View>
+              )}
+              renderLeftButton={() => (
+                <View style={{alignSelf: 'center'}}>
+                  <Icon source={Images.search} size={hp(3)} />
+                </View>
+              )}
             />
           </View>
         </SafeAreaView>
@@ -159,12 +224,7 @@ const AddAddress = ({navigation}) => {
 };
 
 // define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+
 
 //make this component available to the app
 export default AddAddress;

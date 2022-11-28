@@ -102,6 +102,7 @@ export const BusinessPageStyles = StyleSheet.create({
   daytext: {
     fontFamily: 'InterV',
     fontSize: 15,
+    color:Colors.darkpink
   },
 
   //Reviews
@@ -216,6 +217,17 @@ export const BusinessPageStyles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     paddingLeft: 15,
+  },
+  maplocbutton:{
+    backgroundColor: 'white',
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.2,
+    elevation: 2,
+    borderRadius: 100,
+    alignSelf: 'flex-end',
+    marginBottom: hp(2),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   // Map search Modal

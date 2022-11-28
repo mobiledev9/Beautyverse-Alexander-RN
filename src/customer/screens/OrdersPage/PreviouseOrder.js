@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingLeft:wp(5),
-        paddingBottom:hp(5)
+    
     },
 });
 

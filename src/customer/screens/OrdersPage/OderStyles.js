@@ -36,6 +36,18 @@ selectprofcard:{
     shadowOffset: {width: 2, height: 5},
     shadowOpacity: 0.2,
     elevation: 2,
+},
+
+//Top Tab Style
+TabView:{
+  width: wp(42),
+  marginLeft: wp(1),
+  alignItems: 'center',
+  height: '100%',
+  justifyContent: 'center',
+  alignSelf: 'center',
+  paddingVertical: 5,
+  borderRadius: 15,
 }
 
 })

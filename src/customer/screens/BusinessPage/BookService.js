@@ -179,7 +179,11 @@ const BookService = ({navigation}) => {
 
   const RenderAddOn = ({item, index}) => {
     return (
-      <View
+      <TouchableOpacity
+      onPress={() => {
+        SelectIndexAddOn(index);
+        console.log('Press');
+      }}
         style={[
           BusinessPageStyles.AddOnCard,
           {
@@ -191,12 +195,8 @@ const BookService = ({navigation}) => {
         ]}>
         <View style={BusinessPageStyles.AddOnView}>
           <SemiBold FontSize={hp(2.2)} EnterText={item.addon} />
-          <TouchableOpacity
-            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-            onPress={() => {
-              SelectIndexAddOn(index);
-              console.log('Press');
-            }}>
+          <View
+            >
             {AddOnIndex.includes(index) ? (
               <Image
                 resizeMode="contain"
@@ -216,13 +216,13 @@ const BookService = ({navigation}) => {
                 source={Images.plus}
               />
             )}
-          </TouchableOpacity>
+          </View>
         </View>
         <Text style={BusinessPageStyles.DurationText}>
           Duration: {item.duration}
         </Text>
         <PriceAmt Amount={item.amt} />
-      </View>
+      </TouchableOpacity>
     );
   };
 

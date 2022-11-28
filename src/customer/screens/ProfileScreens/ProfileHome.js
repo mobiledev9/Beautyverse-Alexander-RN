@@ -8,6 +8,8 @@ import {
 } from '../../theme/layout';
 import {Strings} from '../../../bussiness/theme/strings';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Avatar } from 'react-native-elements';
+import { Images } from '../../theme/Images';
 
 // create a componeStringsnt
 const ProfileHome = () => {
@@ -18,6 +20,13 @@ const ProfileHome = () => {
       AllStyle={{fontFamily:'Inter-Bold'}}
       FontSize={hp(3.2)}
       EnterText={Strings.profile} />
+      <View style={{flexDirection:'row'}}>
+        <Avatar
+        size={100}
+        source={Images.Credit}
+        />
+      </View>
+
       </View>
     
     </SafeAreaView>

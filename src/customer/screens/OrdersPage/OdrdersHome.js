@@ -39,6 +39,7 @@ import HeaderText from '../../components/AuthComponents/HeaderText';
 import {HomeStyles} from '../HomeScreens/HomeStyles';
 import UpcomingOrder from './UpcomingOrder';
 import PreviousOrder from './PreviouseOrder';
+import {OrderStyles} from './OderStyles';
 
 // create a component
 const OrdersHome = () => {
@@ -57,7 +58,7 @@ const OrdersHome = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <HeaderText
         Style={{marginTop: hp(2), marginLeft: wp(5)}}
         FontSize={hp(2.8)}
@@ -93,22 +94,17 @@ const OrdersHome = () => {
           options={{
             tabBarLabel: ({focused}) => (
               <View
-                style={{
-                  backgroundColor: focused ? Colors.white : Colors.lightgrey,
-                  width: wp(42),
-                  marginLeft: wp(1),
-                  alignItems: 'center',
-                  height: '100%',
-                  justifyContent: 'center',
-                  alignSelf: 'center',
-                  paddingVertical: 5,
-                  borderRadius: 15,
-                  shadowOffset: focused
-                    ? {width: 2, height: 5}
-                    : {width: 0, height: 0},
-                  shadowOpacity: focused ? 0.2 : 0,
-                  elevation: focused ? 3 : 0,
-                }}>
+                style={[
+                  OrderStyles.TabView,
+                  {
+                    backgroundColor: focused ? Colors.white : Colors.lightgrey,
+                    shadowOffset: focused
+                      ? {width: 2, height: 5}
+                      : {width: 0, height: 0},
+                    shadowOpacity: focused ? 0.2 : 0,
+                    elevation: focused ? 3 : 0,
+                  },
+                ]}>
                 <SemiBold FontSize={hp(2.1)} EnterText={'Upcoming'} />
               </View>
             ),
@@ -120,29 +116,24 @@ const OrdersHome = () => {
           options={{
             tabBarLabel: ({focused}) => (
               <View
-                style={{
-                  backgroundColor: focused ? Colors.white : Colors.lightgrey,
-                  width: wp(42),
-                  alignItems: 'center',
-                  height: '100%',
-                  justifyContent: 'center',
-                  alignSelf: 'center',
-                  paddingVertical: 5,
-                  borderRadius: 15,
-                  marginRight: wp(1),
-                  shadowOffset: focused
-                    ? {width: 2, height: 2}
-                    : {width: 0, height: 0},
-                  shadowOpacity: focused ? 0.2 : 0,
-                  elevation: focused ? 3 : 0,
-                }}>
+                style={[
+                  OrderStyles.TabView,
+                  {
+                    backgroundColor: focused ? Colors.white : Colors.lightgrey,
+                    shadowOffset: focused
+                      ? {width: 2, height: 5}
+                      : {width: 0, height: 0},
+                    shadowOpacity: focused ? 0.2 : 0,
+                    elevation: focused ? 3 : 0,
+                  },
+                ]}>
                 <SemiBold FontSize={hp(2.1)} EnterText={'Previous'} />
               </View>
             ),
           }}
         />
       </Tab.Navigator>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -151,7 +142,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginBottom:hp(-5)
+    paddingTop: hp(5),
   },
 });
 
