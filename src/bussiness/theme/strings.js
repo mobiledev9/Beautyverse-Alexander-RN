@@ -89,4 +89,22 @@ export const Strings = {
     'Selecting professional is optional, we’ll select a professional for you if you choose not to select by yourself.',
   addService: ' Add Service',
   selectService: 'Select Service',
+
+  //Staff
+  professionals: 'Professionals',
+  professionalListed: '5 Staff Professionals Listed',
+  hairProfessionals: 'Hair Professionals',
+  addHairProfessional: 'Add a Hair Professional',
+  addProfessional: 'Add a Professional',
+  addProf: 'Add Professional',
+  add: 'Add',
+  firstName : 'First Name',
+  lastName : 'Last Name',
+  selectServices : 'Select Services',
+  addRemoveServices : 'Add/Remove Services',
+  proForHairServices : 'Add a Professional to Hair Services',
+  addNewProfessional : 'Add a new professional',
+  addFromexisting : 'Add from existing',
+  remove : 'Remove',
+  removeFromList : 'Remove from this list'
 };

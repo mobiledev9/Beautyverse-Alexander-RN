@@ -6,6 +6,7 @@ import {Images} from '../../theme/images';
 import {styles} from './styles';
 import {Strings} from '../../theme/strings';
 import Home from './Home';
+import Professionals from './Staff/Professionals';
 
 const BottomTabs = ({focused}) => {
   function FeedScreen() {
@@ -77,8 +78,8 @@ const BottomTabs = ({focused}) => {
                 ),
               tabBarLabel: '',
             }}
-            name="MyCollection"
-            component={ProfileScreen}></Tab.Screen>
+            name="Professionals"
+            component={Professionals}></Tab.Screen>
           <Tab.Screen
             options={{
               tabBarIcon: ({color, focused}) =>

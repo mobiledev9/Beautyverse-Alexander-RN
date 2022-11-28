@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Text,
-  Platform,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import {Colors} from '../../theme/colors';
 import {Images} from '../../theme/images';
 import {FONTS} from '../../theme/fonts';
@@ -15,19 +8,33 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
+import Label from '../Label';
 
-const Index = ({onPressBack, headerTitle, noBack, hide}) => {
+const Index = ({onPressBack, headerTitle, noBack, hide, rightLabel}) => {
   return (
     <View
       style={hide ? styles.container : [styles.container, styles.separator]}>
       {noBack ? (
         <View style={styles.backBtn}></View>
+      ) : rightLabel ? (
+        <Label
+          label={rightLabel}
+          left
+          color={Colors.primary_dark}
+          fontFamily={FONTS.InterBold}
+          size={hp(2.5)}
+        />
       ) : (
         <TouchableOpacity onPress={onPressBack}>
-          <Image source={Images.back} style={styles.backBtn} />
+          <Icon source={Images.back} size={hp(3)} />
         </TouchableOpacity>
       )}
-      <Text style={styles.txt}>{headerTitle}</Text>
+      <Label
+        label={headerTitle}
+        color={Colors.primary_dark}
+        fontFamily={FONTS.InterBold}
+        size={hp(2.5)}
+      />
       <View style={styles.backBtn}></View>
     </View>
   );

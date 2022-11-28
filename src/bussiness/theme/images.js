@@ -20,7 +20,6 @@ export const Images = {
   banner: require('../assets/banner.png'),
   date: require('../assets/date.png'),
   location: require('../assets/location.png'),
-  //Bottom Tabs
   HomeEmpty: require('../assets/HomeEmpty.png'),
   HomeFill: require('../assets/HomeFill.png'),
   DocEmpty: require('../assets/DocEmpty.png'),
@@ -29,11 +28,9 @@ export const Images = {
   ProfileFill: require('../assets/ProfileFill.png'),
   userEmpty: require('../assets/userEmpty.png'),
   userFill: require('../assets/userFill.png'),
-  //header
   appLogo: require('../assets/appLogo.png'),
   NotifyBell: require('../assets/NotifyBell.png'),
   calnder: require('../assets/calnder.png'),
-  //booking details
   customer: require('../assets/customer.png'),
   rating: require('../assets/rating.png'),
   rightarrow: require('../assets/rightarrow.png'),
@@ -47,4 +44,15 @@ export const Images = {
   bell: require('../assets/bell.png'),
   grid: require('../assets/grid.png'),
   col: require('../assets/col.png'),
+  option: require('../assets/option.png'),
+  add: require('../assets/add.png'),
+  addWhite: require('../assets/addWhite.png'),
+  cameraround: require('../assets/cameraround.png'),
+  check: require('../assets/check.png'),
+  square: require('../assets/square.png'),
+  addFill: require('../assets/addFill.png'),
+  grids: require('../assets/girds.png'),
+  cancel: require('../assets/Cancel.png'),
+  bin: require('../assets/bin.png'),
 };
+

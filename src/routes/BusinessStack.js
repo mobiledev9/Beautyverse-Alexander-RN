@@ -11,6 +11,12 @@ import PaymentMethod from '../bussiness/screens/AuthScreens/Payment/PaymentMetho
 import AddCard from '../bussiness/screens/AuthScreens/Payment/AddCard';
 import BookService from '../bussiness/screens/TabStack/BookService/BookService';
 import Calender from '../bussiness/screens/TabStack/Calender/Calender';
+//Staff 
+import Professionals from '../bussiness/screens/TabStack/Staff/Professionals';
+import HairProfessionals from '../bussiness/screens/TabStack/Staff/HairProfessionals';
+import AddProfessional from '../bussiness/screens/TabStack/Staff/AddProfessional';
+import AddHairProfessionals from '../bussiness/screens/TabStack/Staff/AddHairProfessionals';
+import ExistProfessionals from '../bussiness/screens/TabStack/Staff/existProfessionals';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +65,26 @@ export function BusinessStack() {
     {
       name: 'Calender',
       component: Calender,
+    },
+    {
+      name: 'Professionals',
+      component: Professionals,
+    },
+    {
+      name: 'HairProfessionals',
+      component: HairProfessionals,
+    },
+    {
+      name: 'AddProfessional',
+      component: AddProfessional,
+    },
+    {
+      name: 'AddHairProfessionals',
+      component: AddHairProfessionals,
+    },
+    {
+      name: 'ExistProfessionals',
+      component: ExistProfessionals,
     },
   ];
   return (

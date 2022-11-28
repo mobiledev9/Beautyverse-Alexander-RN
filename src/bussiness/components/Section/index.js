@@ -8,10 +8,10 @@ import {
 } from '../../theme/layout';
 import {Colors} from '../../theme/colors';
 
-const Section = ({source, label, onPress, color, bgColor}) => {
+const Section = ({source, label, onPress, color, bgColor, style}) => {
   return (
     <TouchableOpacity
-      style={[styles.container, {backgroundColor: bgColor}]}
+      style={[styles.container, {backgroundColor: bgColor}, style]}
       onPress={onPress}>
       <Icon source={source} size={hp(3)} color={color} />
       <Label label={label} bold marginLeft={wp(2)} color={color} />
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: wp(30),
     width: wp(43),
-    marginVertical : wp(2.5),
+    marginVertical: wp(2.5),
   },
 });
 

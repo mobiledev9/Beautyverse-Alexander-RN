@@ -123,3 +123,34 @@ export const selectService = [
   {service: 'Hair Cut 4', Duration: '45 minutes', price: '$60.00'},
   {service: 'Hair Cut 5', Duration: '45 minutes', price: '$60.00'},
 ];
+
+export const professionals = [
+  {
+    icon: Images.hairpm,
+    label: Strings.hair,
+    desc: Strings.professionalListed,
+    leftIcon: Images.option,
+  },
+  {
+    icon: Images.skinpm,
+    label: Strings.skincare,
+    desc: Strings.professionalListed,
+    leftIcon: Images.option,
+  },
+  {
+    icon: Images.nailspm,
+    label: Strings.nails,
+    desc: Strings.professionalListed,
+    leftIcon: Images.option,
+  },
+];
+
+export const hairProfessional = [
+  {name: 'Johnathan Morrison', rating: '5.0', review: '(121 Reviews)'},
+  {name: 'Maria Kevin', rating: '5.0', review: '(100 Reviews)'},
+  {name: 'Linda Johnson', rating: '5.0', review: '(99 Reviews)'},
+  {name: 'JKevin Frank', rating: '5.0', review: '(80 Reviews)'},
+  {name: 'Dwayne Jackson', rating: '5.0', review: '(60 Reviews)'},
+  {name: 'Tom Cameron', rating: '5.0', review: '(45 Reviews)'},
+  {name: 'Conor Charlie', rating: '5.0', review: '(40 Reviews)'},
+];

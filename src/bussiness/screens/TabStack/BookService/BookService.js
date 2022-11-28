@@ -149,13 +149,12 @@ const BookService = ({navigation}) => {
           <Calendar
             markedDates={selectedDate}
             onDayPress={day => {
-              // navigation.navigate('Calender')
+              navigation.navigate('Calender', {date: selectedDate});
               let mydate = {
                 [day.dateString]: {
                   selected: true,
                   selectedColor: Colors.primary,
                 },
-                
               };
               setSelectedDate(mydate);
             }}
