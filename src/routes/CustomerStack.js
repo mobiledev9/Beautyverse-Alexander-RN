@@ -23,6 +23,8 @@ import Checkout from '../customer/screens/BusinessPage/Checkout';
 import ConfirmBooking from '../customer/screens/BusinessPage/ConfirmBooking';
 import OrderDetails from '../customer/screens/OrdersPage/OrderDetails';
 import RescheduleOrder from '../customer/screens/OrdersPage/RescheduleOder';
+import ProfileHome from '../customer/screens/ProfileScreens/ProfileHome';
+import MyProfile from '../customer/screens/ProfileScreens/MyProfile';
 
 
 
@@ -32,9 +34,19 @@ const Stack = createNativeStackNavigator();
 export function CustomerStack() {
   const screens = [
     {
+      name: 'MyProfile',
+      component: MyProfile,
+    },
+    {
       name: 'AddProfile',
       component: AddProfile,
     },
+    
+    {
+      name: 'ProfileHome',
+      component: ProfileHome,
+    },
+   
     {
       name: 'OrderDetails',
       component: OrderDetails,

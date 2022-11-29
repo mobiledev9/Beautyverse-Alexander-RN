@@ -134,7 +134,7 @@ const RegistrationScreen = ({navigation, route}) => {
             />
             <BottomTitle
               onPress={() => {
-                navigation.navigate('LoginScreen');
+                navigation.navigate('LoginScreen', {role: params.role});
               }}
               ButtonText={Strings.logintext}
               MainText={Strings.HaveAccount}

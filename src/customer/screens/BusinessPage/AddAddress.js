@@ -62,6 +62,7 @@ const AddAddress = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <MapView
+
         followsUserLocation={true}
         showsUserLocation={true}
         showsMyLocationButton={true}
@@ -72,7 +73,7 @@ const AddAddress = ({navigation}) => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
-        <Marker
+        <Marker                                                                                               
           coordinate={{
             latitude: latitude,
             longitude: longitude,
@@ -83,6 +84,27 @@ const AddAddress = ({navigation}) => {
           />
         </Marker>
       </MapView>
+      <TouchableOpacity
+      onPress={()=>{
+        navigation.goBack();
+      }}
+        style={{
+          position: 'absolute',
+          top: hp(5),
+          left: wp(5),
+          shadowOffset: {width: 5, height: 5},
+          shadowOpacity: 0.5,
+          elevation: 4,
+        }}>
+        <Image
+          resizeMode="contain"
+          style={{
+            height: wp(15),
+            width: wp(15),
+          }}
+          source={Images.backround}
+        />
+      </TouchableOpacity>
       <View
         style={{
           position: 'absolute',
@@ -143,27 +165,25 @@ const AddAddress = ({navigation}) => {
                 setLongitude(geometry.lng);
                 setLatitude(geometry.lat);
                 setPlace(data.description);
-                setSerachModal(false);
+                setSearchModal(false);
               }}
               styles={{
-                listView:{
-                  width:'100%'
+                listView: {
+                  width: '100%',
                 },
                 container: {
-                  
                   overflow: 'hidden',
                   backgroundColor: Colors.white,
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   marginLeft: wp(3),
                   flex: 1,
-                  
                 },
                 textInputContainer: {
                   backgroundColor: Colors.lightgrey,
                   borderRadius: 100,
                   paddingHorizontal: wp(4),
-                  borderRadius:30,
+                  borderRadius: 30,
                 },
                 textInput: {
                   backgroundColor: Colors.lightGray,
@@ -224,7 +244,6 @@ const AddAddress = ({navigation}) => {
 };
 
 // define your styles
-
 
 //make this component available to the app
 export default AddAddress;

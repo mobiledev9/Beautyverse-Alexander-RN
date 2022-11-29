@@ -55,4 +55,11 @@ export const Images = {
   outbin:require('../assets/OrdersScreen/outbin.png'),
   dategrey:require('../assets/OrdersScreen/dategrey.png'),
   locgrey:require('../assets/OrdersScreen/locgrey.png'),
+  backround:require('../assets/BookingPage/backround.png'),
+  profround:require('../assets/ProfileIcons/profround.png'),
+  faqround:require('../assets/ProfileIcons/faqround.png'),
+  heartround:require('../assets/ProfileIcons/heartround.png'),
+  helpround:require('../assets/ProfileIcons/helpround.png'),
+  settinground:require('../assets/ProfileIcons/settinground.png'),
+  walletround:require('../assets/ProfileIcons/walletround.png'),
 };

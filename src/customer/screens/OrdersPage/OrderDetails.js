@@ -35,7 +35,7 @@ const OrderDetails = ({navigation}) => {
         onPress={() => {
           navigation.goBack();
         }}
-        HeaderText={'Order Details'}
+        HeaderText={'Order Detail'}
       />
       <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: hp(15)}}>
         <View
@@ -175,7 +175,7 @@ const OrderDetails = ({navigation}) => {
             navigation.navigate('RescheduleOrder');
           }}
           bgColor={Colors.primary}
-          title={'RescheduleOrder'}
+          title={'Reschedule'}
           titleColor={Colors.white}
           btnStyle={{width: wp(90)}}
         />

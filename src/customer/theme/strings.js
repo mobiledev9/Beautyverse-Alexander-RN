@@ -61,4 +61,5 @@ export const Strings = {
   svLoc:'Save Location',
   confbooking:'Confirm Booking',
   reschedule:'Reschedule',
+  resservice:'Reschedule Service'
 };

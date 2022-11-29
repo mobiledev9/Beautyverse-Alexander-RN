@@ -36,7 +36,7 @@ import StarRating from '../../components/BusinessPage/StarRating';
 import HeaderText from '../../components/AuthComponents/HeaderText';
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
-import { OrderStyles } from './OderStyles';
+import {OrderStyles} from './OderStyles';
 
 // create a component
 
@@ -378,7 +378,7 @@ const RescheduleOrder = ({navigation}) => {
         onPress={() => {
           navigation.goBack();
         }}
-        HeaderText={Strings.bookser}
+        HeaderText={Strings.resservice}
       />
 
       <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: hp(10)}}>
@@ -462,12 +462,11 @@ const RescheduleOrder = ({navigation}) => {
                     </Text>
                   </View>
                   <TouchableOpacity>
-                  <Image
-                    style={{height: hp(3.7), width: hp(3.7)}}
-                    source={Images.edit}
-                  />
+                    <Image
+                      style={{height: hp(3.7), width: hp(3.7)}}
+                      source={Images.edit}
+                    />
                   </TouchableOpacity>
-                
                 </View>
               </View>
             ) : null}
@@ -537,16 +536,7 @@ const RescheduleOrder = ({navigation}) => {
                 },
               },
 
-              // textMonthFontFamily:Font.FontFamily.Mulish,
-              // textMonthFontSize: 15,
-              // textMonthFontWeight: 'bold',
-              // textDayFontSize: 50,
-              // "stylesheet.day.basic": {
-              //   base: {
-              //     // height: 5,
-              //     paddingHorizontal:wp(5)
-              //   },
-              // },
+            
               calendarBackground: 'transparent',
               monthTextColor: Colors.primary,
 
@@ -596,7 +586,7 @@ const RescheduleOrder = ({navigation}) => {
                 onPress={() => {
                   refRBSheet.current.open();
                 }}
-                style={BusinessPageStyles.SelectProfCard} >
+                style={BusinessPageStyles.SelectProfCard}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <Image
                     resizeMode="contain"
@@ -622,8 +612,7 @@ const RescheduleOrder = ({navigation}) => {
                 alignSelf: 'center',
                 marginVertical: 5,
               }}>
-              <View
-                style={OrderStyles.selectprofcard}>
+              <View style={OrderStyles.selectprofcard}>
                 <Avatar
                   containerStyle={{marginLeft: 10}}
                   size={57}
@@ -666,72 +655,6 @@ const RescheduleOrder = ({navigation}) => {
             </View>
           )}
         </View>
-
-        {/* {selectProf === true ? (
-          <View
-            style={{
-              width: wp(90),
-              alignSelf: 'center',
-              marginVertical: 5,
-            }}>
-            <View
-              style={{
-                backgroundColor: Colors.white,
-                borderRadius: 15,
-                paddingLeft: 10,
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingVertical: wp(3.5),
-                borderBottomWidth: 1,
-                width: wp(90),
-                alignSelf: 'center',
-                justifyContent: 'space-between',
-                borderColor: Colors.grey,
-                shadowOffset: {width: 2, height: 5},
-                shadowOpacity: 0.2,
-                elevation: 2,
-              }}>
-              <Avatar
-                containerStyle={{marginLeft: 10}}
-                size={57}
-                rounded
-                source={selectedProf.img}
-              />
-              <View style={{marginLeft: -60}}>
-                <SemiBold FontSize={hp(2.3)} EnterText={selectedProf.name} />
-                <StarRating Rating={Strings.stars} Numbers={Strings.rating} />
-              </View>
-              <TouchableOpacity onPress={() => [refRBSheet.current.open()]}>
-                <Image
-                  resizeMode="contain"
-                  style={{height: hp(3.3), width: hp(3.3), marginRight: 20}}
-                  source={Images.edit}
-                />
-              </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity
-              onPress={() => {
-                setselectProf(false);
-              }}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginVertical: hp(0.9),
-              }}>
-              <Image
-                resizeMode="contain"
-                style={{height: hp(2.7), width: hp(2.7), marginRight: 10}}
-                source={Images.crosspink}
-              />
-              <SemiBold
-                FontSize={hp(2.3)}
-                AllStyle={{color: Colors.darkpeach}}
-                EnterText={'Remove Selction'}
-              />
-            </TouchableOpacity>
-          </View>
-        ) : null} */}
       </ScrollView>
 
       <Modal
@@ -774,9 +697,9 @@ const RescheduleOrder = ({navigation}) => {
         </View>
       </Modal>
       <Button
-        onPress={() => {
-          navigation.navigate('ConfirmBooking');
-        }}
+        // onPress={() => {
+        //   navigation.navigate('ConfirmBooking');
+        // }}
         btnStyle={{
           width: wp(90),
           alignSelf: 'center',

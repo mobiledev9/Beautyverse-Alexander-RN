@@ -60,8 +60,8 @@ const OrdersHome = () => {
   return (
     <View style={styles.container}>
       <HeaderText
-        Style={{marginTop: hp(2), marginLeft: wp(5)}}
-        FontSize={hp(2.8)}
+        Style={{ marginLeft: wp(5)}}
+        FontSize={hp(3.2)}
         TopText={'Orders'}
       />
       <Tab.Navigator
@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: hp(5),
   },
 });
 
