@@ -15,8 +15,7 @@ import {
 } from '../../../theme/layout';
 
 const BusinessTiming = ({navigation}) => {
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+  const [switchIndex, setSwitchIndex] = useState([]);
 
   const DATA = [
     {day: 'Monday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: true},
@@ -27,6 +26,19 @@ const BusinessTiming = ({navigation}) => {
     {day: 'Saturday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: false},
     {day: 'Sunday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: false},
   ];
+  
+  const switchSelection = index => {
+    if (switchIndex.length == 0) {
+      setSwitchIndex([index]);
+    } else {
+      if (switchIndex.includes(index)) {
+        const filter = switchIndex.filter(item => item != index);
+        setSwitchIndex(filter);
+      } else {
+        setSwitchIndex(prevState => [...prevState, index]);
+      }
+    }
+  };
 
   return (
     <SafeAreaView style={styles.conatiner}>
@@ -53,13 +65,13 @@ const BusinessTiming = ({navigation}) => {
                     width: wp(25),
                   }}>
                   <Label
-                    label={item.opne ? 'Open' : 'Close'}
+                    label={item.opne ? 'Open' : 'Closed'}
                     medium
                     color={Colors.primary_dark}
                   />
                   <Switch
-                    value={isSwitchOn}
-                    onValueChange={onToggleSwitch}
+                    value={switchIndex.includes(index) && true}
+                    onValueChange={()=> switchSelection(index)}
                     color={Colors.primary}
                   />
                 </View>

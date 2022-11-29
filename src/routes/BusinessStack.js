@@ -11,12 +11,17 @@ import PaymentMethod from '../bussiness/screens/AuthScreens/Payment/PaymentMetho
 import AddCard from '../bussiness/screens/AuthScreens/Payment/AddCard';
 import BookService from '../bussiness/screens/TabStack/BookService/BookService';
 import Calender from '../bussiness/screens/TabStack/Calender/Calender';
-//Staff 
+//Staff
 import Professionals from '../bussiness/screens/TabStack/Staff/Professionals';
 import HairProfessionals from '../bussiness/screens/TabStack/Staff/HairProfessionals';
 import AddProfessional from '../bussiness/screens/TabStack/Staff/AddProfessional';
 import AddHairProfessionals from '../bussiness/screens/TabStack/Staff/AddHairProfessionals';
 import ExistProfessionals from '../bussiness/screens/TabStack/Staff/existProfessionals';
+//Services
+import Services from '../bussiness/screens/TabStack/Services/Services';
+import SelectService from '../bussiness/screens/TabStack/Services/SelectService';
+import AddService from '../bussiness/screens/TabStack/Services/AddService';
+import NewService from '../bussiness/screens/TabStack/Services/NewService';
 
 const Stack = createNativeStackNavigator();
 
@@ -85,6 +90,22 @@ export function BusinessStack() {
     {
       name: 'ExistProfessionals',
       component: ExistProfessionals,
+    },
+    {
+      name: 'Services',
+      component: Services,
+    },
+    {
+      name: 'SelectService',
+      component: SelectService,
+    },
+    {
+      name: 'AddService',
+      component: AddService,
+    },
+    {
+      name: 'NewService',
+      component: NewService,
     },
   ];
   return (

@@ -13,7 +13,7 @@ import {
   heightPercentageToDP as hp,
 } from '../../../theme/layout';
 
-const HairProfessionals = ({navigation, route}) => {
+const SelectService = ({navigation, route}) => {
   const {params} = route;
   return (
     <SafeAreaView style={styles.container}>
@@ -21,7 +21,7 @@ const HairProfessionals = ({navigation, route}) => {
         headerTitle={params.label}
         onPressBack={() => navigation.goBack()}
       />
-      <View style={{...styles.professionaView, justifyContent: 'center'}}>
+      <View style={{...styles.serviceView, justifyContent: 'center'}}>
         <Label
           label={Strings.addA + params.label}
           fontFamily={FONTS.InterBold}
@@ -31,10 +31,10 @@ const HairProfessionals = ({navigation, route}) => {
         />
         <IconButton
           onPress={() =>
-            navigation.navigate('AddHairProfessionals', {label: params.label})
+            navigation.navigate('AddService', {label: params.label})
           }
           icon={Images.addWhite}
-          label={Strings.addProfessional}
+          label={Strings.addAService}
           iconSize={hp(3)}
           bgColor={Colors.primary}
           labelColor={Colors.white}
@@ -45,4 +45,4 @@ const HairProfessionals = ({navigation, route}) => {
   );
 };
 
-export default HairProfessionals;
+export default SelectService;

@@ -17,6 +17,8 @@ const Index = ({
   top,
   icon,
   iconSize,
+  mediumSub,
+  boldSub
 }) => {
   return (
     <View style={{...styles.container, marginVertical: top}}>
@@ -31,8 +33,8 @@ const Index = ({
       ) : (
         <Label
           label={subTitle}
-          bold
-          medium
+          medium={mediumSub}
+          bold={boldSub}
           size={hp(2)}
           paddingVertical={0}
           color={color ? color : Colors.primary_dark}
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: Colors.white,
     width: '100%',
-    paddingVertical: hp(1),
+    paddingVertical: hp(0.6),
   },
 });
 

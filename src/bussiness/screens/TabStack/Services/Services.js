@@ -19,7 +19,7 @@ import AddButton from '../../../components/AddButton';
 import CloseModal from '../../../components/CloseModal';
 import Icon from '../../../components/Icon/index';
 
-const Professionals = ({navigation}) => {
+const Services = ({navigation}) => {
   const [addModal, setAddModal] = useState(false);
   const [checkService, setCheckService] = useState([]);
 
@@ -38,18 +38,18 @@ const Professionals = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header rightLabel={Strings.professionals} />
-      <View style={styles.professionaView}>
+      <Header rightLabel={Strings.services} />
+      <View style={styles.serviceView}>
         {professionals.map((item, index) => (
           <ItemCard
             onPress={() =>
-              navigation.navigate('HairProfessionals', {
-                label: item.label + ' ' + Strings.professionals,
+              navigation.navigate('SelectService', {
+                label: item.label + ' ' + Strings.services,
               })
             }
             userIcon={item.icon}
             title={item.label}
-            desc={item.desc}
+            desc={Strings.servicesListed}
             leftIcon={item.leftIcon}
           />
         ))}
@@ -103,4 +103,4 @@ const Professionals = ({navigation}) => {
   );
 };
 
-export default Professionals;
+export default Services;

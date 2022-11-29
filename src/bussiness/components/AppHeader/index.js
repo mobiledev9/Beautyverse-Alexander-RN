@@ -14,16 +14,20 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 
-const AppHeader = ({onPressBack, hide}) => {
+const AppHeader = ({onPressBack, hide, hideCal}) => {
   return (
     <View style={hide ? styles.container : [styles.container, styles.line]}>
       <TouchableOpacity onPress={onPressBack}>
         <Image source={Images.NotifyBell} style={styles.backBtn} />
       </TouchableOpacity>
       <Image source={Images.appLogo} style={styles.logo} />
-      <TouchableOpacity onPress={onPressBack}>
-        <Image source={Images.calnder} style={styles.backBtn} />
-      </TouchableOpacity>
+      {hideCal == true ? (
+        <View></View>
+      ) : (
+        <TouchableOpacity onPress={onPressBack}>
+          <Image source={Images.calnder} style={styles.backBtn} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

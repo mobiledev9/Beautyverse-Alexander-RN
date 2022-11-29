@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Modal from 'react-native-modal';
@@ -19,6 +19,7 @@ import {
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => {
+  const [isUpcoming, setUpcoming] = useState(false)
   const ItemWrapper = ({img, label}) => (
     <View
       style={{
@@ -112,6 +113,7 @@ const Home = () => {
   };
 
   const Upcoming = ({navigation}) => {
+    useEffect(()=> {},[])
     return (
       <View style={styles.newTab}>
         <Label
@@ -155,7 +157,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <AppHeader hide />
+      <AppHeader hide hideCal={isUpcoming}/>
       <Tab.Navigator
         tabBarOptions={{
           pressColor: 'transparent',
@@ -168,6 +170,11 @@ const Home = () => {
         <Tab.Screen
           name={Strings.new}
           component={New}
+          listeners={{  
+            tabPress: (e) => {
+              setUpcoming(false)
+            }
+          }}
           options={{
             tabBarLabel: ({focused}) => (
               <View
@@ -185,6 +192,11 @@ const Home = () => {
         <Tab.Screen
           name={Strings.upcoming}
           component={Upcoming}
+          listeners={{  
+            tabPress: (e) => {
+              setUpcoming(true)
+            }
+          }}
           options={{
             tabBarLabel: ({focused}) => (
               <View

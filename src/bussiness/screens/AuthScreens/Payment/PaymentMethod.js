@@ -24,7 +24,7 @@ const PaymentMethod = ({navigation}) => {
         <Label
           label={label}
           fontFamily={FONTS.InterSemiBold}
-          size={hp(3)}
+          size={hp(2)}
           color={Colors.primary_dark}
           marginLeft={wp(4)}
         />

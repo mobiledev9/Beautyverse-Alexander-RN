@@ -10,7 +10,7 @@ import {
 const Index = ({onPress, style}) => {
   return (
     <TouchableOpacity onPress={onPress} style={style}>
-      <Icon source={Images.add} size={hp(5)} />
+      <Icon source={Images.add} size={hp(6)} />
     </TouchableOpacity>
   );
 };

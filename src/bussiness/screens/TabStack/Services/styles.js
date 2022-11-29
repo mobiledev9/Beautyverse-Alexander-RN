@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
-  professionaView: {
+  serviceView: {
     flex: 1,
     paddingHorizontal: wp(4),
     backgroundColor: Colors.white,
@@ -28,39 +28,6 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
   },
-  profileview: {
-    backgroundColor: Colors.red,
-    width: hp(10),
-    height: hp(10),
-    borderRadius: 100,
-    alignSelf: 'center',
-    marginTop: hp(2),
-  },
-  cameraBtn: {
-    alignSelf: 'flex-end',
-    bottom: 0,
-    position: 'absolute',
-  },
-  inputWrapper: {
-    flexDirection: 'row',
-    width: wp(90),
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: hp(4),
-  },
-  line: {
-    borderTopWidth: 1,
-    borderTopColor: Colors.border,
-  },
-  detailView: {
-    marginTop: hp(4),
-    paddingTop: hp(2),
-  },
-  colWrapper: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  serviceWrapper: {height: hp(7), borderRadius: 20},
   modal: {
     backgroundColor: Colors.white,
     height: hp(50),
@@ -76,7 +43,44 @@ export const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: hp(3),
   },
-  checkBox: {backgroundColor: Colors.white, borderWidth: 0, paddingHorizontal:0},
+  serviceWrapper: {
+    width: wp(90),
+    marginHorizontal: wp(2),
+    borderBottomColor: Colors.border,
+    borderBottomWidth: 1,
+    paddingVertical: hp(2),
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    width: wp(90),
+    justifyContent: 'space-between',
+    marginVertical: hp(2),
+    alignItems: 'center',
+  },
+  radioView: {
+    marginVertical: hp(2),
+    width: wp(30),
+    backgroundColor: Colors.white,
+    justifyContent: 'space-between',
+  },
+  addOnsView: {
+    borderTopColor: Colors.border,
+    borderTopWidth: 1,
+    marginTop: hp(2),
+    paddingTop: hp(2),
+  },
+  checkBox: {
+    backgroundColor: Colors.white,
+    borderWidth: 0,
+    paddingHorizontal: 0,
+  },
+  moreBtn: {
+    backgroundColor: Colors.lightGray2,
+    height: hp(15),
+    width: hp(15),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius:20
+  },
 });

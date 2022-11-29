@@ -132,13 +132,13 @@ export const professionals = [
     leftIcon: Images.option,
   },
   {
-    icon: Images.skinpm,
+    icon: Images.skincircle,
     label: Strings.skincare,
     desc: Strings.professionalListed,
     leftIcon: Images.option,
   },
   {
-    icon: Images.nailspm,
+    icon: Images.nailscircle,
     label: Strings.nails,
     desc: Strings.professionalListed,
     leftIcon: Images.option,
@@ -153,4 +153,12 @@ export const hairProfessional = [
   {name: 'Dwayne Jackson', rating: '5.0', review: '(60 Reviews)'},
   {name: 'Tom Cameron', rating: '5.0', review: '(45 Reviews)'},
   {name: 'Conor Charlie', rating: '5.0', review: '(40 Reviews)'},
+];
+
+export const hairServices = [
+  {add: 'Straight Hair', Duration: '45 minutes', price: '$60.00'},
+  {add: 'Buzz Cut', Duration: '45 minutes', price: '$60.00'},
+  {add: 'Hair Cut 3', Duration: '45 minutes', price: '$60.00'},
+  {add: 'Hair Cut 4', Duration: '45 minutes', price: '$60.00'},
+  {add: 'Hair Cut 5', Duration: '45 minutes', price: '$60.00'},
 ];

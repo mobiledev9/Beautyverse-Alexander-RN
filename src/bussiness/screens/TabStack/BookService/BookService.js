@@ -110,7 +110,8 @@ const BookService = ({navigation}) => {
             subTitle="Duration: 45 minutes"
             iconSize={hp(3)}
             titleColor={Colors.primary}
-            medium
+            bold
+            mediumSub
           />
         </View>
         <Label

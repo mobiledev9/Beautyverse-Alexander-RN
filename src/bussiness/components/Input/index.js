@@ -10,7 +10,8 @@ const Index = ({
   label,
   width,
   onTouchStart,
-  size
+  size,
+  bgColor,
 }) => {
   return (
     <TextInput
@@ -23,7 +24,11 @@ const Index = ({
       outlineColor={Colors.lightGray2}
       activeOutlineColor={Colors.primary}
       placeholder={placeholder}
-      style={{width: width, fontSize: size}}
+      style={{
+        width: width,
+        fontSize: size,
+        backgroundColor: bgColor ? bgColor : Colors.white,
+      }}
     />
   );
 };

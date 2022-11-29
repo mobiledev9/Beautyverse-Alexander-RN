@@ -21,7 +21,7 @@ const Index = ({value, onChangeText, placeholder, width}) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
     borderColor: Colors.lightGray2,
     paddingHorizontal: wp(2),

@@ -7,6 +7,7 @@ import {styles} from './styles';
 import {Strings} from '../../theme/strings';
 import Home from './Home';
 import Professionals from './Staff/Professionals';
+import Services from './Services/Services';
 
 const BottomTabs = ({focused}) => {
   function FeedScreen() {
@@ -78,7 +79,7 @@ const BottomTabs = ({focused}) => {
                 ),
               tabBarLabel: '',
             }}
-            name="Professionals"
+            name="Staff"
             component={Professionals}></Tab.Screen>
           <Tab.Screen
             options={{
@@ -86,15 +87,15 @@ const BottomTabs = ({focused}) => {
                 focused ? (
                   <View style={styles.tabView}>
                     <Image style={styles.notpressed} source={Images.DocFill} />
-                    <Text style={styles.tabTitle}>{Strings.orders}</Text>
+                    <Text style={styles.tabTitle}>{Strings.services}</Text>
                   </View>
                 ) : (
                   <Image style={styles.pressed} source={Images.DocEmpty} />
                 ),
               tabBarLabel: '',
             }}
-            name="QRScanner"
-            component={FeedScreen}></Tab.Screen>
+            name="Services"
+            component={Services}></Tab.Screen>
           <Tab.Screen
             options={{
               tabBarIcon: ({color, focused}) =>
@@ -111,7 +112,7 @@ const BottomTabs = ({focused}) => {
                 ),
               tabBarLabel: '',
             }}
-            name="MainScreen"
+            name="Profile"
             component={MainScreen}></Tab.Screen>
         </Tab.Navigator>
       </SafeAreaView>

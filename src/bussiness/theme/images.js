@@ -14,7 +14,9 @@ export const Images = {
   hairpm: require('../assets/hairprimary.png'),
   makeuppm: require('../assets/makeupprimary.png'),
   skinpm: require('../assets/skinprimary.png'),
+  skincircle: require('../assets/skincircle.png'),
   nailspm: require('../assets/nailsprimary.png'),
+  nailscircle: require('../assets/nailscircle.png'),
   hair_removepm: require('../assets/hairremoveprimary.png'),
   tanningpm: require('../assets/tanningprimary.png'),
   banner: require('../assets/banner.png'),
@@ -54,5 +56,6 @@ export const Images = {
   grids: require('../assets/girds.png'),
   cancel: require('../assets/Cancel.png'),
   bin: require('../assets/bin.png'),
+  radio: require('../assets/round1.png'),
+  radioFill: require('../assets/roundFill.png'),
 };
-

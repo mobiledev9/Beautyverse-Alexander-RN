@@ -28,7 +28,7 @@ const ExistProfessionals = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header
-        headerTitle={Strings.hairProfessionals}
+        headerTitle={Strings.addProf}
         onPressBack={() => navigation.goBack()}
       />
       <View style={styles.professionaView}>

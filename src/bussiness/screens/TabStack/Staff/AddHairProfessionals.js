@@ -18,13 +18,14 @@ import AddButton from '../../../components/AddButton';
 import CloseModal from '../../../components/CloseModal';
 import IconButton from '../../../components/IconButton';
 
-const AddHairProfessionals = ({navigation}) => {
+const AddHairProfessionals = ({navigation, route}) => {
+  const {params} = route;
   const [addModal, setAddModal] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
       <Header
-        headerTitle={Strings.hairProfessionals}
+        headerTitle={params.label}
         onPressBack={() => navigation.goBack()}
       />
       <View style={styles.professionaView}>
@@ -48,7 +49,10 @@ const AddHairProfessionals = ({navigation}) => {
         <View style={{...styles.modal, height: hp(30)}}>
           <CloseModal close={() => setAddModal(false)} />
           <Label
-            label={Strings.proForHairServices}
+            label={
+              Strings.addProTo +
+              params.label.replace(Strings.professionals, Strings.service)
+            }
             left
             bold
             size={hp(2)}
@@ -61,7 +65,7 @@ const AddHairProfessionals = ({navigation}) => {
             showsVerticalScrollIndicator={false}>
             <IconButton
               onPress={() => {
-                setAddModal(false)
+                setAddModal(false);
                 navigation.navigate('AddProfessional');
               }}
               icon={Images.addFill}
@@ -73,8 +77,8 @@ const AddHairProfessionals = ({navigation}) => {
               left
             />
             <IconButton
-             onPress={() => {
-                setAddModal(false)
+              onPress={() => {
+                setAddModal(false);
                 navigation.navigate('ExistProfessionals');
               }}
               icon={Images.grids}

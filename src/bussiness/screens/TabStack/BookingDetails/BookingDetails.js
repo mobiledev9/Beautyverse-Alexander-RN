@@ -84,16 +84,17 @@ const BookingDetails = ({navigation}) => {
               marginBottom={hp(3)}
             />
             <View style={styles.customerView}>
-              <Row title={Strings.service} subTitle="Straight Hair" />
-              <Row title={Strings.price} subTitle="$60.00" color={Colors.primary}/>
-              <Row title={Strings.duration} subTitle="Straight Hair" />
+              <Row title={Strings.service} subTitle="Straight Hair" boldSub/>
+              <Row title={Strings.price} subTitle="$60.00" color={Colors.primary} boldSub/>
+              <Row title={Strings.duration} subTitle="Straight Hair" boldSub/>
               <Row
                 title={Strings.appointmentDate}
                 subTitle="29th March, 2022"
+                boldSub
               />
-              <Row title={Strings.appointmentTime} subTitle="12:00PM-1:00PM" />
-              <Row title={Strings.professional} subTitle="Linda Johnson" />
-              <Row title={Strings.serviceLocation} subTitle="Your location" />
+              <Row title={Strings.appointmentTime} subTitle="12:00PM-1:00PM" boldSub/>
+              <Row title={Strings.professional} subTitle="Linda Johnson" boldSub/>
+              <Row title={Strings.serviceLocation} subTitle="Your location" boldSub/>
               <View style={[styles.line, styles.detailView]}>
                 <Label
                   label={Strings.noteCustomer}
@@ -123,13 +124,14 @@ const BookingDetails = ({navigation}) => {
               marginBottom={hp(3)}
             />
             <View style={styles.customerView}>
-              <Row title={Strings.straightHair} subTitle="$60.00" />
-              <Row title={Strings.visitingCharges} subTitle="$10.00" />
+              <Row title={Strings.straightHair} subTitle="$60.00" boldSub/>
+              <Row title={Strings.visitingCharges} subTitle="$10.00" boldSub/>
               <View style={{...styles.line, top: hp(1)}} />
               <Row
                 title={Strings.total}
                 subTitle="$70.00"
                 bold
+                boldSub
                 color={Colors.primary}
                 top={hp(2)}
               />
