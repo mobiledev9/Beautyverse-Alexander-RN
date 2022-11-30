@@ -30,7 +30,10 @@ import Icon from '../../../bussiness/components/Icon';
 import Label from '../../../bussiness/components/Label';
 
 // create a component
-const AddAddress = ({navigation}) => {
+const AddAddress = ({navigation,route}) => {
+
+  console.log(route.params.screen,'===route===');
+
   const map = useRef();
 
   const [isSearchModal, setSearchModal] = useState(false);

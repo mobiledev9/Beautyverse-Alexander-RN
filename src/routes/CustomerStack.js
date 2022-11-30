@@ -24,29 +24,47 @@ import ConfirmBooking from '../customer/screens/BusinessPage/ConfirmBooking';
 import OrderDetails from '../customer/screens/OrdersPage/OrderDetails';
 import RescheduleOrder from '../customer/screens/OrdersPage/RescheduleOder';
 import ProfileHome from '../customer/screens/ProfileScreens/ProfileHome';
-import MyProfile from '../customer/screens/ProfileScreens/MyProfile';
-
-
-
+import MyProfile from '../customer/screens/ProfileScreens/MyProfile/MyProfile';
+import UserAddresses from '../customer/screens/ProfileScreens/MyProfile/UserAddresses';
+import EditProfile from '../customer/screens/ProfileScreens/MyProfile/EditProfile';
+import ChangePass from '../customer/screens/ProfileScreens/MyProfile/Changepass';
+import WishlistItems from '../customer/screens/ProfileScreens/Wishlist/WishlistItems';
 
 const Stack = createNativeStackNavigator();
 
 export function CustomerStack() {
   const screens = [
     {
-      name: 'MyProfile',
-      component: MyProfile,
-    },
-    {
       name: 'AddProfile',
       component: AddProfile,
     },
-    
+    {
+      name: 'WishlistItems',
+      component: WishlistItems,
+    },
     {
       name: 'ProfileHome',
       component: ProfileHome,
     },
+    {
+      name: 'MyProfile',
+      component: MyProfile,
+    },
+    {
+      name: 'ChangePass',
+      component: ChangePass,
+    },
+    {
+      name: 'EditProfile',
+      component: EditProfile,
+    },
+    {
+      name: 'UserAddresses',
+      component: UserAddresses,
+    },
+
    
+
     {
       name: 'OrderDetails',
       component: OrderDetails,
@@ -55,8 +73,6 @@ export function CustomerStack() {
       name: 'RescheduleOrder',
       component: RescheduleOrder,
     },
- 
-   
 
     {
       name: 'BottomTabs',

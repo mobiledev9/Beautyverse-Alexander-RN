@@ -2,11 +2,15 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Colors} from '../theme/colors';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from '../../../src/customer/theme/layout';
 
 // create a component
-const Textnormal = ({Text}) => {
+const Textnormal = ({entertext,Allstyle}) => {
   return (
-    <Text style={{color: Colors.darkpink, fontFamily: 'InterV'}}>{Text}</Text>
+    <Text style={[{color: Colors.darkpink, fontFamily:'InterV',fontSize:hp(2.2),},Allstyle]}>{entertext}</Text>
   );
 };
 

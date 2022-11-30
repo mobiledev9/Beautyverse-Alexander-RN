@@ -62,4 +62,10 @@ export const Images = {
   helpround:require('../assets/ProfileIcons/helpround.png'),
   settinground:require('../assets/ProfileIcons/settinground.png'),
   walletround:require('../assets/ProfileIcons/walletround.png'),
+  locround:require('../assets/ProfileIcons/locround.png'),
+  lockround:require('../assets/ProfileIcons/lockround.png'),
+  workround:require('../assets/ProfileIcons/workround.png'),
+  homeround:require('../assets/ProfileIcons/homeround.png'),
+  menudots:require('../assets/ProfileIcons/menudots.png'),
+
 };
