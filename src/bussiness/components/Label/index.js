@@ -15,11 +15,12 @@ const Label = ({
   marginLeft,
   marginRight,
   marginBottom,
+  marginTop,
   paddingVertical,
   color,
   fontFamily,
   top,
-  lineHeight
+  lineHeight,
 }) => {
   return (
     <Text
@@ -31,11 +32,12 @@ const Label = ({
           marginRight: marginRight,
           marginLeft: marginLeft,
           marginBottom: marginBottom,
+          marginTop: marginTop,
           paddingVertical: paddingVertical,
-          paddingTop:top,
+          paddingTop: top,
           color: color,
           fontFamily: fontFamily,
-          lineHeight:lineHeight
+          lineHeight: lineHeight,
         },
       ]}>
       {label}
