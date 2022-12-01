@@ -10,37 +10,44 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Avatar} from 'react-native-elements';
 import {Images} from '../../theme/Images';
 import {Colors} from '../../theme/colors';
-import { TouchableOpacity } from 'react-native';
-import { ProfileStyles } from '../../screens/ProfileScreens/ProfileStyles';
+import {TouchableOpacity} from 'react-native';
+import {ProfileStyles} from '../../screens/ProfileScreens/ProfileStyles';
 
 // create a component
-const ProfileCard = ({avtar,mainText,text,onPress}) => {
+const ProfileCard = ({avtar, mainText, text, onPress, showmenu}) => {
   return (
-    <TouchableOpacity
-    onPress={onPress}
-          style={ProfileStyles.profileCard}>
-          <Avatar rounded size={50} source={avtar} />
-          <View style={{width: wp(55), marginLeft: -10}}>
-            <SemiBold
-              AllStyle={{marginTop: -12}}
-              FontSize={hp(2.5)}
-              EnterText={mainText}
-            />
-            <Text
-              style={{
-                fontFamily: 'InterV',
-                color: Colors.Brown,
-                flexWrap: 'wrap',
-              }}>
-              {text}
-            </Text>
-          </View>
-          <Image
-            resizeMode="contain"
-            style={{height: hp(3), width: hp(3)}}
-            source={Images.RightArrow}
-          />
-        </TouchableOpacity>
+    <TouchableOpacity onPress={onPress} style={ProfileStyles.profileCard}>
+      <Avatar rounded size={50} source={avtar} />
+      <View style={{width: wp(55), marginLeft: -10}}>
+        <SemiBold
+          AllStyle={{marginTop: -12}}
+          FontSize={hp(2.5)}
+          EnterText={mainText}
+        />
+        <Text
+          style={{
+            fontFamily: 'InterV',
+            color: Colors.Brown,
+            flexWrap: 'wrap',
+          }}>
+          {text}
+        </Text>
+      </View>
+
+      {showmenu ? (
+        <Image
+          resizeMode="contain"
+          style={{height: hp(3), width: hp(3)}}
+          source={Images.menudots}
+        />
+      ) : (
+        <Image
+          resizeMode="contain"
+          style={{height: hp(3), width: hp(3)}}
+          source={Images.RightArrow}
+        />
+      )}
+    </TouchableOpacity>
   );
 };
 

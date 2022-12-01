@@ -70,7 +70,10 @@ const ProfileHome = ({navigation}) => {
             <ProfileCard
             onPress={()=>{
               item.maintxt ==='My Profile' ? 
-              navigation.navigate('MyProfile') : null
+              navigation.navigate('MyProfile') : 
+              item.maintxt ==='Wishlist' ?
+              navigation.navigate('WishlistItems') :
+              null
             }}
               avtar={item.img}
               mainText={item.maintxt}
