@@ -75,7 +75,11 @@ export const Strings = {
   reenterpass:'Re-Enter New Password',
   savenewpass:'Save New Password',
   wishlist:'Wishlist',
-  
+  wallet:'Wallet',
+  beautycredits:'BeautiVerse Credits',
+  otherpayment:'Other Payment Methods',
+  selectmethod:'Select Payment Method',
+
 
 
 };

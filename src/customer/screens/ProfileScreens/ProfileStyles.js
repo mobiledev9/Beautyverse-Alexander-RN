@@ -58,6 +58,32 @@ export const ProfileStyles = StyleSheet.create({
     padding: hp(1.4),
     borderRadius: 100,
   },
+
+  //Wallet Home
+
+  walletMainCard: {
+    width: wp(90),
+    alignSelf: 'center',
+    backgroundColor: Colors.primary,
+    borderRadius: 20,
+    padding: 20,
+    marginVertical: hp(2.5),
+  },
+  PaymentMethodCard: {
+    marginVertical: hp(1.7),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 20,
+    borderRadius: 20,
+    width: wp(90),
+    alignSelf: 'center',
+  },
+  initialImageBanner: {
+    height: hp(6.5),
+    width: hp(6.5),
+    marginRight: wp(2.5),
+  },
 });
 
 //make this component available to the app

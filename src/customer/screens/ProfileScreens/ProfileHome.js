@@ -73,6 +73,8 @@ const ProfileHome = ({navigation}) => {
               navigation.navigate('MyProfile') : 
               item.maintxt ==='Wishlist' ?
               navigation.navigate('WishlistItems') :
+              item.maintxt ==='Wallet' ?
+              navigation.navigate('WalletHome') :
               null
             }}
               avtar={item.img}

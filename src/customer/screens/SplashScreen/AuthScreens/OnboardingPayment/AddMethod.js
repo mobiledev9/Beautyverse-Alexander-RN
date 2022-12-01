@@ -12,19 +12,33 @@ import {Images} from '../../../../theme/Images';
 import {Colors} from '../../../../theme/colors';
 import Arrowheader from '../../../../components/AuthComponents/paymentAuth/Arrowheader';
 import Button from '../../../../components/AuthComponents/FilledButton';
+import HeaderTop from '../../../../components/HomeComponent/headerTop';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 // create a component
-const AddMethod = ({navigation}) => {
+const AddMethod = ({navigation, route}) => {
+
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
-        <HeaderText
-          onPress={() => {
-            navigation.goBack();
-          }}
-          FontSize={hp(3.2)}
-          TopText={Strings.paymethod}
-        />
+        {route.params.screen === 'AddMethod' ? (
+          <HeaderTop
+            onPress={() => {
+              navigation.goBack();
+            }}
+            HeaderText={Strings.selectmethod}
+          />
+        ) : (
+          <HeaderText
+            onPress={() => {
+              navigation.goBack();
+            }}
+            FontSize={hp(3.2)}
+            TopText={Strings.paymethod}
+          />
+        )}
         <View>
           <Arrowheader
             onPress={() => {
@@ -38,15 +52,18 @@ const AddMethod = ({navigation}) => {
           <Arrowheader text={Strings.Paypal} source={Images.PayPal} />
           <Arrowheader text={Strings.Applepay} source={Images.Apple} />
         </View>
-        <View style={{position: 'absolute', bottom: hp(1)}}>
-          <Button
-            onPress={() => {
-              navigation.navigate('HomeSplashScreen');
-            }}
-            title={Strings.addlater}
-            titleColor={Colors.primary}
-          />
-        </View>
+
+        {route.params.screen === 'AddMethod' ? null : (
+          <View style={{position: 'absolute', bottom: hp(1)}}>
+            <Button
+              onPress={() => {
+                navigation.navigate('HomeSplashScreen');
+              }}
+              title={Strings.addlater}
+              titleColor={Colors.primary}
+            />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );

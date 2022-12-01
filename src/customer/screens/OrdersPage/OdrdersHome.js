@@ -19,24 +19,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
-
-import {CheckBox} from 'react-native-elements';
-import {BusinessPageStyles} from './BusinessPageStyles';
 import SemiBold from '../../components/HomeComponent/SemiBold';
-import PriceAmt from '../../components/BusinessPage/PriceAmt';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {Images} from '../../theme/Images';
-import RadioButton from '../../components/SearchComponents/RadioButton';
-import {useState} from 'react';
-import {Calendar} from 'react-native-calendars';
-import Button from '../../components/AuthComponents/FilledButton';
-import RBSheet from 'react-native-raw-bottom-sheet';
-import {Avatar} from 'react-native-elements';
-import StarRating from '../../components/BusinessPage/StarRating';
-import MapView from 'react-native-maps';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import HeaderText from '../../components/AuthComponents/HeaderText';
-import {HomeStyles} from '../HomeScreens/HomeStyles';
 import UpcomingOrder from './UpcomingOrder';
 import PreviousOrder from './PreviouseOrder';
 import {OrderStyles} from './OderStyles';

@@ -29,15 +29,26 @@ import UserAddresses from '../customer/screens/ProfileScreens/MyProfile/UserAddr
 import EditProfile from '../customer/screens/ProfileScreens/MyProfile/EditProfile';
 import ChangePass from '../customer/screens/ProfileScreens/MyProfile/Changepass';
 import WishlistItems from '../customer/screens/ProfileScreens/Wishlist/WishlistItems';
+import WalletHome from '../customer/screens/ProfileScreens/Wallet/WalletHome';
 
 const Stack = createNativeStackNavigator();
 
 export function CustomerStack() {
   const screens = [
+   
+    {
+      name: 'BottomTabs',
+      component: BottomTabs,
+    },
     {
       name: 'AddProfile',
       component: AddProfile,
     },
+    {
+      name: 'WalletHome',
+      component: WalletHome,
+    },
+   
     {
       name: 'WishlistItems',
       component: WishlistItems,
@@ -74,10 +85,6 @@ export function CustomerStack() {
       component: RescheduleOrder,
     },
 
-    {
-      name: 'BottomTabs',
-      component: BottomTabs,
-    },
     {
       name: 'OrdersHome',
       component: OrdersHome,
