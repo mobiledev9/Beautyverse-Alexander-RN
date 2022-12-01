@@ -10,13 +10,41 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
-import OrdersHome from '../OrdersPage/OdrdersHome';
-import ProfileHome from '../ProfileScreens/ProfileHome';
-
 
 // create a component
 const BottomTabs = ({focused}) => {
- 
+  function SettingsScreen() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>test</Text>
+      </View>
+    );
+  }
+
+  function FeedScreen() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Test</Text>
+      </View>
+    );
+  }
+
+  function MainScreen() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>test</Text>
+      </View>
+    );
+  }
+
+  function ProfileScreen() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>test</Text>
+      </View>
+    );
+  }
+
   const Tab = createBottomTabNavigator();
 
   return (
@@ -144,7 +172,7 @@ const BottomTabs = ({focused}) => {
           tabBarLabel: '',
         }}
         name="QRScanner"
-        component={OrdersHome}></Tab.Screen>
+        component={FeedScreen}></Tab.Screen>
       <Tab.Screen
         options={{
           tabBarIcon: ({color, focused}) =>
@@ -182,7 +210,7 @@ const BottomTabs = ({focused}) => {
           tabBarLabel: '',
         }}
         name="MainScreen"
-        component={ProfileHome}></Tab.Screen>
+        component={MainScreen}></Tab.Screen>
     </Tab.Navigator>
   );
 };

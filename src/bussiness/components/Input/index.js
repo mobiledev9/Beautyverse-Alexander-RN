@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {Colors} from '../../theme/colors';
+import {FONTS} from '../../theme/fonts';
 
 const Index = ({
   placeholder,
@@ -12,6 +13,9 @@ const Index = ({
   onTouchStart,
   size,
   bgColor,
+  keyboardType,
+  vertical,
+  top,
 }) => {
   return (
     <TextInput
@@ -24,10 +28,15 @@ const Index = ({
       outlineColor={Colors.lightGray2}
       activeOutlineColor={Colors.primary}
       placeholder={placeholder}
+      keyboardType={keyboardType ? keyboardType : 'default'}
       style={{
         width: width,
         fontSize: size,
         backgroundColor: bgColor ? bgColor : Colors.white,
+        color: Colors.primary_dark,
+        fontFamily: FONTS.InterRegular,
+        marginVertical: vertical,
+        marginTop: top,
       }}
     />
   );

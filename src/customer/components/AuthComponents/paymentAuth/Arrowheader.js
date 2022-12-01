@@ -8,12 +8,13 @@ import {
 } from '../../../theme/layout';
 import {Images} from '../../../theme/Images';
 import {Colors} from '../../../theme/colors';
-import RadioButton from '../../SearchComponents/RadioButton';
 
 // create a component
-const Arrowheader = ({text, source, onPress,ShowCheckBox,status,checked,onPressRadio,SortText}) => {
+const Arrowheader = ({text, source ,onPress}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity
+    onPress={onPress}
+    >
       <View
         style={{
           flexDirection: 'row',
@@ -38,24 +39,12 @@ const Arrowheader = ({text, source, onPress,ShowCheckBox,status,checked,onPressR
             {text}
           </Text>
         </View>
-        {
-          ShowCheckBox === 'show' ?
-          <View style={{marginRight:wp(5)}}>
-              <RadioButton
-          
-          status={status}
-          checked={checked}
-          onPress={onPressRadio}
-          SortText={SortText}
-        /> 
-            </View>
-        :
-          <Image
-            resizeMode="contain"
-            style={{height: hp(2.8), width: hp(2.8)}}
-            source={Images.RightArrow}
-          />
-        }
+
+        <Image
+          resizeMode="contain"
+          style={{height: hp(2.8), width: hp(2.8)}}
+          source={Images.RightArrow}
+        />
       </View>
     </TouchableOpacity>
   );

@@ -179,11 +179,7 @@ const BookService = ({navigation}) => {
 
   const RenderAddOn = ({item, index}) => {
     return (
-      <TouchableOpacity
-      onPress={() => {
-        SelectIndexAddOn(index);
-        console.log('Press');
-      }}
+      <View
         style={[
           BusinessPageStyles.AddOnCard,
           {
@@ -195,8 +191,12 @@ const BookService = ({navigation}) => {
         ]}>
         <View style={BusinessPageStyles.AddOnView}>
           <SemiBold FontSize={hp(2.2)} EnterText={item.addon} />
-          <View
-            >
+          <TouchableOpacity
+            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+            onPress={() => {
+              SelectIndexAddOn(index);
+              console.log('Press');
+            }}>
             {AddOnIndex.includes(index) ? (
               <Image
                 resizeMode="contain"
@@ -216,13 +216,13 @@ const BookService = ({navigation}) => {
                 source={Images.plus}
               />
             )}
-          </View>
+          </TouchableOpacity>
         </View>
         <Text style={BusinessPageStyles.DurationText}>
           Duration: {item.duration}
         </Text>
         <PriceAmt Amount={item.amt} />
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -791,9 +791,6 @@ const BookService = ({navigation}) => {
         </View>
       </Modal>
       <Button
-      onPress={()=>{
-        navigation.navigate('ConfirmBooking')
-      }}
         btnStyle={{
           width: wp(90),
           alignSelf: 'center',

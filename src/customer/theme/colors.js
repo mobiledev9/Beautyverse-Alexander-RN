@@ -12,6 +12,5 @@ export const Colors = {
     shadygray:'#D8DAE7',
     TP:'transparent',
     peach:'#EEE6F1',
-    darkpeach:'#FE5F7C',
-    lightorange:'#FCE9E9'
+    darkpeach:'#FE5F7C'
 }

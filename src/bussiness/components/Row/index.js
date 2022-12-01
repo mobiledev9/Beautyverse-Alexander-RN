@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Label from '../Label';
 import {Colors} from '../../theme/colors';
 import {
@@ -18,7 +18,9 @@ const Index = ({
   icon,
   iconSize,
   mediumSub,
-  boldSub
+  boldSub,
+  onPressIcon,
+  ref,
 }) => {
   return (
     <View style={{...styles.container, marginVertical: top}}>
@@ -29,7 +31,9 @@ const Index = ({
         bold={bold}
       />
       {icon ? (
-        <Icon source={icon} size={iconSize} />
+        <TouchableOpacity onPress={() => onPressIcon()} ref={ref}>
+          <Icon source={icon} size={iconSize} />
+        </TouchableOpacity>
       ) : (
         <Label
           label={subTitle}

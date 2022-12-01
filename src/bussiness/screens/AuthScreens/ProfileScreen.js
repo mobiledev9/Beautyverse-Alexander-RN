@@ -45,7 +45,7 @@ const ProfileScreen = ({navigation}) => {
       </ImageBackground>
       <View style={styles.optionView}>
         <Button
-          onPress={() => navigation.navigate('AddLocation')}
+          onPress={() => navigation.navigate('AddLocation', {from: 'auth'})}
           title={Strings.next}
           bgColor={Colors.primary}
           titleColor={Colors.white}

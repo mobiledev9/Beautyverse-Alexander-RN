@@ -65,7 +65,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   addOnsView: {
+    paddingTop: hp(2),
+    flexDirection:'row'
+  },
+  addOnsView1: {
     borderTopColor: Colors.border,
+    backgroundColor:Colors.white,
     borderTopWidth: 1,
     marginTop: hp(2),
     paddingTop: hp(2),
@@ -82,5 +87,26 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius:20
+  },
+  addonsView: {
+    backgroundColor: Colors.white,
+    paddingHorizontal: wp(3),
+    paddingVertical: hp(1),
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    shadowColor: Colors.lightRed,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    elevation: 3,
+    width: wp(60), 
+    marginHorizontal: wp(2),
+    height:hp(15),
+    justifyContent:'space-between'
+  },
+  popoverStyle: {
+    backgroundColor: Colors.white,
+    borderRadius: 10,
+    paddingHorizontal:wp(2)
   },
 });

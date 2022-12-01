@@ -59,23 +59,5 @@ export const Strings = {
   buildingName:'Building/Villa',
   directions:'Direnctions',
   svLoc:'Save Location',
-  confbooking:'Confirm Booking',
-  reschedule:'Reschedule',
-  resservice:'Reschedule Service',
-  addnewadd:'Add new address',
-  firstnm:'First Name',
-  lastnm:'Last Name',
-  eml:'Email',
-  phone:'Phone',
-  editprfl:'Edit Profile',
-  changepsw:'Change Password',
-  savechng:'Save Changes',
-  currentpass:'Current Password',
-  newpass:'New Password',
-  reenterpass:'Re-Enter New Password',
-  savenewpass:'Save New Password',
-  wishlist:'Wishlist',
-  
-
 
 };

@@ -5,6 +5,7 @@ import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import {styles} from './styles';
 import Header from '../../../components/Header';
 import Button from '../../../components/Button';
+import IconButton from '../../../components/IconButton';
 import {Strings} from '../../../theme/strings';
 import {Colors} from '../../../theme/colors';
 import SearchField from '../../../components/SearchField';
@@ -17,7 +18,8 @@ import {
   heightPercentageToDP as hp,
 } from '../../../theme/layout';
 
-const AddLocation = ({navigation}) => {
+const AddLocation = ({navigation, route}) => {
+  const {params} = route;
   const [isSearchModal, setSerachModal] = useState(false);
   const [latitude, setLatitude] = useState(-37.8136);
   const [longitude, setLongitude] = useState(144.9631);
@@ -26,10 +28,13 @@ const AddLocation = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.conatiner}>
-      <Header
-        onPressBack={() => navigation.goBack()}
-        headerTitle={Strings.businessAddress}
-      />
+      {params.from == 'auth' && (
+        <Header
+          onPressBack={() => navigation.goBack()}
+          headerTitle={Strings.businessAddress}
+        />
+      )}
+
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{...styles.mapView, paddingTop: bottom}}
@@ -42,6 +47,16 @@ const AddLocation = ({navigation}) => {
         showsUserLocation={true}
         showsMyLocationButton={true}
         onMapReady={() => setBottom(5)}>
+        <View
+          style={styles.backView}>
+          {params.from == 'profile' && (
+            // <View style={styles.roundBack}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Icon source={Images.roundback} size={hp(5.5)} />
+              </TouchableOpacity>
+            // </View>
+          )}
+        </View>
         <Marker
           coordinate={{
             latitude: latitude,
