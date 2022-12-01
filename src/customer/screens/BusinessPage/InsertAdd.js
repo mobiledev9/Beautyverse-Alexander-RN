@@ -55,41 +55,50 @@ const InsertAdd = ({navigation, route}) => {
     },
   ];
 
-  const RenderLocation = ({item, index}) => {
+  const RenderLocation = ({item,index}) => {
     return (
-      <View>
-        <TouchableOpacity
-          onPress={() => {
-            console.log('========');
-            SetIndex(index);
-            console.log(index, '===actual==');
-            // SetselectedLoc(item);
-            console.log(Index, '===Index===');
-          }}
-          style={{alignItems: 'center', marginRight: wp(8)}}>
-          {Index === index ? (
-            <Image
-              resizeMode="contain"
-              style={{height: hp(7.5), width: hp(7.5)}}
-              source={item.imgfill}
-            />
-          ) : (
-            <Image
-              resizeMode="contain"
-              style={{height: hp(7.5), width: hp(7.5)}}
-              source={item.img}
-            />
-          )}
-          <Text style={{fontSize: 15, color: Colors.primaryDark, marginTop: 2}}>
-            {item.name}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          SetIndex(index);
+          console.log(index,'===actual==');
+          // SetselectedLoc(item);
+          console.log(Index,'===Index===');
+        }}
+        style={{alignItems: 'center', marginRight: wp(8)}}>
+           <Image
+        resizeMode="contain"
+        style={{height: hp(7.5), width: hp(7.5)}}
+        source={
+          item.img
+        }
+      />
+      
+           {/* { Index.includes(index) ?
+
+         ( <Image
+          resizeMode="contain"
+          style={{height: hp(7.5), width: hp(7.5)}}
+          source={
+            item.imgfill
+          }
+        /> ):(
+       <Image
+        resizeMode="contain"
+        style={{height: hp(7.5), width: hp(7.5)}}
+        source={
+          item.img
+        }
+      /> )
+      } */}
+        <Text style={{fontSize: 15, color: Colors.primaryDark, marginTop: 2}}>
+          {item.name}
+        </Text>
+      </TouchableOpacity>
     );
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <HeaderTop
         onPress={() => {
           navigation.goBack();
@@ -98,7 +107,7 @@ const InsertAdd = ({navigation, route}) => {
       />
       <ScrollView
         contentContainerStyle={{alignItems: 'center'}}
-        style={{flexGrow: 1, paddingBottom: hp(15)}}>
+        style={{flexGrow: 1}}>
         <View style={BusinessPageStyles.headerMapView}>
           <MapView
             style={BusinessPageStyles.map}
@@ -164,7 +173,6 @@ const InsertAdd = ({navigation, route}) => {
             alignSelf: 'flex-start',
             marginLeft: wp(5),
             marginVertical: hp(2),
-            marginBottom: hp(15),
           }}>
           <FlatList
             horizontal={true}
@@ -174,9 +182,6 @@ const InsertAdd = ({navigation, route}) => {
         </View>
       </ScrollView>
       <Button
-        onPress={() => {
-          navigation.navigate('BookService');
-        }}
         bgColor={Colors.primary}
         title={Strings.svLoc}
         titleColor={Colors.white}
@@ -187,7 +192,7 @@ const InsertAdd = ({navigation, route}) => {
           alignSelf: 'center',
         }}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

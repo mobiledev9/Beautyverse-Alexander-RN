@@ -14,7 +14,7 @@ const HomeSplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
           navigation.replace('BottomTabs')
-        }, 3000);
+        }, 3500);
       }, []);
 
   return (

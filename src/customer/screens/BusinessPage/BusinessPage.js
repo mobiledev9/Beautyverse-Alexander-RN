@@ -234,7 +234,7 @@ const BusinessPage = ({navigation}) => {
               }}
               style={BusinessPageStyles.TimeSetContainer}>
               <Text style={BusinessPageStyles.OpenCloseText}>{'Open'}</Text>
-              <Text style={{fontFamily: 'InterV',color:Colors.darkpink}}>
+              <Text style={{fontFamily: 'InterV'}}>
                 {'   '}
                 {'10:00AM - 09:00PM'}
               </Text>

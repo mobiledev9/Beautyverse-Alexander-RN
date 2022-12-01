@@ -38,7 +38,7 @@ const Professionals = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header rightLabel={Strings.professionals} />
+      <Header rightLabel={Strings.professionals} hide/>
       <View style={styles.professionaView}>
         {professionals.map((item, index) => (
           <ItemCard

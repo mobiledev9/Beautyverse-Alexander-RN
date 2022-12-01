@@ -7,7 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 
-const AnimatedInput = ({placeholder, onChangeText, value, label, width,allstyle}) => {
+const AnimatedInput = ({placeholder, onChangeText, value, label, width}) => {
   return (
     <TextInput
       label={label}
@@ -18,7 +18,7 @@ const AnimatedInput = ({placeholder, onChangeText, value, label, width,allstyle}
       outlineColor={Colors.peach}
       activeOutlineColor={Colors.primary}
       placeholder={placeholder}
-      style={[allstyle,{width: width,backgroundColor:Colors.white}]}
+      style={{width: width,backgroundColor:Colors.white}}
     />
   );
 };
