@@ -360,7 +360,6 @@ const MainSearch = ({navigation}) => {
 <View style={{flex:1}}>
 <SafeAreaView style={styles.container}>
       <SearchInput
-      placeholder={'Search Here'}
       // onKeyPress={value => {
       //   searchText(value);
       //   setSearchQuery(value);

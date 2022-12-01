@@ -102,7 +102,6 @@ export const BusinessPageStyles = StyleSheet.create({
   daytext: {
     fontFamily: 'InterV',
     fontSize: 15,
-    color:Colors.darkpink
   },
 
   //Reviews
@@ -207,8 +206,8 @@ export const BusinessPageStyles = StyleSheet.create({
     overflow: 'hidden',
     marginVertical: hp(1.5),
     backgroundColor: 'white',
-    shadowOffset: {width: 2, height: 2},
-    shadowOpacity: 0.8,
+    shadowOffset: {width: 2, height: 5},
+    shadowOpacity: 0.2,
     elevation: 2,
   },
   mapbottomClick: {
@@ -217,17 +216,6 @@ export const BusinessPageStyles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     paddingLeft: 15,
-  },
-  maplocbutton:{
-    backgroundColor: 'white',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.2,
-    elevation: 2,
-    borderRadius: 100,
-    alignSelf: 'flex-end',
-    marginBottom: hp(2),
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   // Map search Modal
@@ -287,7 +275,7 @@ export const BusinessPageStyles = StyleSheet.create({
     paddingBottom: hp(1),
     marginBottom: hp(2),
     alignSelf: 'center',
-    backgroundColor: Colors.white,
+    backgroundColor:Colors.white,
     shadowOffset: {width: 2, height: 5},
     shadowOpacity: 0.2,
     elevation: 2,
@@ -314,121 +302,4 @@ export const BusinessPageStyles = StyleSheet.create({
     bottom: hp(5),
     position: 'absolute',
   },
-
-  //Confirm Booking
-
-  confirmbookingCard: {
-    backgroundColor: Colors.white,
-    marginVertical: hp(2.5),
-    padding: 5,
-    borderRadius: 15,
-    shadowOffset: {width: 2, height: 5},
-    shadowOpacity: 0.2,
-    elevation: 2,
-  },
-  StraightHairViewbooking: {
-    marginLeft: wp(2.5),
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: hp(0.3),
-    marginTop: hp(1),
-  },
-  datetimetext: {
-    color: Colors.darkpink,
-    marginLeft: wp(2.5),
-    fontSize: hp(2),
-  },
-  editdeleteview: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: hp(1.5),
-
-  },
-  EditButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: wp(2),
-    flexDirection: 'row',
-    backgroundColor: Colors.peach,
-    height: hp(7),
-    width: wp(65),
-    paddingVertical: wp(1),
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  editImage: {
-    height: hp(6),
-    tintColor: Colors.primary,
-    width: wp(6),
-    marginRight: wp(1.5),
-  },
-  deleteButton: {
-    backgroundColor: Colors.lightorange,
-    borderRadius: 10,
-    height: hp(7),
-    width: hp(7),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  deleteImage: {
-    height: hp(4.8),
-    width: wp(4.8),
-  },
-
-
-  //Service Details
-  detailsmainview:{
-    borderTopWidth: 1,
-    width: wp(90),
-    borderBottomWidth: 1,
-    borderColor: Colors.lightgrey,
-    paddingVertical: hp(3),
-    alignSelf: 'center',
-    marginVertical:hp(4),
-  },
-  servicedetailscard:{
-    width: wp(90),
-    padding:15,
-    alignSelf:'center',
-    borderRadius:15,
-    shadowOffset: {width: 2, height: 5},
-    shadowOpacity: 0.2,
-    elevation: 2,
-    backgroundColor: Colors.white,
-  },
-  servicedetailstextview: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: wp(2),
-  },
-  headertext: {
-    fontFamily: 'InterV',
-    flexWrap: 'wrap',
-    color: Colors.primaryDark,
-    fontSize:hp(2)
-  },
-  boldtext: {
-    flexWrap: 'wrap',
-    alignSelf: 'flex-end',
-    paddingLeft: wp(5),
-  },
-  borderwidthcost:{
-    borderBottomWidth: 1,
-    borderColor: Colors.lightgrey,
-    width: '95%',
-    alignSelf: 'center',
-    marginVertical: hp(1),
-    marginBottom: hp(2),
-  },
-  costCard:{
-    width: wp(90),
-    borderBottomWidth: 1,
-    alignSelf: 'center',
-    marginTop: -10,
-    paddingBottom:hp(3),
-    borderColor:Colors.lightgrey
-
-  }
 });

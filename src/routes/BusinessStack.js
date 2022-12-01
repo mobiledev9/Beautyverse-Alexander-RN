@@ -22,6 +22,8 @@ import Services from '../bussiness/screens/TabStack/Services/Services';
 import SelectService from '../bussiness/screens/TabStack/Services/SelectService';
 import AddService from '../bussiness/screens/TabStack/Services/AddService';
 import NewService from '../bussiness/screens/TabStack/Services/NewService';
+//Profile
+import Profile from '../bussiness/screens/TabStack/Profile/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -106,6 +108,10 @@ export function BusinessStack() {
     {
       name: 'NewService',
       component: NewService,
+    },
+    {
+      name: 'Profile',
+      component: Profile,
     },
   ];
   return (
