@@ -41,7 +41,7 @@ const AddMethod = ({navigation}) => {
         <View style={{position: 'absolute', bottom: hp(1)}}>
           <Button
             onPress={() => {
-              navigation.navigate('HomeSplashScreen');
+              navigation.navigate('BottomTabs');
             }}
             title={Strings.addlater}
             titleColor={Colors.primary}

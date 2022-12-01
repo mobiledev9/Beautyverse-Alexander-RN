@@ -8,17 +8,14 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 
-const MapSearch = ({onChangeText, value, style, inputStyle, onTouchStart}) => {
+
+const MapSearch = ({onChangeText, value, style, inputStyle ,onTouchStart}) => {
   return (
     <View style={[styles.container, style]}>
-      <Image
-        resizeMode="contain"
-        source={Images.smallsearch}
-        style={styles.searchImg}
-      />
+      <Image source={Images.smallsearch} style={styles.searchImg} />
       <TextInput
-        onTouchStart={onTouchStart}
-        placeholderTextColor={Colors.darkpink}
+      onTouchStart={onTouchStart}
+      placeholderTextColor={Colors.darkpink}
         placeholder={Strings.searchLocation}
         onChangeText={onChangeText}
         value={value}
@@ -35,7 +32,7 @@ const styles = StyleSheet.create({
     marginLeft: wp(2),
     paddingVertical: hp(2),
   },
-  searchImg: {width: hp(2.8), height: hp(2.8)},
+  searchImg: {width: wp(6), height: wp(6)},
   container: {
     backgroundColor: Colors.white,
     width: wp(90),
@@ -44,10 +41,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: wp(4),
-    backgroundColor: 'white',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.2,
-    elevation: 2,
   },
 });
 

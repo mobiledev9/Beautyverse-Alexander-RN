@@ -5,7 +5,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
-import { Colors } from '../../theme/colors';
 
 // create a component
 const TwoSideInput = ({
@@ -16,11 +15,6 @@ const TwoSideInput = ({
   keyboardType,
   maxLength,
   secureTextEntry,
-  animated,
-  label,
-  containerstyle,
-  allstyle,
-  width
 }) => {
   return (
     <View
@@ -39,11 +33,9 @@ const TwoSideInput = ({
           alignItems: 'center',
           borderColor: '#EEE6F1',
           flexDirection: 'row',
-        },containerstyle
+        },
       ]}>
-
-   
-        <TextInput
+      <TextInput
         style={[{width: '80%'}, Inputstyle]}
         secureTextEntry={secureTextEntry}
         maxLength={maxLength}
@@ -53,8 +45,6 @@ const TwoSideInput = ({
         value={value}
         onChangeText={onChangeText}
       />
-       
-     
       <TouchableOpacity>
         <Image
           resizeMode="contain"

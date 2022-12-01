@@ -8,24 +8,51 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 
-const Index = ({title, leftBtn, rightBtn, onLeftPress, onRightPress}) => {
+const Index = ({
+  title,
+  leftBtn,
+  rightBtn,
+  onLeftPress,
+  onRightPress,
+  msg,
+  bold,
+  fontFamily,
+  leftBtnColor,
+  rightBtnColor,
+}) => {
   return (
     <View style={styles.container}>
-      <Label label={title} bold size={hp(2)} marginBottom={hp(1)} color={Colors.primary_dark}/>
+      <Label
+        label={title}
+        bold={bold}
+        size={hp(2)}
+        fontFamily={fontFamily}
+        marginBottom={hp(1)}
+        color={Colors.primary_dark}
+      />
+      {msg && (
+        <Label
+          label={msg}
+          size={hp(2)}
+          color={Colors.primary_dark}
+          bold
+          marginBottom={hp(2)}
+        />
+      )}
       <View style={styles.btnWrapper}>
         <Button
           onPress={onLeftPress}
           title={leftBtn}
           btnStyle={styles.btn}
           bgColor={Colors.lightRed}
-          titleColor={Colors.red}
+          titleColor={leftBtnColor ? leftBtnColor : Colors.red}
         />
         <Button
           onPress={onRightPress}
           title={rightBtn}
           btnStyle={styles.btn}
           bgColor={Colors.lightGray2}
-          titleColor={Colors.primary}
+          titleColor={rightBtnColor ? rightBtnColor : Colors.primary}
         />
       </View>
     </View>

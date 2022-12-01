@@ -9,10 +9,10 @@ import {
 import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 // create a component
-const PriceAmt = ({FontSize,Amount,Allstyle}) => {
+const PriceAmt = ({FontSize,Amount}) => {
   return (
     <Text
-      style={[styles.PriceAmtStyle,Allstyle,{fontSize:FontSize}]}>
+      style={[styles.PriceAmtStyle,{fontSize:FontSize}]}>
       {Amount}
     </Text>
   );

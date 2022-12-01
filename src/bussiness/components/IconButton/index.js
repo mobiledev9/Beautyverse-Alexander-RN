@@ -18,9 +18,12 @@ const Index = ({
   onPress,
   iconColor,
   left,
+  ref,
+  fontSize
 }) => {
   return (
     <TouchableOpacity
+      ref={ref}
       onPress={onPress}
       style={{
         ...styles.container,
@@ -34,6 +37,7 @@ const Index = ({
         color={labelColor}
         fontFamily={FONTS.InterBold}
         marginLeft={wp(2)}
+        size={fontSize}
       />
     </TouchableOpacity>
   );
