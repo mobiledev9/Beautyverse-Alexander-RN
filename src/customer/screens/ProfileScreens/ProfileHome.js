@@ -33,27 +33,27 @@ const ProfileHome = ({navigation}) => {
     {
       img: Images.heartround,
       maintxt: 'Wishlist',
-      text: 'Manage addresses and other info',
+      text: '5 Items in wishlist',
     },
     {
       img: Images.walletround,
       maintxt: 'Wallet',
-      text: 'Manage addresses and other info',
+      text: 'Manage payment options',
     },
     {
       img: Images.settinground,
       maintxt: 'Settings',
-      text: 'Manage addresses and other info',
+      text: 'Notifications and Security',
     },
     {
       img: Images.faqround,
       maintxt: 'FAQs',
-      text: 'Manage addresses and other info',
+      text: 'Frequently asked questions',
     },
     {
       img: Images.helpround,
       maintxt: 'Help',
-      text: 'Manage addresses and other info',
+      text: 'Terms and Conditions',
     },
   ];
 
@@ -75,6 +75,10 @@ const ProfileHome = ({navigation}) => {
               navigation.navigate('WishlistItems') :
               item.maintxt ==='Wallet' ?
               navigation.navigate('WalletHome') :
+              item.maintxt ==='Settings' ?
+              navigation.navigate('SettingsHome') :
+              item.maintxt ==='FAQs' ?
+              navigation.navigate('FAQScreen') :
               null
             }}
               avtar={item.img}

@@ -20,8 +20,9 @@ import {Colors} from '../../../theme/colors';
 import {Searchstyles} from '../../../../customer/screens/SearchScreens/SearchStyles';
 import HeaderTop from '../../../components/HomeComponent/headerTop';
 import {Strings} from '../../../theme/strings';
-import { HomeStyles } from '../../HomeScreens/HomeStyles';
+import {HomeStyles} from '../../HomeScreens/HomeStyles';
 import StarRating from '../../../components/BusinessPage/StarRating';
+import {SafeAreaView} from 'react-native';
 
 // create a component
 const WishlistItems = ({navigation}) => {
@@ -151,9 +152,7 @@ const WishlistItems = ({navigation}) => {
   const renderUserList = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('BusinessPage');
-        }}>
+       >
         <View style={{paddingTop: hp(3)}}>
           <View style={Searchstyles.mainListMaker}>
             <Image style={Searchstyles.ProfileImageCon} source={item.img} />
@@ -173,7 +172,6 @@ const WishlistItems = ({navigation}) => {
                 </Text>
                 <TouchableOpacity
                   onPress={() => {
-
                     setIndex(prevFilters => {
                       if (prevFilters.includes(index)) {
                         return prevFilters.filter(
@@ -203,11 +201,11 @@ const WishlistItems = ({navigation}) => {
                 </TouchableOpacity>
               </View>
               <Categories />
-            <StarRating
-            Rating={Strings.stars}
-            Numbers={Strings.rating}
-            NumColor={Colors.Brown}
-            />
+              <StarRating
+                Rating={Strings.stars}
+                Numbers={Strings.rating}
+                NumColor={Colors.Brown}
+              />
             </View>
           </View>
           <View style={Searchstyles.BorderBottomStyle}></View>
@@ -217,20 +215,17 @@ const WishlistItems = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <HeaderTop 
-      onPress={()=>{
-        navigation.goBack()
-      }}
-      HeaderText={Strings.wishlist} />
-      <View style={{paddingLeft:wp(5),flex:1}}>
-      <FlatList
-      data={UserData}
-      renderItem={renderUserList}
+    <SafeAreaView style={styles.container}>
+      <HeaderTop
+        onPress={() => {
+          navigation.goBack();
+        }}
+        HeaderText={Strings.wishlist}
       />
+      <View style={{paddingLeft: wp(5), flex: 1}}>
+        <FlatList data={UserData} renderItem={renderUserList} />
       </View>
-     
-    </View>
+    </SafeAreaView>
   );
 };
 

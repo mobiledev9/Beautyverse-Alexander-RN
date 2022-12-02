@@ -68,5 +68,6 @@ export const Images = {
   homeround:require('../assets/ProfileIcons/homeround.png'),
   menudots:require('../assets/ProfileIcons/menudots.png'),
   deletebin:require('../assets/ProfileIcons/deletebin.png'),
+  minusround:require('../assets/ProfileIcons/minusround.png'),
 
 };

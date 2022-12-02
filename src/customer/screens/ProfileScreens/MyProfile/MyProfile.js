@@ -15,11 +15,12 @@ import {Colors} from '../../../theme/colors';
 import {ProfileStyles} from '../ProfileStyles';
 import ProfileCard from '../../../components/ProfileComponents/ProfileCard';
 import { Strings } from '../../../theme/strings';
+import { SafeAreaView } from 'react-native';
 
 // create a component
 const MyProfile = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <HeaderTop
         onPress={() => {
           navigation.goBack();
@@ -73,7 +74,7 @@ const MyProfile = ({navigation}) => {
           text={'Change password'}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

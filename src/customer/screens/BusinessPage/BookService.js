@@ -457,7 +457,7 @@ const BookService = ({navigation}) => {
 
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('AddAddress');
+                    navigation.navigate('AddAddress',{screen:'BookService'});
                   }}
                   style={BusinessPageStyles.mapbottomClick}>
                   <Image

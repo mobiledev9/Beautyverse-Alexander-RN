@@ -25,6 +25,7 @@ import HeaderText from '../../components/AuthComponents/HeaderText';
 import UpcomingOrder from './UpcomingOrder';
 import PreviousOrder from './PreviouseOrder';
 import {OrderStyles} from './OderStyles';
+import { SafeAreaView } from 'react-native';
 
 // create a component
 const OrdersHome = () => {
@@ -43,7 +44,7 @@ const OrdersHome = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <HeaderText
         Style={{ marginLeft: wp(5)}}
         FontSize={hp(3.2)}
@@ -118,7 +119,7 @@ const OrdersHome = () => {
           }}
         />
       </Tab.Navigator>
-    </View>
+    </SafeAreaView>
   );
 };
 

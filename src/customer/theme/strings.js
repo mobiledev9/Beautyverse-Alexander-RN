@@ -79,6 +79,10 @@ export const Strings = {
   beautycredits:'BeautiVerse Credits',
   otherpayment:'Other Payment Methods',
   selectmethod:'Select Payment Method',
+  setting:'Settings',
+  notification:'Notifications',
+  security:'Security',
+  FAQ:'FAQs',
 
 
 

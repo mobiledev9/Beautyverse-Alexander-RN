@@ -84,6 +84,22 @@ export const ProfileStyles = StyleSheet.create({
     width: hp(6.5),
     marginRight: wp(2.5),
   },
+
+  // Faq's Screen
+
+  FAQcard: {
+    width: wp(90),
+    alignSelf: 'center',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 20,
+    marginTop: hp(2),
+  },
+  TextView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });
 
 //make this component available to the app

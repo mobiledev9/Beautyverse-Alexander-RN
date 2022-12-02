@@ -55,7 +55,7 @@ const AddProfile = ({navigation}) => {
       <View style={AuthStyles.optionView}>
         <Button
         onPress={()=>{
-          navigation.navigate('AddMethod')
+          navigation.navigate('AddMethod',{screen:'AddProfile'})
         }}
           title={Strings.next}
           bgColor={Colors.primary}

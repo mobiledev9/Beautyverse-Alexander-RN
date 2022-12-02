@@ -5,8 +5,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
-import {Strings} from '../../../bussiness/theme/strings';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {Avatar} from 'react-native-elements';
 import {Images} from '../../theme/Images';
 import {Colors} from '../../theme/colors';
@@ -18,10 +16,10 @@ const ProfileCard = ({avtar, mainText, text, onPress, showmenu}) => {
   return (
     <TouchableOpacity onPress={onPress} style={ProfileStyles.profileCard}>
       <Avatar rounded size={50} source={avtar} />
-      <View style={{width: wp(55), marginLeft: -10}}>
+      <View style={{width: wp(55), marginLeft: -5}}>
         <SemiBold
           AllStyle={{marginTop: -12}}
-          FontSize={hp(2.5)}
+          FontSize={hp(2)}
           EnterText={mainText}
         />
         <Text
