@@ -454,7 +454,6 @@ const BookService = ({navigation}) => {
                     }}
                   />
                 </TouchableOpacity>
-
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('AddAddress',{screen:'BookService'});

@@ -9,6 +9,8 @@ import {
   StyleSheet,
   TextInput,
   Text,
+  PermissionsAndroid,
+  Platform
 } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import {Images} from '../../theme/Images';
@@ -28,6 +30,8 @@ import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import {styles} from '../../../bussiness/screens/AuthScreens/OnBoarding/styles';
 import Icon from '../../../bussiness/components/Icon';
 import Label from '../../../bussiness/components/Label';
+import Geolocation from 'react-native-geolocation-service';
+
 
 // create a component
 const AddAddress = ({navigation,route}) => {
@@ -41,41 +45,94 @@ const AddAddress = ({navigation,route}) => {
   const [longitude, setLongitude] = useState(144.9631);
   const [place, setPlace] = useState('');
 
-  const gotToMyLocation = () => {
-    console.log('gotToMyLocation is called');
-    navigator.geolocation.getCurrentPosition(
-      ({coords}) => {
-        console.log('curent location: ', coords);
-        console.log(this.map);
-        if (map) {
-          console.log('curent location: ', coords);
-          map.animateToRegion({
-            latitude: coords.latitude,
-            longitude: coords.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          });
-        }
+
+  const getCurrentLocation = () => {
+    locationPermission()
+    Geolocation.getCurrentPosition(
+      position => {
+        console.log('position =>', position);
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
       },
-      error => alert('Error: Are location services on?'),
-      {enableHighAccuracy: true},
+      error => {
+        console.log('error =>', error);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
   };
+
+
+  const locationPermission = async () => {
+    if (Platform.OS == 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'GeoLocation permission.',
+            message:
+              'Beaubee needs access to your geoLocation ' +
+              'so you can be protected safely.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('granted');
+        } else {
+          console.log('denied');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      const status = await Geolocation.requestAuthorization('whenInUse');
+      console.log('Status', status);
+      if (status === 'granted') {
+      } else {
+
+      }
+    }
+  };
+
+  // const gotToMyLocation = () => {
+  //   console.log('gotToMyLocation is called');
+  //   navigator.geolocation.getCurrentPosition(
+  //     ({coords}) => {
+  //       console.log('curent location: ', coords);
+  //       console.log(this.map);
+  //       if (map) {
+  //         console.log('curent location: ', coords);
+  //         map.animateToRegion({
+  //           latitude: coords.latitude,
+  //           longitude: coords.longitude,
+  //           latitudeDelta: 0.005,
+  //           longitudeDelta: 0.005,
+  //         });
+  //       }
+  //     },
+  //     error => alert('Error: Are location services on?'),
+  //     {enableHighAccuracy: true},
+  //   );
+  // };
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <MapView
 
         followsUserLocation={true}
-        showsUserLocation={true}
-        showsMyLocationButton={true}
+        // showsUserLocation={true}
+        // showsMyLocationButton={true}
         style={{height: '100%', width: '100%'}}
-        initialRegion={{
+        region={{
           latitude: latitude,
           longitude: longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}>
+        }}
+      >
+
+        
         <Marker                                                                                               
           coordinate={{
             latitude: latitude,
@@ -115,7 +172,11 @@ const AddAddress = ({navigation,route}) => {
           alignItems: 'center',
           left: wp(5),
         }}>
-        <TouchableOpacity style={BusinessPageStyles.maplocbutton}>
+        <TouchableOpacity 
+        onPress={()=>{
+          getCurrentLocation();
+        }}
+        style={BusinessPageStyles.maplocbutton}>
           <Image
             resizeMode="contain"
             style={{
