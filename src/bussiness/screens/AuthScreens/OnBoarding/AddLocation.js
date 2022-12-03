@@ -1,7 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {View, SafeAreaView, Modal, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  Modal,
+  TouchableOpacity,
+  Image,
+  Platform,
+  PermissionsAndroid,
+} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import Geolocation from 'react-native-geolocation-service';
 import {styles} from './styles';
 import Header from '../../../components/Header';
 import Button from '../../../components/Button';
@@ -17,19 +26,73 @@ import {
   heightPercentageToDP as hp,
 } from '../../../theme/layout';
 
-const AddLocation = ({navigation}) => {
+const AddLocation = ({navigation, route}) => {
+  const {params} = route;
   const [isSearchModal, setSerachModal] = useState(false);
   const [latitude, setLatitude] = useState(-37.8136);
   const [longitude, setLongitude] = useState(144.9631);
   const [place, setPlace] = useState('');
   const [bottom, setBottom] = useState(1);
+  const [isGranted, setGranted] = useState(false);
+
+ 
+
+  const getCurrentLocation = () => {
+    locationPermission()
+    Geolocation.getCurrentPosition(
+      position => {
+        console.log('position =>', position);
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+      },
+      error => {
+        console.log('error =>', error);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
+  };
+
+  const locationPermission = async () => {
+    if (Platform.OS == 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'GeoLocation permission.',
+            message:
+              'Beaubee needs access to your geoLocation ' +
+              'so you can be protected safely.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('granted');
+        } else {
+          console.log('denied');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      const status = await Geolocation.requestAuthorization('whenInUse');
+      console.log('Status', status);
+      if (status === 'granted') {
+      } else {
+      }
+    }
+  };
 
   return (
     <SafeAreaView style={styles.conatiner}>
-      <Header
-        onPressBack={() => navigation.goBack()}
-        headerTitle={Strings.businessAddress}
-      />
+      {params.from == 'auth' && (
+        <Header
+          onPressBack={() => navigation.goBack()}
+          headerTitle={Strings.businessAddress}
+        />
+      )}
+
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{...styles.mapView, paddingTop: bottom}}
@@ -39,9 +102,16 @@ const AddLocation = ({navigation}) => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-        showsUserLocation={true}
-        showsMyLocationButton={true}
+        // showsUserLocation={true}
+        // showsMyLocationButton={true}
         onMapReady={() => setBottom(5)}>
+        <View style={styles.backView}>
+          {params.from == 'profile' && (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon source={Images.roundback} size={hp(5.5)} />
+            </TouchableOpacity>
+          )}
+        </View>
         <Marker
           coordinate={{
             latitude: latitude,
@@ -51,6 +121,11 @@ const AddLocation = ({navigation}) => {
         </Marker>
       </MapView>
       <View style={styles.bottomView}>
+        <TouchableOpacity
+          style={styles.markerBtn}
+          onPress={() => getCurrentLocation()}>
+          <Icon source={Images.locationMarker} size={hp(5.5)} />
+        </TouchableOpacity>
         <SearchField onTouchStart={() => setSerachModal(true)} value={place} />
         <Button
           onPress={() =>

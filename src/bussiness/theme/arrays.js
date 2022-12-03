@@ -162,3 +162,74 @@ export const hairServices = [
   {add: 'Hair Cut 4', Duration: '45 minutes', price: '$60.00'},
   {add: 'Hair Cut 5', Duration: '45 minutes', price: '$60.00'},
 ];
+
+export const profile = [
+  {
+    icon: Images.user,
+    label: Strings.businessProfile,
+    desc: Strings.manageAddress,
+  },
+  {
+    icon: Images.payment,
+    label: Strings.paymentOptions,
+    desc: Strings.managePaymentOptions,
+  },
+  {
+    icon: Images.settings,
+    label: Strings.settings,
+    desc: Strings.notificationsandSecurity,
+  },
+  {
+    icon: Images.help,
+    label: Strings.help,
+    desc: Strings.termsandConditions,
+  },
+];
+
+export const myProfile = [
+  {
+    icon: Images.address,
+    label: Strings.addressesandTimings,
+    desc: Strings.manageAddresses,
+  },
+  {
+    icon: Images.timing,
+    label: Strings.timings,
+    desc: Strings.manageBusinessTimings,
+  },
+  {
+    icon: Images.password,
+    label: Strings.password,
+    desc: Strings.changePassword,
+  },
+];
+
+export const address = [
+  {
+    label: 'Location 1',
+    desc: 'Some address line goes here',
+  },
+  {
+    label: 'Location 2',
+    desc: 'Some address line goes here',
+  },
+  {
+    label: 'Location 3',
+    desc: 'Some address line goes here',
+  },
+];
+
+export const businessImage = [
+  Images.image1,
+  Images.image2,
+  Images.image3,
+  Images.image4,
+];
+
+export const NotiSettings = [
+  'Notification option 1',
+  'Notification option 2',
+  'Notification option 3',
+  'Notification option 4',
+  'Notification option 5',
+];

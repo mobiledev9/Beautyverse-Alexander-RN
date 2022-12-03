@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Popover, {PopoverPlacement} from 'react-native-popover-view';
+import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 import {Colors} from '../../theme/colors';
 import {FONTS} from '../../theme/fonts';
 import {Images} from '../../theme/images';
@@ -26,8 +27,10 @@ const Index = ({
   line,
   leftIconColor,
   option,
+  label,
 }) => {
   const [optionModal, setOptionModal] = useState(false);
+  const [visible, setVisible] = useState(false);
   return (
     <TouchableOpacity
       style={
@@ -36,39 +39,49 @@ const Index = ({
               styles.constainer,
               {borderBottomWidth: 1, borderBottomColor: Colors.border},
             ]
-          : [styles.constainer, {borderWidth: 1, borderRadius: 20}]
+          : [styles.constainer, styles.shadow, {borderRadius: 20}]
       }
       onPress={onPress}>
       <View style={styles.innerContainer}>
         <Icon source={userIcon} size={hp(5)} color={iconColor} />
-        <View style={styles.labelConatiner}>
+        {label ? (
           <Label
-            label={title}
+            label={label}
             left
             fontFamily={FONTS.InterBold}
             color={Colors.primary_dark}
-            marginBottom={hp(1)}
+            marginLeft={wp(4)}
           />
-          <View style={styles.row}>
-            {rating && <Icon source={Images.rating} size={hp(1.5)} />}
+        ) : (
+          <View style={styles.labelConatiner}>
             <Label
-              label={desc}
+              label={title}
               left
-              fontFamily={rating ? FONTS.InterSemiBold : FONTS.InterRegular}
-              color={rating ? Colors.primary_dark : Colors.gray}
-              marginLeft={rating ? wp(2) : 0}
+              fontFamily={FONTS.InterBold}
+              color={Colors.primary_dark}
+              marginBottom={hp(1)}
             />
-            {review && (
+            <View style={styles.row}>
+              {rating && <Icon source={Images.rating} size={hp(1.5)} />}
               <Label
-                label={review}
-                color={Colors.lightGray3}
-                fontFamily={FONTS.InterRegular}
-                size={hp(1.5)}
-                marginLeft={wp(1)}
+                label={desc}
+                left
+                fontFamily={rating ? FONTS.InterSemiBold : FONTS.InterRegular}
+                color={rating ? Colors.primary_dark : Colors.gray}
+                marginLeft={rating ? wp(2) : 0}
               />
-            )}
+              {review && (
+                <Label
+                  label={review}
+                  color={Colors.lightGray3}
+                  fontFamily={FONTS.InterRegular}
+                  size={hp(1.5)}
+                  marginLeft={wp(1)}
+                />
+              )}
+            </View>
           </View>
-        </View>
+        )}
       </View>
       {option ? (
         <Popover
@@ -104,6 +117,18 @@ const Index = ({
             />
           </View>
         </Popover>
+        // <Menu
+        //   visible={visible}
+        //   anchor={
+        //     <TouchableOpacity onPress={() => setVisible(true)}>
+        //       <Icon source={leftIcon} size={hp(2)} color={leftIconColor} />
+        //     </TouchableOpacity>
+        //   }
+        //   onRequestClose={() => setVisible(false)}>
+        //   <MenuItem>Menu item 1</MenuItem>
+        //   <MenuItem>Menu item 2</MenuItem>
+        //   <MenuItem>Menu item 4</MenuItem>
+        // </Menu>
       ) : (
         <TouchableOpacity onPress={onPressMenu}>
           <Icon source={leftIcon} size={hp(2)} color={leftIconColor} />
@@ -120,9 +145,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: wp(3),
-    borderColor: Colors.border,
+    // borderColor: Colors.border,
     paddingVertical: hp(1),
     marginBottom: hp(3),
+  },
+  shadow: {
+    shadowColor: Colors.black,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    elevation: 3,
   },
   innerContainer: {
     backgroundColor: Colors.white,
@@ -140,7 +171,7 @@ const styles = StyleSheet.create({
   popoverStyle: {
     backgroundColor: Colors.white,
     borderRadius: 10,
-    paddingHorizontal:wp(2)
+    paddingHorizontal: wp(2),
   },
 });
 

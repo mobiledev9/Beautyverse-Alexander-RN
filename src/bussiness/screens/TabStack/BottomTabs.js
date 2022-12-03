@@ -8,32 +8,9 @@ import {Strings} from '../../theme/strings';
 import Home from './Home';
 import Professionals from './Staff/Professionals';
 import Services from './Services/Services';
+import Profile from './Profile/Profile';
 
 const BottomTabs = ({focused}) => {
-  function FeedScreen() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Test</Text>
-      </View>
-    );
-  }
-
-  function MainScreen() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>test</Text>
-      </View>
-    );
-  }
-
-  function ProfileScreen() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>test</Text>
-      </View>
-    );
-  }
-
   const Tab = createBottomTabNavigator();
 
   return (
@@ -113,7 +90,7 @@ const BottomTabs = ({focused}) => {
               tabBarLabel: '',
             }}
             name="Profile"
-            component={MainScreen}></Tab.Screen>
+            component={Profile}></Tab.Screen>
         </Tab.Navigator>
       </SafeAreaView>
     </Fragment>

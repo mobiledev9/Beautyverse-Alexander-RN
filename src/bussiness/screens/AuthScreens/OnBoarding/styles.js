@@ -100,4 +100,28 @@ export const styles = StyleSheet.create({
     paddingTop: hp(1),
     backgroundColor: Colors.white,
   },
+  roundBack: {
+    shadowColor: Colors.black,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    elevation: 3,
+  },
+  backView: {
+    position: 'absolute',
+    alignSelf: 'flex-start',
+    left: wp(4),
+    top: hp(2),
+    shadowColor: Colors.black,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    elevation: 3,
+  },
+  markerBtn: {
+    alignSelf: 'flex-end',
+    bottom: hp(2),
+    shadowColor: Colors.black,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    elevation: 3,
+  },
 });

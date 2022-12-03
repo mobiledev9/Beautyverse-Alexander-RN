@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   profileview: {
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.white,
     width: hp(10),
     height: hp(10),
     borderRadius: 100,

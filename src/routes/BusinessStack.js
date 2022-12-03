@@ -22,6 +22,14 @@ import Services from '../bussiness/screens/TabStack/Services/Services';
 import SelectService from '../bussiness/screens/TabStack/Services/SelectService';
 import AddService from '../bussiness/screens/TabStack/Services/AddService';
 import NewService from '../bussiness/screens/TabStack/Services/NewService';
+//Profile
+import Profile from '../bussiness/screens/TabStack/Profile/Profile';
+import MyProfile from '../bussiness/screens/TabStack/Profile/MyProfile';
+import Address from '../bussiness/screens/TabStack/Profile/Address';
+import EditProfile from '../bussiness/screens/TabStack/Profile/EditProfile';
+import Password from '../bussiness/screens/TabStack/Profile/Password';
+import Wallet from '../bussiness/screens/TabStack/Profile/Wallet';
+import Notification from '../bussiness/screens/TabStack/Profile/Notification';
 
 const Stack = createNativeStackNavigator();
 
@@ -106,6 +114,34 @@ export function BusinessStack() {
     {
       name: 'NewService',
       component: NewService,
+    },
+    {
+      name: 'Profile',
+      component: Profile,
+    },
+    {
+      name: 'MyProfile',
+      component: MyProfile,
+    },
+    {
+      name: 'Address',
+      component: Address,
+    },
+    {
+      name: 'EditProfile',
+      component: EditProfile,
+    },
+    {
+      name: 'Password',
+      component: Password,
+    },
+    {
+      name: 'Wallet',
+      component: Wallet,
+    },
+    {
+      name: 'Notification',
+      component: Notification,
     },
   ];
   return (
