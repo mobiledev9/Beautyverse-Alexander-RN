@@ -1,5 +1,5 @@
 //import liraries
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   View,
   SafeAreaView,
@@ -25,13 +25,29 @@ import SemiBold from '../../components/HomeComponent/SemiBold';
 import {Colors} from '../../theme/colors';
 import AnimatedInput from '../../components/BusinessPage/AnimatedInput';
 import Button from '../../components/AuthComponents/FilledButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // create a component
 const InsertAdd = ({navigation, route}) => {
+
+
+useEffect(()=>{
+  GetuserLocation();
+},[])
+
+
+  const GetuserLocation = async () => {
+    const Loc = await AsyncStorage.getItem("Location");
+    setLocation(Loc)
+    console.log(Loc,'===LOC====');
+  }
+
   const {params} = route;
 
   const [latitude, setLatitude] = useState(params.latitude);
   const [longitude, setLongitude] = useState(params.longitude);
+  const [Location, setLocation] = useState([]);
+
 
   const [Index, SetIndex] = useState(0);
 
@@ -122,10 +138,23 @@ const InsertAdd = ({navigation, route}) => {
           </MapView>
           <View style={BusinessPageStyles.editView}>
             <View>
-              <SemiBold FontSize={hp(2.3)} EnterText={'Location Name'} />
-              <Text style={{color: Colors.darkpink}}>{params.place}okok</Text>
+              <SemiBold FontSize={hp(2.1)} EnterText={'Location Name'} />
+              <Text style={{color: Colors.darkpink,width:wp(60), fontSize: hp(1.7)}}>
+                {Location}
+              </Text>
             </View>
-            <Image style={{height: hp(4), width: hp(4)}} source={Images.edit} />
+            <TouchableOpacity
+            onPress={()=>{
+
+              navigation.navigate('AddAddress')
+            }}
+            >
+              <Image
+                resizeMode="contain"
+                style={{height: hp(3), width: hp(3)}}
+                source={Images.edit}
+              />
+            </TouchableOpacity>
           </View>
         </View>
 

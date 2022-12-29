@@ -30,6 +30,13 @@ const EditProfile = ({navigation}) => {
   const [email, setEmail] = useState('business@email.com');
   const [phone, setPhone] = useState('+123 456 7890');
 
+  const profilePicker = () => {
+    ImagePicker.openPicker({}).then(image => {
+      console.log(image.path);
+      setProfileUri(image.path);
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header

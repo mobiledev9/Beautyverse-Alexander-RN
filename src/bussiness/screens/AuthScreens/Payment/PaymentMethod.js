@@ -29,7 +29,7 @@ const PaymentMethod = ({navigation}) => {
           marginLeft={wp(4)}
         />
       </View>
-      <Icon source={Images.rightarrow} size={hp(4)} />
+      <Icon source={Images.rightarrow} size={hp(2.5)} />
     </TouchableOpacity>
   );
   return (

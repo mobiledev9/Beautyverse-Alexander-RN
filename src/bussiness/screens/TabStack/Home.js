@@ -15,18 +15,19 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
+import {FONTS} from '../../theme/fonts.js';
 
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => {
-  const [isUpcoming, setUpcoming] = useState(false)
+  const [isUpcoming, setUpcoming] = useState(false);
+  
   const ItemWrapper = ({img, label}) => (
     <View
       style={{
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: wp(2),
-        marginBottom: hp(1),
       }}>
       <Icon source={img} size={hp(2)} color={Colors.gray} />
       <Label
@@ -34,6 +35,8 @@ const Home = () => {
         left
         marginLeft={wp(2)}
         color={Colors.primary_dark}
+        fontFamily={FONTS.InterRegular}
+        lineHeight={hp(3)}
       />
     </View>
   );
@@ -44,7 +47,7 @@ const Home = () => {
       <View style={styles.newTab}>
         <Label
           label={Strings.newBookings}
-          bold
+          fontFamily={FONTS.InterBold}
           size={hp(2.5)}
           left
           paddingVertical={hp(2)}
@@ -60,7 +63,7 @@ const Home = () => {
                 <View>
                   <Label
                     label={item.label}
-                    bold
+                    fontFamily={FONTS.InterBold}
                     left
                     marginLeft={wp(2)}
                     paddingVertical={hp(1)}
@@ -77,7 +80,7 @@ const Home = () => {
                   title={Strings.reschedule}
                   bgColor={Colors.lightRed}
                   titleColor={Colors.primary}
-                  btnStyle={{alignSelf: 'center', width:wp(95)}}
+                  btnStyle={{alignSelf: 'center', width: wp(95)}}
                 />
               ) : (
                 <View style={styles.btnWrapper}>
@@ -106,6 +109,7 @@ const Home = () => {
             rightBtn={Strings.no}
             onLeftPress={() => setAlert(false)}
             onRightPress={() => setAlert(false)}
+            fontFamily={FONTS.InterBold}
           />
         </Modal>
       </View>
@@ -113,12 +117,12 @@ const Home = () => {
   };
 
   const Upcoming = ({navigation}) => {
-    useEffect(()=> {},[])
+    useEffect(() => {}, []);
     return (
       <View style={styles.newTab}>
         <Label
           label={Strings.upcomingBookings}
-          bold
+          fontFamily={FONTS.InterBold}
           size={hp(2.5)}
           left
           paddingVertical={hp(2)}
@@ -137,11 +141,12 @@ const Home = () => {
                 <View>
                   <Label
                     label={item.label}
-                    bold
+                    fontFamily={FONTS.InterBold}
                     left
                     marginLeft={wp(2)}
                     size={hp(2)}
                     color={Colors.primary_dark}
+                    lineHeight={hp(3)}
                   />
                   <ItemWrapper img={item.s_icon} label={item.service} />
                   <ItemWrapper img={item.t_icon} label={item.time} />
@@ -156,8 +161,8 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <AppHeader hide hideCal={isUpcoming}/>
+    <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
+      <AppHeader hide hideCal={isUpcoming} />
       <Tab.Navigator
         tabBarOptions={{
           pressColor: 'transparent',
@@ -170,10 +175,10 @@ const Home = () => {
         <Tab.Screen
           name={Strings.new}
           component={New}
-          listeners={{  
-            tabPress: (e) => {
-              setUpcoming(false)
-            }
+          listeners={{
+            tabPress: e => {
+              setUpcoming(false);
+            },
           }}
           options={{
             tabBarLabel: ({focused}) => (
@@ -181,7 +186,7 @@ const Home = () => {
                 style={focused ? styles.tabBarLabelActive : styles.tabBarLabel}>
                 <Label
                   label={Strings.new}
-                  bold
+                  fontFamily={FONTS.InterBold}
                   size={hp(2)}
                   color={Colors.black}
                 />
@@ -192,10 +197,10 @@ const Home = () => {
         <Tab.Screen
           name={Strings.upcoming}
           component={Upcoming}
-          listeners={{  
-            tabPress: (e) => {
-              setUpcoming(true)
-            }
+          listeners={{
+            tabPress: e => {
+              setUpcoming(true);
+            },
           }}
           options={{
             tabBarLabel: ({focused}) => (
@@ -203,7 +208,7 @@ const Home = () => {
                 style={focused ? styles.tabBarLabelActive : styles.tabBarLabel}>
                 <Label
                   label={Strings.upcoming}
-                  bold
+                  fontFamily={FONTS.InterBold}
                   size={hp(2)}
                   color={Colors.black}
                 />

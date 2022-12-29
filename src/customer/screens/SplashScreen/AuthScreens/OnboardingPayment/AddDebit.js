@@ -11,10 +11,26 @@ import {
 import Button from '../../../../components/AuthComponents/FilledButton';
 import {Colors} from '../../../../theme/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
+
 
 // create a component
-const AddDebit = ({navigation}) => {
-  
+const AddDebit = ({navigation,route}) => {
+
+
+  const getCardDetails = async () => {
+    await AsyncStorage.removeItem('CardData').then(
+      await AsyncStorage.setItem('CardData', CardNum),
+    );
+  }
+ 
+
+const [CardNum,SetCardNum] = useState(0);
+
+
+  console.log(route.params.screen);
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -25,7 +41,14 @@ const AddDebit = ({navigation}) => {
         HeaderText={`Add ${Strings.Debit}`} />
         <View style={{alignItems: 'center', marginTop: hp(3)}}>
           <AuthInput placeholder={Strings.nameoncard} />
-          <AuthInput placeholder={Strings.cardnum} />
+          <AuthInput 
+          maxLength={12}
+          value={CardNum}
+          onChangeText={text=>{
+            SetCardNum(text);
+          }}
+          
+          placeholder={Strings.cardnum} />
           <View
             style={{
               flexDirection: 'row',
@@ -40,6 +63,11 @@ const AddDebit = ({navigation}) => {
           </View>
         </View>
         <Button
+          onPress={()=>{
+            getCardDetails();
+            route.params.screen === 'checkout' ?
+            navigation.navigate('Checkout') : null
+          }}
           bgColor={Colors.primary}
           titleColor={Colors.white}
           title={Strings.cardSV}

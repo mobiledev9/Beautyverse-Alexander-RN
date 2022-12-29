@@ -34,6 +34,7 @@ import {Avatar} from 'react-native-elements';
 import StarRating from '../../components/BusinessPage/StarRating';
 import HeaderText from '../../components/AuthComponents/HeaderText';
 import MapView from 'react-native-maps';
+import {addOns} from '../../../bussiness/theme/arrays';
 
 // create a component
 
@@ -49,7 +50,43 @@ const BookService = ({navigation}) => {
   const [Index, setIndex] = useState([]);
   const [AddOnIndex, SetAddOnIndex] = useState([]);
   const [selecteddate, SetselectedDate] = useState('');
+  const [SelectedAddOn, SetSelectedAddOn] = useState([]);
+  const [addOns, setAddOns] = useState([
+    {
+      id: 1,
+      addon: 'AddOn1',
+      duration: '10 minutes',
+      amt: '$10.00',
+    },
+    {
+      id: 2,
 
+      addon: 'AddOn2',
+      duration: '50 minutes',
+      amt: '$20.00',
+    },
+    {
+      id: 3,
+
+      addon: 'AddOn3',
+      duration: '25 minutes',
+      amt: '$19.00',
+    },
+    {
+      id: 4,
+
+      addon: 'AddOn4',
+      duration: '15 minutes',
+      amt: '$25.00',
+    },
+    {
+      id: 5,
+
+      addon: 'AddOn5',
+      duration: '60 minutes',
+      amt: '$55.00',
+    },
+  ]);
   const [selectedProf, SetselectedProf] = useState(['']);
 
   const CorouselData = [
@@ -92,26 +129,35 @@ const BookService = ({navigation}) => {
 
   const AddOn = [
     {
+      id: 1,
       addon: 'AddOn1',
       duration: '10 minutes',
       amt: '$10.00',
     },
     {
+      id: 2,
+
       addon: 'AddOn2',
       duration: '50 minutes',
       amt: '$20.00',
     },
     {
+      id: 3,
+
       addon: 'AddOn3',
       duration: '25 minutes',
       amt: '$19.00',
     },
     {
+      id: 4,
+
       addon: 'AddOn4',
       duration: '15 minutes',
       amt: '$25.00',
     },
     {
+      id: 5,
+
       addon: 'AddOn5',
       duration: '60 minutes',
       amt: '$55.00',
@@ -167,7 +213,27 @@ const BookService = ({navigation}) => {
     });
   };
 
-  const SelectIndexAddOn = index => {
+  const SelectIndexAddOn = (index, item) => {
+    if (SelectedAddOn.length > 0) {
+      if (SelectedAddOn.includes(item.id)) {
+        const remove = SelectedAddOn.filter(i => i.id != item.id);
+        SetSelectedAddOn(remove)
+      }
+      SetSelectedAddOn(prev => [...prev, item]);
+    } else {
+      SetSelectedAddOn([item]);
+    }
+
+    console.log(SelectedAddOn, '==select===');
+    // console.log(item);
+    // SetSelectedAddOn(prevAddon => {
+    //   if(prevAddon.includes(addon)){
+    //     return prevAddon.filter(Item => addon !== Item.addon);
+    //   } else {
+    //     return [...prevAddon,[item]]
+    //   }
+    // })
+
     SetAddOnIndex(prevFilters => {
       if (prevFilters.includes(index)) {
         return prevFilters.filter(Index => index !== Index);
@@ -180,10 +246,9 @@ const BookService = ({navigation}) => {
   const RenderAddOn = ({item, index}) => {
     return (
       <TouchableOpacity
-      onPress={() => {
-        SelectIndexAddOn(index);
-        console.log('Press');
-      }}
+        onPress={() => {
+          SelectIndexAddOn(index, item);
+        }}
         style={[
           BusinessPageStyles.AddOnCard,
           {
@@ -195,8 +260,7 @@ const BookService = ({navigation}) => {
         ]}>
         <View style={BusinessPageStyles.AddOnView}>
           <SemiBold FontSize={hp(2.2)} EnterText={item.addon} />
-          <View
-            >
+          <View>
             {AddOnIndex.includes(index) ? (
               <Image
                 resizeMode="contain"
@@ -305,69 +369,69 @@ const BookService = ({navigation}) => {
     );
   };
 
-  const RenderSelectProf = () => {
-    return (
-      <View
-        style={{
-          width: wp(90),
-          alignSelf: 'center',
-        }}>
-        <View
-          style={{
-            backgroundColor: Colors.white,
-            borderRadius: 15,
-            paddingLeft: 10,
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingVertical: wp(3.5),
-            borderBottomWidth: 1,
-            width: wp(90),
-            alignSelf: 'center',
-            justifyContent: 'space-between',
-            borderColor: Colors.grey,
-            shadowOffset: {width: 2, height: 5},
-            shadowOpacity: 0.2,
-            elevation: 2,
-          }}>
-          <Avatar
-            containerStyle={{marginLeft: 10}}
-            size={55}
-            rounded
-            source={Images.Apple}
-          />
-          <View style={{marginLeft: -30}}>
-            <SemiBold FontSize={hp(2.3)} EnterText={Strings.AddProfile} />
-            <StarRating Rating={Strings.stars} Numbers={Strings.rating} />
-          </View>
-          <TouchableOpacity>
-            <Image
-              resizeMode="contain"
-              style={{height: hp(3.3), width: hp(3.3), marginRight: 15}}
-              source={Images.edit}
-            />
-          </TouchableOpacity>
-        </View>
+  // const RenderSelectProf = () => {
+  //   return (
+  //     <View
+  //       style={{
+  //         width: wp(90),
+  //         alignSelf: 'center',
+  //       }}>
+  //       <View
+  //         style={{
+  //           backgroundColor: Colors.white,
+  //           borderRadius: 15,
+  //           paddingLeft: 10,
+  //           flexDirection: 'row',
+  //           alignItems: 'center',
+  //           paddingVertical: wp(3.5),
+  //           borderBottomWidth: 1,
+  //           width: wp(90),
+  //           alignSelf: 'center',
+  //           justifyContent: 'space-between',
+  //           borderColor: Colors.grey,
+  //           shadowOffset: {width: 2, height: 5},
+  //           shadowOpacity: 0.2,
+  //           elevation: 2,
+  //         }}>
+  //         <Avatar
+  //           containerStyle={{marginLeft: 10}}
+  //           size={55}
+  //           rounded
+  //           source={Images.Apple}
+  //         />
+  //         <View style={{marginLeft: -30}}>
+  //           <SemiBold FontSize={hp(2.3)} EnterText={Strings.AddProfile} />
+  //           <StarRating Rating={Strings.stars} Numbers={Strings.rating} />
+  //         </View>
+  //         <TouchableOpacity>
+  //           <Image
+  //             resizeMode="contain"
+  //             style={{height: hp(3.3), width: hp(3.3), marginRight: 15}}
+  //             source={Images.edit}
+  //           />
+  //         </TouchableOpacity>
+  //       </View>
 
-        <TouchableOpacity
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginVertical: hp(0.9),
-          }}>
-          <Image
-            resizeMode="contain"
-            style={{height: hp(2.7), width: hp(2.7), marginRight: 10}}
-            source={Images.crosspink}
-          />
-          <SemiBold
-            FontSize={hp(2.3)}
-            AllStyle={{color: Colors.darkpeach}}
-            EnterText={'Remove Selction'}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  //       <TouchableOpacity
+  //         style={{
+  //           flexDirection: 'row',
+  //           alignItems: 'center',
+  //           marginVertical: hp(0.9),
+  //         }}>
+  //         <Image
+  //           resizeMode="contain"
+  //           style={{height: hp(2.7), width: hp(2.7), marginRight: 10}}
+  //           source={Images.crosspink}
+  //         />
+  //         <SemiBold
+  //           FontSize={hp(2.3)}
+  //           AllStyle={{color: Colors.darkpeach}}
+  //           EnterText={'Remove Selction'}
+  //         />
+  //       </TouchableOpacity>
+  //     </View>
+  //   );
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -456,7 +520,7 @@ const BookService = ({navigation}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('AddAddress',{screen:'BookService'});
+                    navigation.navigate('AddAddress', {screen: 'BookService'});
                   }}
                   style={BusinessPageStyles.mapbottomClick}>
                   <Image
@@ -790,9 +854,9 @@ const BookService = ({navigation}) => {
         </View>
       </Modal>
       <Button
-      onPress={()=>{
-        navigation.navigate('ConfirmBooking')
-      }}
+        onPress={() => {
+          navigation.navigate('ConfirmBooking');
+        }}
         btnStyle={{
           width: wp(90),
           alignSelf: 'center',

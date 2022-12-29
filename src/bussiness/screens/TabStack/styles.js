@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2c3e50',
   },
+  mainView: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
   notpressed: {
     height: 20,
     width: 20,
@@ -85,7 +89,11 @@ export const styles = StyleSheet.create({
   },
 
   //New Tab
-  newTab: {paddingHorizontal: wp(3), paddingTop: hp(3)},
+  newTab: {
+    paddingHorizontal: wp(3),
+    paddingTop: hp(3),
+    backgroundColor: Colors.white,
+  },
   bookingView: {
     marginBottom: hp(2),
     borderBottomWidth: 2,
@@ -138,4 +146,21 @@ export const styles = StyleSheet.create({
   },
   bottomBtns: {width: wp(90), marginVertical: hp(1)},
   bottomView: {alignSelf: 'center', marginVertical: hp(3)},
+  addButton: {
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    right: wp(3),
+  },
+  bottomHeader: {
+    backgroundColor: Colors.white,
+    height: hp(10),
+    width: wp(100),
+    bottom: 0,
+    position: 'absolute',
+  },
+  calendarView: {
+    backgroundColor: Colors.white,
+    paddingHorizontal: wp(4),
+    flexDirection:'row'
+  },
 });

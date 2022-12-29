@@ -233,3 +233,14 @@ export const NotiSettings = [
   'Notification option 4',
   'Notification option 5',
 ];
+
+export const menu = [
+  {icon: Images.location, label: Strings.editLocation},
+  {icon: Images.location, label: Strings.editTime},
+  {icon: Images.bin, label: Strings.remove},
+];
+
+export const option = [
+  {icon: Images.edit, label: Strings.edit},
+  {icon: Images.bin, label: Strings.remove},
+];

@@ -7,6 +7,7 @@ export const Images = {
   Girl: require('../assets/HomeScreen/TopTab/Girl.png'),
   Nail: require('../assets/HomeScreen/TopTab/Nails.png'),
   Star: require('../assets/HomeScreen/TopTab/Star.png'),
+  checklist:require('../assets/HomeScreen/TopTab/checklist.png'),
   CoroselBg: require('../assets/HomeScreen/TopTab/AllCategories/coroselbg.png'),
   RightArrow: require('../assets/HomeScreen/TopTab/AllCategories/RightArrow.png'),
   img1: require('../assets/timepass/image1.png'),
@@ -69,5 +70,9 @@ export const Images = {
   menudots:require('../assets/ProfileIcons/menudots.png'),
   deletebin:require('../assets/ProfileIcons/deletebin.png'),
   minusround:require('../assets/ProfileIcons/minusround.png'),
+  erroralert:require('../assets/Errors/ErrorAlert.png'),
+  warningsign:require('../assets/Errors/warningsign.png'),
+
+
 
 };

@@ -12,9 +12,11 @@ import {TouchableOpacity} from 'react-native';
 import {ProfileStyles} from '../../screens/ProfileScreens/ProfileStyles';
 
 // create a component
-const ProfileCard = ({avtar, mainText, text, onPress, showmenu}) => {
+const ProfileCard = ({avtar, mainText, text, onPress, showmenu,disabled,MenuOnpress}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={ProfileStyles.profileCard}>
+    <TouchableOpacity 
+    disabled={disabled}
+    onPress={onPress} style={ProfileStyles.profileCard}>
       <Avatar rounded size={50} source={avtar} />
       <View style={{width: wp(55), marginLeft: -5}}>
         <SemiBold
@@ -33,15 +35,20 @@ const ProfileCard = ({avtar, mainText, text, onPress, showmenu}) => {
       </View>
 
       {showmenu ? (
-        <Image
+        <TouchableOpacity
+        hitSlop={{right:20,left:20,top:20,bottom:20}}
+        onPress={MenuOnpress}
+        >
+          <Image
           resizeMode="contain"
           style={{height: hp(3), width: hp(3)}}
           source={Images.menudots}
         />
+          </TouchableOpacity>
       ) : (
         <Image
           resizeMode="contain"
-          style={{height: hp(3), width: hp(3)}}
+          style={{height: hp(2.4), width: hp(2.4)}}
           source={Images.RightArrow}
         />
       )}

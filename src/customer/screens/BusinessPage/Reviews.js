@@ -76,6 +76,8 @@ const Reviews = ({navigation}) => {
               paddingBottom: 10,
               textAlign: 'left',
               paddingHorizontal: 15,
+              color:Colors.Brown,
+              fontFamily:'InterV'
             }}>
             Quisque rutrum aenean imperdiet etiam ultricies nisi vel augue
             curabitur ullamcorper ultricies nisi nam eget dui etiam rhoncus
@@ -94,7 +96,7 @@ const Reviews = ({navigation}) => {
         }}
         HeaderText={'Reviews'}
       />
-      <View style={{paddingBottom: 20, flex: 1}}>
+      <View style={{ flex: 1}}>
         <FlatList data={CorouselData} renderItem={RenderReviews} />
       </View>
     </SafeAreaView>

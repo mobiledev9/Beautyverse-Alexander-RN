@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import {View, SafeAreaView, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import {Switch} from 'react-native-paper';
+import DatePicker from 'react-native-date-picker';
+import moment from 'moment';
 import Header from '../../../components/Header';
 import {Strings} from '../../../theme/strings';
 import {styles} from './styles';
@@ -13,20 +15,65 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../../theme/layout';
+import {FONTS} from '../../../theme/fonts';
 
 const BusinessTiming = ({navigation}) => {
   const [switchIndex, setSwitchIndex] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [selectedTime, setSelectedTime] = useState();
+  const [value, setValue] = useState('');
+  const [timings, setTimings] = useState([
+    {
+      id: 1,
+      day: 'Monday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: true,
+    },
+    {
+      id: 2,
+      day: 'Tuesday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: true,
+    },
+    {
+      id: 3,
+      day: 'Wednesday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: true,
+    },
+    {
+      id: 4,
+      day: 'Thursday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: true,
+    },
+    {
+      id: 5,
+      day: 'Friday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: true,
+    },
+    {
+      id: 6,
+      day: 'Saturday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: false,
+    },
+    {
+      id: 7,
+      day: 'Sunday',
+      fromTime: '12:00 PM',
+      toTime: '12:00 AM',
+      opne: false,
+    },
+  ]);
 
-  const DATA = [
-    {day: 'Monday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: true},
-    {day: 'Tuesday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: true},
-    {day: 'Wednesday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: true},
-    {day: 'Thursday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: true},
-    {day: 'Friday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: true},
-    {day: 'Saturday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: false},
-    {day: 'Sunday', fromTime: '12:00 PM', toTime: '12:00 AM', opne: false},
-  ];
-  
   const switchSelection = index => {
     if (switchIndex.length == 0) {
       setSwitchIndex([index]);
@@ -40,6 +87,17 @@ const BusinessTiming = ({navigation}) => {
     }
   };
 
+  const updateTime = time => {
+    const newState = timings.map(obj =>
+      obj.id === selectedTime.id
+        ? value == 'from'
+          ? {...obj, fromTime: moment(time).format('HH:mm A')}
+          : {...obj, toTime: moment(time).format('HH:mm A')}
+        : obj,
+    );
+    setTimings(newState);
+  };
+
   return (
     <SafeAreaView style={styles.conatiner}>
       <Header
@@ -48,12 +106,12 @@ const BusinessTiming = ({navigation}) => {
       />
       <View style={{height: hp(75), backgroundColor: Colors.white}}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {DATA.map((item, index) => (
+          {timings.map((item, index) => (
             <View key={index}>
               <View style={styles.inputWrapper}>
                 <Label
                   label={item.day}
-                  bold
+                  fontFamily={FONTS.InterBold}
                   size={hp(2)}
                   color={Colors.primary_dark}
                 />
@@ -65,13 +123,13 @@ const BusinessTiming = ({navigation}) => {
                     width: wp(25),
                   }}>
                   <Label
-                    label={item.opne ? 'Open' : 'Closed'}
-                    medium
+                    label={switchIndex.includes(index) ? 'Open' : 'Closed'}
+                    fontFamily={FONTS.InterRegular}
                     color={Colors.primary_dark}
                   />
                   <Switch
                     value={switchIndex.includes(index) && true}
-                    onValueChange={()=> switchSelection(index)}
+                    onValueChange={() => switchSelection(index)}
                     color={Colors.primary}
                   />
                 </View>
@@ -80,21 +138,53 @@ const BusinessTiming = ({navigation}) => {
                 <View style={styles.dropdown}>
                   <Label
                     label={item.fromTime}
-                    medium
+                    fontFamily={FONTS.InterRegular}
                     color={Colors.lightGray3}
                   />
-                  <Icon
-                    source={item.opne ? Images.menushow : Images.menuhide}
-                    size={wp(3)}
-                  />
+                  <TouchableOpacity
+                    disabled={!switchIndex.includes(index)}
+                    onPress={() => {
+                      setOpen(true);
+                      setSelectedTime(item);
+                      setValue('from');
+                    }}>
+                    <Icon
+                      source={
+                        switchIndex.includes(index)
+                          ? Images.menushow
+                          : Images.menuhide
+                      }
+                      size={wp(3)}
+                    />
+                  </TouchableOpacity>
                 </View>
-                <Label label={Strings.to} medium color={Colors.lightGray3} />
+                <Label
+                  label={Strings.to}
+                  fontFamily={FONTS.InterRegular}
+                  color={Colors.lightGray3}
+                />
                 <View style={styles.dropdown}>
-                  <Label label={item.toTime} medium color={Colors.lightGray3} />
-                  <Icon
-                    source={item.opne ? Images.menushow : Images.menuhide}
-                    size={wp(3)}
+                  <Label
+                    label={item.toTime}
+                    fontFamily={FONTS.InterRegular}
+                    color={Colors.lightGray3}
                   />
+                  <TouchableOpacity
+                    disabled={!switchIndex.includes(index)}
+                    onPress={() => {
+                      setOpen(true);
+                      setSelectedTime(item);
+                      setValue('to');
+                    }}>
+                    <Icon
+                      source={
+                        switchIndex.includes(index)
+                          ? Images.menushow
+                          : Images.menuhide
+                      }
+                      size={wp(3)}
+                    />
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -107,6 +197,19 @@ const BusinessTiming = ({navigation}) => {
         bgColor={Colors.primary}
         titleColor={Colors.white}
         btnStyle={styles.nextBtn}
+      />
+      <DatePicker
+        modal
+        mode="time"
+        open={open}
+        date={new Date()}
+        onConfirm={time => {
+          setOpen(false);
+          updateTime(time);
+        }}
+        onCancel={() => {
+          setOpen(false);
+        }}
       />
     </SafeAreaView>
   );

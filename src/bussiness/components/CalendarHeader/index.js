@@ -9,7 +9,16 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 
-const Index = ({onPressBack, headerTitle, hide}) => {
+const Index = ({
+  onPressBack,
+  headerTitle,
+  hide,
+  onPressGrid,
+  onPressCol,
+  onPressMenu,
+  colTint,
+  gridTint,
+}) => {
   return (
     <View
       style={hide ? styles.container : [styles.container, styles.separator]}>
@@ -19,7 +28,9 @@ const Index = ({onPressBack, headerTitle, hide}) => {
 
       <View style={styles.row}>
         <Text style={styles.txt}>{headerTitle}</Text>
-        <Icon source={Images.menushow} size={hp(2)} />
+        <TouchableOpacity onPress={onPressMenu}>
+          <Icon source={Images.menushow} size={hp(2)} />
+        </TouchableOpacity>
       </View>
 
       <View
@@ -27,8 +38,12 @@ const Index = ({onPressBack, headerTitle, hide}) => {
           ...styles.row,
           width: wp(18),
         }}>
-        <Icon source={Images.grid} size={hp(3)} />
-        <Icon source={Images.col} size={hp(3)} />
+        <TouchableOpacity onPress={onPressGrid}>
+          <Icon source={Images.grid} size={hp(3)} color={gridTint} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onPressCol}>
+          <Icon source={Images.col} size={hp(3)} color={colTint} />
+        </TouchableOpacity>
       </View>
     </View>
   );

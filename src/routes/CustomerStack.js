@@ -32,6 +32,8 @@ import WishlistItems from '../customer/screens/ProfileScreens/Wishlist/WishlistI
 import WalletHome from '../customer/screens/ProfileScreens/Wallet/WalletHome';
 import SettingsHome from '../customer/screens/ProfileScreens/Settings/SettingsHome';
 import FAQScreen from '../customer/screens/ProfileScreens/FAQScreen';
+import ErrorMsg from '../ErrorMsg';
+import MaintainanceError from '../MaintainanceError';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,9 +44,39 @@ export function CustomerStack() {
       component: AddProfile,
     },
     {
+      name: 'Checkout',
+      component: Checkout,
+    },
+    {
+      name: 'ConfirmBooking',
+      component: ConfirmBooking,
+    },
+    {
+      name: 'BookService',
+      component: BookService,
+    },
+    {
       name: 'ProfileHome',
       component: ProfileHome,
     },
+
+    {
+      name: 'BusinessPage',
+      component: BusinessPage,
+    },
+    {
+      name: 'AddAddress',
+      component: AddAddress,
+    },
+    {
+      name: 'MaintainanceError',
+      component: MaintainanceError,
+    },
+    {
+      name: 'ErrorMsg',
+      component: ErrorMsg,
+    },
+
     {
       name: 'FAQScreen',
       component: FAQScreen,
@@ -57,17 +89,14 @@ export function CustomerStack() {
       name: 'BottomTabs',
       component: BottomTabs,
     },
-   
     {
       name: 'WalletHome',
       component: WalletHome,
     },
-   
     {
       name: 'WishlistItems',
       component: WishlistItems,
     },
-    
     {
       name: 'MyProfile',
       component: MyProfile,
@@ -84,9 +113,6 @@ export function CustomerStack() {
       name: 'UserAddresses',
       component: UserAddresses,
     },
-
-   
-
     {
       name: 'OrderDetails',
       component: OrderDetails,
@@ -95,43 +121,19 @@ export function CustomerStack() {
       name: 'RescheduleOrder',
       component: RescheduleOrder,
     },
-
     {
       name: 'OrdersHome',
       component: OrdersHome,
     },
-
-    {
-      name: 'ConfirmBooking',
-      component: ConfirmBooking,
-    },
-    {
-      name: 'Checkout',
-      component: Checkout,
-    },
-
-    {
-      name: 'AddAddress',
-      component: AddAddress,
-    },
-
     {
       name: 'InsertAdd',
       component: InsertAdd,
     },
-    {
-      name: 'BookService',
-      component: BookService,
-    },
-    {
-      name: 'BusinessPage',
-      component: BusinessPage,
-    },
+
     {
       name: 'SeePhotos',
       component: SeePhotos,
     },
-
     {
       name: 'Reviews',
       component: Reviews,
@@ -159,12 +161,10 @@ export function CustomerStack() {
       name: 'TopBusinesses',
       component: TopBusinesses,
     },
-
     {
       name: 'ActivePromotions',
       component: ActivePromotions,
     },
-
     {
       name: 'AllCategories',
       component: AllCategories,
@@ -173,7 +173,6 @@ export function CustomerStack() {
       name: 'HomeScreen',
       component: HomeScreen,
     },
-
     {
       name: 'HomeSplashScreen',
       component: HomeSplashScreen,

@@ -83,7 +83,10 @@ export const Strings = {
   notification:'Notifications',
   security:'Security',
   FAQ:'FAQs',
-
-
+  errmsg:`Something went wrong, try again ${'\n'}later!`,
+  retry:'Retry',
+  trylater:'Try Later',
+  undermaintainancemsg:'The app is under maintenance, thanks for your patience 😊'
+  
 
 };

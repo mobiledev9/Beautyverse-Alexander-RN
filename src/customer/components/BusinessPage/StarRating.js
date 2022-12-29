@@ -7,15 +7,13 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 import {Strings} from '../../theme/strings';
-import {Colors} from '../../theme/colors';
+import { Colors } from '../../theme/colors';
 import {Searchstyles} from '../../screens/SearchScreens/SearchStyles';
 
 // create a component
-const StarRating = ({Rating, Numbers,onPress,NumColor,paddingtop,Style}) => {
+const StarRating = ({Rating, Numbers,NumColor,paddingtop,Style}) => {
   return (
-    <TouchableOpacity
-    onPress={onPress}
-    >
+   
       <View style={[Searchstyles.StartContainer,Style,{paddingTop:paddingtop}]}>
         <Image
           resizeMode="contain"
@@ -30,9 +28,8 @@ const StarRating = ({Rating, Numbers,onPress,NumColor,paddingtop,Style}) => {
           }}>
           {Rating}
         </Text>
-        <Text style={{paddingLeft: 4,color:NumColor}}>{Numbers}</Text>
+        <Text style={{paddingLeft: 4,color:NumColor,color:Colors.Brown}}>{Numbers}</Text>
       </View>
-    </TouchableOpacity>
   );
 };
 

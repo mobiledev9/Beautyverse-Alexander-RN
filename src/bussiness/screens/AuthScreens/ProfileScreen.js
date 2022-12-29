@@ -1,18 +1,23 @@
 import React, {useState} from 'react';
 import {
   View,
-  Text,
   ImageBackground,
   Image,
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import {Strings} from '../../theme/strings';
-import {styles} from './styles';
 import Button from '../../components/Button';
+import Label from '../../components/Label/index';
 import {Colors} from '../../theme/colors';
 import {Images} from '../../theme/images';
+import {Strings} from '../../theme/strings';
+import {styles} from './styles';
+import {FONTS} from '../../theme/fonts';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from '../../theme/layout';
 
 const ProfileScreen = ({navigation}) => {
   const [profileUri, setProfileUri] = useState('');
@@ -26,7 +31,12 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.profileView}>
-      <Text style={styles.titleTxt}>{Strings.addProfile}</Text>
+      <Label
+        label={Strings.addProfile}
+        fontFamily={FONTS.InterSemiBold}
+        color={Colors.primary_dark}
+        size={hp(3)}
+      />
       <ImageBackground
         imageStyle={{borderRadius: profileUri === '' ? 0 : 100}}
         source={profileUri ? {uri: profileUri} : Images.round}

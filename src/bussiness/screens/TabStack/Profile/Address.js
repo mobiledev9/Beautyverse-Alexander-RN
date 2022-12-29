@@ -4,7 +4,7 @@ import {Strings} from '../../../theme/strings';
 import {Images} from '../../../theme/images';
 import {styles} from './styles';
 import {Colors} from '../../../theme/colors';
-import {address} from '../../../theme/arrays';
+import {address, menu} from '../../../theme/arrays';
 import Header from '../../../components/Header';
 import ItemCard from '../../../components/ItemCard';
 import IconButton from '../../../components/IconButton';
@@ -27,7 +27,7 @@ const Address = ({navigation}) => {
             title={item.label}
             desc={item.desc}
             leftIcon={Images.option}
-            option
+            menu={menu}
           />
         ))}
         <IconButton

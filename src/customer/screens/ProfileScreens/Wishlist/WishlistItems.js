@@ -151,8 +151,7 @@ const WishlistItems = ({navigation}) => {
 
   const renderUserList = ({item, index}) => {
     return (
-      <TouchableOpacity
-       >
+      <TouchableOpacity>
         <View style={{paddingTop: hp(3)}}>
           <View style={Searchstyles.mainListMaker}>
             <Image style={Searchstyles.ProfileImageCon} source={item.img} />
@@ -174,13 +173,10 @@ const WishlistItems = ({navigation}) => {
                   onPress={() => {
                     setIndex(prevFilters => {
                       if (prevFilters.includes(index)) {
-                        return prevFilters.filter(
-                          prevFilter => index.slug !== prevFilter.slug,
-                        );
+                        return prevFilters.filter(i => i !== index);
                       }
                       return [...prevFilters, ...[index]];
                     });
-                    console.log(Index, '==ind==');
                   }}>
                   {Index.includes(index) ? (
                     <Image

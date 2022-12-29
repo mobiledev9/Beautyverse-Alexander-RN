@@ -128,7 +128,7 @@ const HomeScreen = () => {
                         tintColor: focused ? Colors.white : Colors.primary,
                       },
                     ]}
-                    source={Images.Star}
+                    source={Images.checklist}
                   />
                   <Text
                     focused={focused}

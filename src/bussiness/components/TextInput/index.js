@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.lightGray2,
     paddingHorizontal: wp(2),
     marginVertical: hp(2),
-    fontFamily: FONTS.InterSemiBold,
+    fontFamily: FONTS.InterRegular,
     fontSize: hp(2),
     height: hp(7),
     backgroundColor: Colors.white,

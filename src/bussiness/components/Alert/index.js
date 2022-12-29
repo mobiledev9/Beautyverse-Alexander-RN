@@ -7,6 +7,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
+import { FONTS } from '../../theme/fonts';
 
 const Index = ({
   title,
@@ -35,7 +36,7 @@ const Index = ({
           label={msg}
           size={hp(2)}
           color={Colors.primary_dark}
-          bold
+          fontFamily={FONTS.InterBold}
           marginBottom={hp(2)}
         />
       )}

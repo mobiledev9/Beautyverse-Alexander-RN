@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 import {Colors} from '../../../theme/colors';
 import {
   widthPercentageToDP as wp,
@@ -108,9 +108,9 @@ export const styles = StyleSheet.create({
   },
   backView: {
     position: 'absolute',
-    alignSelf: 'flex-start',
+    // alignSelf: 'flex-start',
     left: wp(4),
-    top: hp(2),
+    top: Platform.OS == 'android' ? hp(2) : hp(7),
     shadowColor: Colors.black,
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.2,

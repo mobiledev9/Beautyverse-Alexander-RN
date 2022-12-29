@@ -1,10 +1,18 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Popover, {PopoverPlacement} from 'react-native-popover-view';
+import {Menu, MenuItem} from 'react-native-material-menu';
 import Modal from 'react-native-modal';
 import {styles} from './styles';
 import {Strings} from '../../../theme/strings';
+import {option} from '../../../theme/arrays';
 import {Colors} from '../../../theme/colors';
 import {Images} from '../../../theme/images';
 import {FONTS} from '../../../theme/fonts';
@@ -47,7 +55,7 @@ const NewService = ({navigation, route}) => {
 
   const saveAddons = () => {
     if (addOnName == '' && sCharge == '' && timeDuration == '') {
-      alert("Enter Add ons details!")
+      alert('Enter Add ons details!');
     } else {
       const data = {
         id: addOns.length + 1,
@@ -292,6 +300,55 @@ const NewService = ({navigation, route}) => {
                               color={Colors.primary_dark}
                               size={hp(2)}
                             />
+                            {/* <Menu
+                              style={{
+                                ...styles.shadow,
+                                paddingLeft: wp(5),
+                                paddingVertical: hp(2),
+                                paddingBottom: 0,
+                                borderRadius: 20,
+                                backgroundColor: Colors.white,
+                              }}
+                              visible={showPopover}
+                              anchor={
+                                <TouchableOpacity
+                                  onPress={() => setShowPopover(true)}>
+                                  <Icon
+                                    source={Images.option}
+                                    size={hp(2)}
+                                    color={Colors.black}
+                                  />
+                                </TouchableOpacity>
+                              }
+                              onRequestClose={() => setShowPopover(false)}>
+                              {option.map((item, index) => (
+                                <MenuItem key={index}>
+                                  <IconButton
+                                    onPress={() => {
+                                      if (item.label == 'Edit') {
+                                        setAddOnName(addOnObj.name);
+                                        setSCharge(addOnObj.charge);
+                                        setTimeDuration(addOnObj.duration);
+                                        setShowPopover(false);
+                                        setAddMore(true);
+                                        setEdit(true);
+                                        setAdd(false);
+                                      } else {
+                                        setShowPopover(false);
+                                        setAlert(true);
+                                      }
+                                    }}
+                                    icon={item.icon}
+                                    iconSize={hp(2)}
+                                    iconColor={Colors.gray}
+                                    label={item.label}
+                                    labelColor={Colors.primary_dark}
+                                    width={wp(40)}
+                                    left
+                                  />
+                                </MenuItem>
+                              ))}
+                            </Menu> */}
                             <TouchableOpacity
                               ref={touchable}
                               onPress={() => {
@@ -327,7 +384,7 @@ const NewService = ({navigation, route}) => {
           btnStyle={styles.addBtn}
         />
       </View>
-
+            
       <Popover
         from={touchable}
         isVisible={showPopover}

@@ -7,6 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 import {Colors} from '../../theme/colors';
+import { FONTS } from '../../theme/fonts';
 
 const Section = ({source, label, onPress, color, bgColor, style}) => {
   return (
@@ -14,7 +15,7 @@ const Section = ({source, label, onPress, color, bgColor, style}) => {
       style={[styles.container, {backgroundColor: bgColor}, style]}
       onPress={onPress}>
       <Icon source={source} size={hp(3)} color={color} />
-      <Label label={label} bold marginLeft={wp(2)} color={color} />
+      <Label label={label} fontFamily={FONTS.InterBold} marginLeft={wp(2)} color={color} />
     </TouchableOpacity>
   );
 };

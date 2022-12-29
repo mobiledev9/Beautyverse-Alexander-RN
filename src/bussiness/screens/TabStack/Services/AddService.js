@@ -27,7 +27,13 @@ const AddService = ({navigation, route}) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           {hairServices.map((item, index) => (
             <TouchableOpacity style={styles.serviceWrapper} key={index}>
-              <Row title={item.add} icon={Images.edit} iconSize={hp(3)} bold />
+              <Row
+                title={item.add}
+                icon={Images.edit}
+                onPressIcon={() => {}}
+                iconSize={hp(3)}
+                bold
+              />
               <Row
                 title={'Duration: ' + item.Duration}
                 titleColor={Colors.primary_dark}

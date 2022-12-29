@@ -7,6 +7,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../theme/layout';
+import { color } from 'react-native-elements/dist/helpers';
 
 const MapSearch = ({onChangeText, value, style, inputStyle, onTouchStart}) => {
   return (
@@ -22,7 +23,7 @@ const MapSearch = ({onChangeText, value, style, inputStyle, onTouchStart}) => {
         placeholder={Strings.searchLocation}
         onChangeText={onChangeText}
         value={value}
-        style={[styles.input, inputStyle]}
+        style={[styles.input, inputStyle,{color:Colors.primaryDark}]}
       />
     </View>
   );

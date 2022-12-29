@@ -14,10 +14,18 @@ import {ProfileStyles} from '../ProfileStyles';
 import ProfileCard from '../../../components/ProfileComponents/ProfileCard';
 import HeaderTop from '../../../components/HomeComponent/headerTop';
 import {SafeAreaView} from 'react-native';
-import { Strings } from '../../../theme/strings';
+import {Strings} from '../../../theme/strings';
+import Popover, {PopoverPlacement} from 'react-native-popover-view';
+import { useState } from 'react';
+import IconButton from '../../../../bussiness/components/IconButton/index';
+import Icon from '../../../../bussiness/components/Icon/index';
+
+
+
 
 // create a component
 const UserAddresses = ({navigation}) => {
+  
   const AddArray = [
     {
       avtar: Images.homeround,
@@ -36,6 +44,8 @@ const UserAddresses = ({navigation}) => {
     },
   ];
 
+  const [optionModal,setoptionModal] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTop
@@ -47,12 +57,54 @@ const UserAddresses = ({navigation}) => {
       <View style={{width: wp(90), alignSelf: 'center'}}>
         {AddArray.map(item => (
           <ProfileCard
+            MenuOnpress={() => {
+              setoptionModal(true)
+              console.log('MenuPressed');
+            }}
+            disabled={true}
             showmenu
             avtar={item.avtar}
             mainText={item.maintext}
             text={item.text}
           />
         ))}
+
+        <Popover
+          isVisible={optionModal}
+          popoverStyle={{ backgroundColor: Colors.white,
+            borderRadius: 10,
+            paddingHorizontal: wp(2),}}
+          placement={PopoverPlacement.BOTTOM}
+          onRequestClose={() => setoptionModal(false)}
+          // from={
+          //   <TouchableOpacity onPress={() => setoptionModal(true)}>
+          //     <Icon source={leftIcon} size={hp(2)} color={leftIconColor} />
+          //   </TouchableOpacity>
+          // }
+          >
+          <View>
+            <IconButton
+              onPress={() => setoptionModal(false)}
+              icon={Images.bin}
+              iconSize={hp(2)}
+              iconColor={Colors.grey}
+              label={'option 1'}
+              labelColor={Colors.primaryDark}
+              width={wp(50)}
+              left
+            />
+            <IconButton
+              onPress={() => setoptionModal(false)}
+              icon={Images.bin}
+              iconSize={hp(2)}
+              iconColor={Colors.grey}
+              label={'option 2'}
+              labelColor={Colors.primaryDark}
+              width={wp(50)}
+              left
+            />
+          </View>
+        </Popover>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('AddAddress', {screen: 'UserAddress'});

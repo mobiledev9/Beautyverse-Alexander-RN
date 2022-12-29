@@ -1,5 +1,5 @@
 //import liraries
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -26,7 +26,6 @@ import PriceAmt from '../../components/BusinessPage/PriceAmt';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Images} from '../../theme/Images';
 import RadioButton from '../../components/SearchComponents/RadioButton';
-import {useState} from 'react';
 import {Calendar} from 'react-native-calendars';
 import Button from '../../components/AuthComponents/FilledButton';
 import RBSheet from 'react-native-raw-bottom-sheet';
@@ -38,9 +37,28 @@ import {Marker} from 'react-native-maps';
 import Arrowheader from '../../components/AuthComponents/paymentAuth/Arrowheader';
 import ServiceDetails from '../../components/BusinessPage/ServiceDetails';
 import AuthInput from '../../components/AuthComponents/AuthInput';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Route } from '../../../routes/index';
 
 // create a component
 const Checkout = ({navigation}) => {
+
+  useEffect(()=>{
+    GetCardNumber();
+    navigation.addListener("focus", () => {
+      GetCardNumber();
+      console.log("=====Called=======");
+    });
+  },[])
+
+  const GetCardNumber = async () => {
+    const CardNum = await AsyncStorage.getItem('CardData')
+    console.log(CardNum,'====num====')
+    SetcardNum(CardNum)
+  }
+
+
+
   const [BLoc, SetBloc] = useState(false);
   const [MyLoc, SetMyloc] = useState(false);
 
@@ -49,18 +67,31 @@ const Checkout = ({navigation}) => {
   const [latitude, setLatitude] = useState(-37.8136);
   const [longitude, setLongitude] = useState(144.9631);
 
+  const [cardNum, SetcardNum] = useState(0)
+
+  const [Location, setLocation] = useState([]);
+
+  useEffect(() => {
+    GetuserLocation();
+  }, []);
+
+  const GetuserLocation = async () => {
+    const Loc = await AsyncStorage.getItem('Location');
+    setLocation(Loc);
+    console.log(Loc, '===LOC====');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-       <HeaderTop
-          onPress={() => {
-            navigation.goBack();
-          }}
-          HeaderText={Strings.confbooking}
-        />
+      <HeaderTop
+        onPress={() => {
+          navigation.goBack();
+        }}
+        HeaderText={Strings.confbooking}
+      />
       <ScrollView
         contentContainerStyle={{paddingBottom: hp(15)}}
         style={{flexGrow: 1}}>
-       
         <View style={{paddingLeft: wp(5)}}>
           <View
             style={[
@@ -114,13 +145,18 @@ const Checkout = ({navigation}) => {
                 <View style={BusinessPageStyles.editView}>
                   <View>
                     <SemiBold FontSize={hp(2.3)} EnterText={'Location Name'} />
-                    <Text style={{color: Colors.darkpink}}>
-                      {'params.place'}
-                    </Text>
+                    <Text style={{color: Colors.darkpink}}>{Location}</Text>
                   </View>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('InsertAdd', {
+                        latitude: latitude,
+                        longitude: longitude,
+                      });
+                    }}>
                     <Image
-                      style={{height: hp(4), width: hp(4)}}
+                      resizeMode="contain"
+                      style={{height: hp(3), width: hp(3)}}
                       source={Images.edit}
                     />
                   </TouchableOpacity>
@@ -167,14 +203,11 @@ const Checkout = ({navigation}) => {
                 ? setpayment('Debit')
                 : setpayment('');
             }}
-            text={Strings.Debit}
+            text={cardNum === 0 ?  Strings.Debit : cardNum}
             source={Images.Debit}
           />
 
-          {
-
-            payment === 'Debit' ?
-
+          {payment === 'Debit' ? (
             <View
               style={[
                 BusinessPageStyles.borderwidthcost,
@@ -182,7 +215,7 @@ const Checkout = ({navigation}) => {
               ]}>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('AddDebit');
+                  navigation.navigate('AddDebit',{screen:'checkout'});
                 }}
                 style={[BusinessPageStyles.mapbottomClick, {paddingLeft: 0}]}>
                 <Image
@@ -196,9 +229,8 @@ const Checkout = ({navigation}) => {
                   EnterText={'Add Card'}
                 />
               </TouchableOpacity>
-            </View> : 
-            null
-          }
+            </View>
+          ) : null}
 
           <Arrowheader
             status={payment === 'Gift' ? 'checked' : 'unchecked'}
@@ -251,6 +283,30 @@ const Checkout = ({navigation}) => {
             text={Strings.Credit}
             source={Images.Credit}
           />
+          {payment === 'Credit' ? (
+            <View
+              style={[
+                BusinessPageStyles.borderwidthcost,
+                {marginBottom: hp(0)},
+              ]}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('AddDebit');
+                }}
+                style={[BusinessPageStyles.mapbottomClick, {paddingLeft: 0}]}>
+                <Image
+                  resizeMode="contain"
+                  style={{height: hp(2.8), width: hp(2.8)}}
+                  source={Images.filledplus}
+                />
+                <SemiBold
+                  FontSize={hp(2.3)}
+                  AllStyle={{color: Colors.primary, paddingLeft: 10}}
+                  EnterText={'Add Card'}
+                />
+              </TouchableOpacity>
+            </View>
+          ) : null}
           <Arrowheader
             status={payment === 'Paypal' ? 'checked' : 'unchecked'}
             checked={payment === 'Paypal'}

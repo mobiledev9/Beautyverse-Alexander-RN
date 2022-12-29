@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   SafeAreaView,
@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import {Calendar} from 'react-native-calendars';
 import Modal from 'react-native-modal';
+import moment from 'moment';
+import _ from 'lodash';
 import {Strings} from '../../../theme/strings';
 import {Images} from '../../../theme/images';
 import {Colors} from '../../../theme/colors';
@@ -29,7 +31,19 @@ const BookService = ({navigation}) => {
   const [isVisible, setVisible] = useState(false);
   const [bells, setBells] = useState([]);
   const [slotIds, setSlotIds] = useState([]);
+  const [lastDate, setLastDate] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
+
+  useEffect(() => {
+    getCurrentDateMinus();
+  }, []);
+
+  const getCurrentDateMinus = () => {
+    let today = new Date();
+    today.setDate(today.getDate() + 8);
+    let date = new Date(today);
+    setLastDate(moment(date).format('YYYY-MM-DD'));
+  };
 
   const selectSlot = item => {
     if (slotIds.length > 0) {
@@ -72,6 +86,7 @@ const BookService = ({navigation}) => {
       }}>
       <Label
         label={item.time}
+        fontFamily={FONTS.InterRegular}
         color={
           slotIds.includes(item.id)
             ? Colors.primary_dark
@@ -117,7 +132,7 @@ const BookService = ({navigation}) => {
         <Label
           label={Strings.addons}
           left
-          bold
+          fontFamily={FONTS.InterBold}
           size={hp(2)}
           color={Colors.primary_dark}
           paddingVertical={hp(3)}
@@ -126,9 +141,20 @@ const BookService = ({navigation}) => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {addOns.map((item, index) => (
             <View
-              style={{...styles.view, width: wp(60), marginHorizontal: wp(2)}}
+              style={{
+                ...styles.view,
+                width: wp(60),
+                marginHorizontal: wp(2),
+                marginVertical: hp(1),
+              }}
               key={index}>
-              <Row title={item.add} icon={Images.plus} iconSize={hp(3)} bold />
+              <Row
+                title={item.add}
+                icon={Images.plus}
+                onPressIcon={() => {}}
+                iconSize={hp(3)}
+                bold
+              />
               <Row
                 title={'Duration: ' + item.Duration}
                 titleColor={Colors.primary_dark}
@@ -141,7 +167,7 @@ const BookService = ({navigation}) => {
           <Label
             label={Strings.selectDate}
             left
-            bold
+            fontFamily={FONTS.InterBold}
             size={hp(2)}
             color={Colors.primary_dark}
             paddingVertical={hp(3)}
@@ -149,8 +175,10 @@ const BookService = ({navigation}) => {
           />
           <Calendar
             markedDates={selectedDate}
+            minDate={new Date()}
+            maxDate={lastDate}
             onDayPress={day => {
-              navigation.navigate('Calender', {date: selectedDate});
+              navigation.navigate('Calender', {date: day.dateString});
               let mydate = {
                 [day.dateString]: {
                   selected: true,
@@ -161,16 +189,16 @@ const BookService = ({navigation}) => {
             }}
             markingType={'interactive'}
             style={styles.calender}
+            disableAllTouchEventsForDisabledDays
             theme={{
-              todayTextColor: Colors.primary_dark,
-              'stylesheet.calendar.header': styles.monthText,
+              textDisabledColor: Colors.gray,
+              monthTextColor: Colors.primary_dark,
+              textMonthFontFamily: FONTS.InterBold,
               calendarBackground: 'transparent',
-              monthTextColor: Colors.primary,
-              textDayStyle: {
-                color: Colors.primary_dark,
-                alignSelf: 'center',
-              },
-              dayTextColor: Colors.primary_dark,
+              selectedDayBackgroundColor: Colors.primary,
+              textDayFontFamily: FONTS.InterSemiBold,
+
+              // textDecorationLine:'line-through',
             }}
             hideArrows={true}
           />
@@ -179,7 +207,7 @@ const BookService = ({navigation}) => {
           <Label
             label={Strings.selectTime}
             left
-            bold
+            fontFamily={FONTS.InterBold}
             size={hp(2)}
             color={Colors.primary_dark}
             paddingVertical={hp(3)}
@@ -199,7 +227,7 @@ const BookService = ({navigation}) => {
           <Label
             label={Strings.selectProfessional + Strings.optional}
             left
-            bold
+            fontFamily={FONTS.InterBold}
             size={hp(2)}
             color={Colors.primary_dark}
             paddingVertical={hp(3)}
@@ -234,8 +262,9 @@ const BookService = ({navigation}) => {
         </View>
         <Label
           label={Strings.optionalSelection}
+          fontFamily={FONTS.InterRegular}
           left
-          size={hp(2.5)}
+          size={hp(2.3)}
           color={Colors.gray}
           paddingVertical={hp(3)}
           marginLeft={wp(3)}
@@ -248,13 +277,14 @@ const BookService = ({navigation}) => {
           btnStyle={styles.bottomBtns}
         />
       </ScrollView>
+
       <Modal isVisible={isVisible} onBackdropPress={() => setVisible(false)}>
         <View style={styles.modal}>
           <CloseModal close={() => setVisible(false)} />
           <Label
             label={Strings.selectService}
             left
-            bold
+            fontFamily={FONTS.InterBold}
             size={hp(2)}
             color={Colors.primary_dark}
             paddingVertical={hp(2)}
@@ -271,20 +301,21 @@ const BookService = ({navigation}) => {
                     label={item.service}
                     color={Colors.primary_dark}
                     lineHeight={hp(4)}
-                    bold
+                    fontFamily={FONTS.InterBold}
                     left
                   />
                   <Label
                     label={'Duration: ' + item.service}
                     color={Colors.gray}
                     left
+                    fontFamily={FONTS.InterRegular}
                   />
                 </View>
                 <View style={styles.row}>
                   <Label
                     label={item.price}
                     color={Colors.primary}
-                    bold
+                    fontFamily={FONTS.InterBold}
                     left
                     marginRight={wp(3)}
                   />

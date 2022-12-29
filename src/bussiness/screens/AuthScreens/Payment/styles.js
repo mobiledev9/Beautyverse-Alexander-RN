@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   nextBtn: {
     width: wp(90),
-    bottom: hp(5),
+    bottom: hp(3),
     position: 'absolute',
   },
   rowWrapper: {

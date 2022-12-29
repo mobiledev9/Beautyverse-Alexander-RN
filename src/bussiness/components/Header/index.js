@@ -26,7 +26,7 @@ const Index = ({onPressBack, headerTitle, noBack, hide, rightLabel}) => {
         />
       ) : (
         <TouchableOpacity onPress={onPressBack}>
-          <Icon source={Images.back} size={hp(3)} />
+          <Icon source={Images.back} size={hp(2.5)} />
         </TouchableOpacity>
       )}
       <Label

@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../../../theme/colors';
+import { FONTS } from '../../../theme/fonts';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -12,9 +13,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mainView: {
-    marginTop: hp(3),
+    paddingTop: hp(3),
     paddingBottom: hp(5),
-    width: wp(90),
+    width: wp(100),
+    paddingHorizontal:wp(5),
     alignSelf: 'center',
   },
   view: {
@@ -22,21 +24,21 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp(2),
     paddingVertical: hp(3),
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    shadowColor: Colors.lightRed,
+    shadowColor: Colors.black,
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.2,
     elevation: 3,
   },
   calender: {
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: Colors.border,
     width: wp(90),
     alignSelf: 'center',
     marginBottom: hp(5),
     backgroundColor: Colors.white,
+    shadowColor: Colors.black,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.2,
+    elevation: 3,
   },
   line: {
     borderTopWidth: 1,
@@ -75,9 +77,8 @@ export const styles = StyleSheet.create({
   },
   monthText: {
     paddingVertical: hp(1),
-    fontFamily: 'InterV',
+    fontFamily: FONTS.InterBold,
     fontSize: 16,
-    fontWeight: 'bold',
     color: Colors.primary_dark,
   },
 });

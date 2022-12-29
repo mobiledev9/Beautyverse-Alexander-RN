@@ -25,12 +25,15 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {HomeStyles} from '../HomeScreens/HomeStyles';
 import HairsScreen from './Categories/HairsScreen';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Platform } from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Platform} from 'react-native';
+import {useState} from 'react';
 
 // create a component
 const BusinessPage = ({navigation}) => {
-  
+  const [IsFav, SetIsFav] = useState(false);
+  const [SelectedTime,SetSelectedTime] = useState([])
+
   const Timings = [
     {
       day: 'Monday',
@@ -164,255 +167,266 @@ const BusinessPage = ({navigation}) => {
     );
   };
 
-
-
-
-
-
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{flex:1}}>
-      <HeaderTop
-        onPress={() => {
-          navigation.goBack();
-        }}
-        imgstyle={{height: hp(3), width: hp(3), marginRight: 20}}
-        HeaderText={Strings.businessprfl}
-        source={Images.heartEmpty}
-      />
-      <View style={{flex:1,height:'100%'}}>
-      <ScrollView 
-      contentContainerStyle={{flexGrow: 1,height:Platform.OS === 'ios' ? hp(137) : 'auto'}}
-      >
-        <View
-          style={{
-            alignItems: 'center',
-            marginTop: hp(3),
-            marginLeft: wp(5),
-          }}>
-          <Carousel
-            horizontal={true}
-            onScrollAnimationEnd={true}
-            inactiveSlideOpacity={0.5}
-            enableMomentum={true}
-            decelerationRate={10000}
-            lockScrollWhileSnapping={false}
-            removeClippedSubviews={true}
-            inactiveSlideScale={1}
-            data={UserData}
-            renderItem={renderCorosel}
-            sliderWidth={wp(100)}
-            itemWidth={wp(95)}
-          />
-          <View
-            style={{
-              alignItems: 'flex-start',
-              width: wp(95),
-              marginVertical: hp(2),
+      <SafeAreaView style={{flex: 1}}>
+        <HeaderTop
+          onPress={() => {
+            navigation.goBack();
+          }}
+          onPressimg={() => {
+            SetIsFav(!IsFav);
+          }}
+          imgstyle={{height: hp(3), width: hp(3), marginRight: 20}}
+          HeaderText={Strings.businessprfl}
+          source={IsFav ? Images.heartFill : Images.heartEmpty}
+        />
+        <View style={{flex: 1, height: '100%'}}>
+          <ScrollView
+            contentContainerStyle={{
+              flexGrow: 1,
+              height: Platform.OS === 'ios' ? hp(137) : 'auto',
             }}>
-            <View style={BusinessPageStyles.homeService}>
-              <Image
-                style={BusinessPageStyles.Iconstyle}
-                source={Images.home}
+            <View
+              style={{
+                alignItems: 'center',
+                marginTop: hp(3),
+                marginLeft: wp(5),
+              }}>
+              <Carousel
+                horizontal={true}
+                onScrollAnimationEnd={true}
+                inactiveSlideOpacity={0.5}
+                enableMomentum={true}
+                decelerationRate={10000}
+                lockScrollWhileSnapping={false}
+                removeClippedSubviews={true}
+                inactiveSlideScale={1}
+                data={UserData}
+                renderItem={renderCorosel}
+                sliderWidth={wp(100)}
+                itemWidth={wp(95)}
               />
-              <Text style={BusinessPageStyles.homeServiceText}>
-                {' '}
-                {Strings.homeservice}
-              </Text>
-            </View>
-            <HeaderText FontSize={hp(2.8)} TopText={'Kynthias Hair Saloon'} />
-            <StarRating 
-            onPress={()=>{
-              navigation.navigate('Reviews')
-            }}
-            Rating={'5.0'}
-             Numbers={'(214 ratings)'} 
-             />
-            <TouchableOpacity
-              onPress={() => {
-                refRBSheet.current.open();
-              }}
-              style={BusinessPageStyles.TimeSetContainer}>
-              <Text style={BusinessPageStyles.OpenCloseText}>{'Open'}</Text>
-              <Text style={{fontFamily: 'InterV',color:Colors.darkpink}}>
-                {'   '}
-                {'10:00AM - 09:00PM'}
-              </Text>
-              <Image
-                resizeMode="contain"
-                style={BusinessPageStyles.PlusImage}
-                source={Images.plus}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[
-                BusinessPageStyles.TimeSetContainer,
-                {backgroundColor: Colors.lightgrey},
-              ]}>
-              <Image
-                resizeMode="contain"
-                style={[BusinessPageStyles.Iconstyle, {marginRight: wp(5)}]}
-                source={Images.location}
-              />
-              <Text
+              <View
                 style={{
-                  fontFamily: 'InterV',
-                  flexWrap: 'wrap',
-                  width: '70%',
-                  color: Colors.primaryDark,
+                  alignItems: 'flex-start',
+                  width: wp(95),
+                  marginVertical: hp(2),
                 }}>
-                {'1/22 O’Connell Street North, Adelaide SA 5006'}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'Inter-Bold',
-                  flexWrap: 'wrap',
-                  color: Colors.primaryDark,
-                }}>
-                {'3.5mi'}
-              </Text>
-            </TouchableOpacity>
-          </View>
-   
-        </View>
-       
-        <View style={{flexGrow:1,}}>
-        <Tab.Navigator
-            swipeEnabled={false}
-            tabBarOptions={{
-              pressColor: 'transparent',
-            }}
-            screenOptions={{
-              tabBarStyle: {
-                elevation: 0, // for Android
-                shadowOffset: {
-                  width: 0,
-                  height: 0, // for iOS
-                },
-                marginLeft: wp(2.5),
-              },
-              tabBarItemStyle: {
-                width: 'auto',
-                marginHorizontal: -10,
-                //   paddingHorizontal: 20,
-              },
-              tabBarIndicatorStyle: {
-                backgroundColor: Colors.primary,
-                elevation: 0,
-                height: 5,
-              },
-            }}>
-            <Tab.Screen
-              name="Selling"
-              component={HairsScreen}
-              options={{
-                tabBarLabel: ({focused}) => (
-                  <View style={[BusinessPageStyles.TabbarView]}>
-                    <Text
-                      focused={focused}
-                      style={[BusinessPageStyles.TabBarText]}>
-                      Hair
-                    </Text>
-                  </View>
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Buying"
-              component={FavScreen}
-              options={{
-                tabBarLabel: ({focused}) => (
-                  <View style={[BusinessPageStyles.TabbarView]}>
-                    <Text
-                      focused={focused}
-                      style={[BusinessPageStyles.TabBarText]}>
-                      Makeup
-                    </Text>
-                  </View>
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Girl"
-              component={ProfileScreen}
-              options={{
-                tabBarLabel: ({focused}) => (
-                  <View style={[BusinessPageStyles.TabbarView]}>
-                    <Text
-                      focused={focused}
-                      style={[BusinessPageStyles.TabBarText]}>
-                      Skincare
-                    </Text>
-                  </View>
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Nails"
-              component={Testing}
-              options={{
-                tabBarLabel: ({focused}) => (
-                  <View style={[BusinessPageStyles.TabbarView]}>
-                    <Text
-                      focused={focused}
-                      style={[BusinessPageStyles.TabBarText]}>
-                      Nails
-                    </Text>
-                  </View>
-                ),
-              }}
-            />
-          </Tab.Navigator>
-        </View>
-         
-      
-         
-       
-       
-      
-        <RBSheet
-          dragFromTopOnly={true}
-          ref={refRBSheet}
-          closeOnDragDown={true}
-          closeOnPressMask={true}
-          customStyles={{
-            wrapper: {
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            },
-            draggableIcon: {
-              backgroundColor: Colors.Brown,
-              width: '15%',
-              // marginVertical:30,
-              marginBottom: hp(2.3),
-            },
-            container: {
-              height: hp(45),
-              borderTopRightRadius: 15,
-              borderTopLeftRadius: 15,
-            },
-          }}>
-          <View style={{flex: 1, width: wp(90), alignSelf: 'center'}}>
-            <HeaderText FontSize={hp(2.5)} TopText={'Timings'} />
-            <ScrollView style={{flex: 1, width: wp(90)}}>
-              {Timings.map(item => (
-                <View
-                  style={{
-                    paddingVertical: 7,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}>
-                  <Text style={BusinessPageStyles.daytext}>{item.day}</Text>
-                  <Text style={BusinessPageStyles.daytext}>{item.time}</Text>
+                <View style={BusinessPageStyles.homeService}>
+                  <Image
+                    style={BusinessPageStyles.Iconstyle}
+                    source={Images.home}
+                  />
+                  <Text style={BusinessPageStyles.homeServiceText}>
+                    {' '}
+                    {Strings.homeservice}
+                  </Text>
                 </View>
-              ))}
-            </ScrollView>
-          </View>
-        </RBSheet>
-      </ScrollView>
-      </View>
+                <HeaderText
+                  FontSize={hp(2.8)}
+                  TopText={'Kynthias Hair Saloon'}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Reviews');
+                  }}>
+                  <StarRating
+                    NumColor={Colors.Brown}
+                    Rating={'5.0'}
+                    Numbers={'(214 ratings)'}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    refRBSheet.current.open();
+                  }}
+                  style={BusinessPageStyles.TimeSetContainer}>
+                  <Text style={BusinessPageStyles.OpenCloseText}>{'Open'}</Text>
+                  <Text style={{fontFamily: 'InterV', color: Colors.darkpink}}>
+                   {SelectedTime.length === 0 ?
+                  '     Select Time':
+                   `${'   '}${SelectedTime.time}`
+                  }
+                    
+                  </Text>
+                  <Image
+                    resizeMode="contain"
+                    style={BusinessPageStyles.PlusImage}
+                    source={Images.plus}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    BusinessPageStyles.TimeSetContainer,
+                    {backgroundColor: Colors.lightgrey},
+                  ]}>
+                  <Image
+                    resizeMode="contain"
+                    style={[BusinessPageStyles.Iconstyle, {marginRight: wp(5)}]}
+                    source={Images.location}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: 'InterV',
+                      flexWrap: 'wrap',
+                      width: '70%',
+                      color: Colors.primaryDark,
+                    }}>
+                    {'1/22 O’Connell Street North, Adelaide SA 5006'}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Inter-Bold',
+                      flexWrap: 'wrap',
+                      color: Colors.primaryDark,
+                    }}>
+                    {'3.5mi'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style={{flexGrow: 1}}>
+              <Tab.Navigator
+                swipeEnabled={false}
+                tabBarOptions={{
+                  pressColor: 'transparent',
+                }}
+                screenOptions={{
+                  tabBarStyle: {
+                    elevation: 0, // for Android
+                    shadowOffset: {
+                      width: 0,
+                      height: 0, // for iOS
+                    },
+                    marginLeft: wp(2.5),
+                  },
+                  tabBarItemStyle: {
+                    width: 'auto',
+                    marginHorizontal: -10,
+                    //   paddingHorizontal: 20,
+                  },
+                  tabBarIndicatorStyle: {
+                    backgroundColor: Colors.primary,
+                    elevation: 0,
+                    height: 5,
+                  },
+                }}>
+                <Tab.Screen
+                  name="Selling"
+                  component={HairsScreen}
+                  options={{
+                    tabBarLabel: ({focused}) => (
+                      <View style={[BusinessPageStyles.TabbarView]}>
+                        <Text
+                          focused={focused}
+                          style={[BusinessPageStyles.TabBarText]}>
+                          Hair
+                        </Text>
+                      </View>
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Buying"
+                  component={FavScreen}
+                  options={{
+                    tabBarLabel: ({focused}) => (
+                      <View style={[BusinessPageStyles.TabbarView]}>
+                        <Text
+                          focused={focused}
+                          style={[BusinessPageStyles.TabBarText]}>
+                          Makeup
+                        </Text>
+                      </View>
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Girl"
+                  component={ProfileScreen}
+                  options={{
+                    tabBarLabel: ({focused}) => (
+                      <View style={[BusinessPageStyles.TabbarView]}>
+                        <Text
+                          focused={focused}
+                          style={[BusinessPageStyles.TabBarText]}>
+                          Skincare
+                        </Text>
+                      </View>
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Nails"
+                  component={Testing}
+                  options={{
+                    tabBarLabel: ({focused}) => (
+                      <View style={[BusinessPageStyles.TabbarView]}>
+                        <Text
+                          focused={focused}
+                          style={[BusinessPageStyles.TabBarText]}>
+                          Nails
+                        </Text>
+                      </View>
+                    ),
+                  }}
+                />
+              </Tab.Navigator>
+            </View>
+
+            <RBSheet
+              dragFromTopOnly={true}
+              ref={refRBSheet}
+              closeOnDragDown={true}
+              closeOnPressMask={true}
+              customStyles={{
+                wrapper: {
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                },
+                draggableIcon: {
+                  backgroundColor: Colors.Brown,
+                  width: '15%',
+                  // marginVertical:30,
+                  marginBottom: hp(2.3),
+                },
+                container: {
+                  height: hp(45),
+                  borderTopRightRadius: 15,
+                  borderTopLeftRadius: 15,
+                },
+              }}>
+              <View style={{flex: 1, width: wp(90), alignSelf: 'center'}}>
+                <HeaderText FontSize={hp(2.5)} TopText={'Timings'} />
+                <ScrollView style={{flex: 1, width: wp(90)}}>
+                  {Timings.map(item => (
+                    <TouchableOpacity
+
+                    onPress={()=>{
+                      refRBSheet.current.close();
+                      SetSelectedTime(item)
+                      console.log(item,'===pressed item===');
+                    }}
+                      style={{
+                        paddingVertical: 7,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}>
+                      <Text style={BusinessPageStyles.daytext}>{item.day}</Text>
+                      <Text style={BusinessPageStyles.daytext}>
+                        {item.time}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            </RBSheet>
+          </ScrollView>
+        </View>
       </SafeAreaView>
-    
     </View>
   );
 };
@@ -422,7 +436,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    
   },
 });
 

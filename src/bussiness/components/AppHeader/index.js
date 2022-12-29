@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.lightGray2,
   },
   backBtn: {
-    height: hp(4),
-    width: hp(4),
+    height: hp(3),
+    width: hp(3),
     resizeMode: 'contain',
   },
   txt: {

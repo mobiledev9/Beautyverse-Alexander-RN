@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Popover, {PopoverPlacement} from 'react-native-popover-view';
-import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
+import {Menu, MenuItem} from 'react-native-material-menu';
 import {Colors} from '../../theme/colors';
 import {FONTS} from '../../theme/fonts';
 import {Images} from '../../theme/images';
@@ -28,6 +28,8 @@ const Index = ({
   leftIconColor,
   option,
   label,
+  menu,
+  hideLine
 }) => {
   const [optionModal, setOptionModal] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -39,6 +41,8 @@ const Index = ({
               styles.constainer,
               {borderBottomWidth: 1, borderBottomColor: Colors.border},
             ]
+          : hideLine
+          ? styles.constainer
           : [styles.constainer, styles.shadow, {borderRadius: 20}]
       }
       onPress={onPress}>
@@ -117,18 +121,36 @@ const Index = ({
             />
           </View>
         </Popover>
-        // <Menu
-        //   visible={visible}
-        //   anchor={
-        //     <TouchableOpacity onPress={() => setVisible(true)}>
-        //       <Icon source={leftIcon} size={hp(2)} color={leftIconColor} />
-        //     </TouchableOpacity>
-        //   }
-        //   onRequestClose={() => setVisible(false)}>
-        //   <MenuItem>Menu item 1</MenuItem>
-        //   <MenuItem>Menu item 2</MenuItem>
-        //   <MenuItem>Menu item 4</MenuItem>
-        // </Menu>
+      ) : menu ? (
+        <Menu
+          style={{
+            ...styles.shadow,
+            borderRadius: 20,
+            paddingVertical: hp(2),
+            paddingHorizontal: wp(2),
+          }}
+          visible={visible}
+          anchor={
+            <TouchableOpacity onPress={() => setVisible(true)}>
+              <Icon source={leftIcon} size={hp(2)} color={leftIconColor} />
+            </TouchableOpacity>
+          }
+          onRequestClose={() => setVisible(false)}>
+          {menu.map((item, index) => (
+            <MenuItem key={index}>
+              <IconButton
+                onPress={() => setOptionModal(false)}
+                icon={item.icon}
+                iconSize={hp(2)}
+                iconColor={Colors.gray}
+                label={item.label}
+                labelColor={Colors.primary_dark}
+                width={wp(50)}
+                left
+              />
+            </MenuItem>
+          ))}
+        </Menu>
       ) : (
         <TouchableOpacity onPress={onPressMenu}>
           <Icon source={leftIcon} size={hp(2)} color={leftIconColor} />

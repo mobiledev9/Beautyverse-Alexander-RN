@@ -56,6 +56,7 @@ const OrdersHome = () => {
         }}
         screenOptions={{
           tabBarStyle: {
+            marginBottom:hp(2.5),
             backgroundColor: Colors.lightgrey,
             borderRadius: 20,
             alignSelf: 'center',
@@ -87,8 +88,8 @@ const OrdersHome = () => {
                     shadowOffset: focused
                       ? {width: 2, height: 5}
                       : {width: 0, height: 0},
-                    shadowOpacity: focused ? 0.2 : 0,
-                    elevation: focused ? 3 : 0,
+                    shadowOpacity: focused ? 0.4 : 0,
+                    elevation: focused ? 0 : 0,
                   },
                 ]}>
                 <SemiBold FontSize={hp(2.1)} EnterText={'Upcoming'} />
@@ -109,8 +110,8 @@ const OrdersHome = () => {
                     shadowOffset: focused
                       ? {width: 2, height: 5}
                       : {width: 0, height: 0},
-                    shadowOpacity: focused ? 0.2 : 0,
-                    elevation: focused ? 3 : 0,
+                    shadowOpacity: focused ? 0.4 : 0,
+                    elevation: focused ? 0 : 0,
                   },
                 ]}>
                 <SemiBold FontSize={hp(2.1)} EnterText={'Previous'} />

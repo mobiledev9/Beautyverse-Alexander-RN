@@ -10,6 +10,7 @@ const Icon = ({
   bgColor,
   vertical,
   horizontal,
+  left
 }) => {
   return (
     <View>
@@ -24,6 +25,7 @@ const Icon = ({
           backgroundColor: bgColor,
           paddingVertical: vertical,
           paddingHorizontal: horizontal,
+          marginLeft: left
         }}
       />
     </View>

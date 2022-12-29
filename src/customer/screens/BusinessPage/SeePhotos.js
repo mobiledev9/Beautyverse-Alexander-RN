@@ -8,7 +8,7 @@ import {
   Image,
   Modal,
   Pressable,
-  Platform
+  Platform,
 } from 'react-native';
 import HeaderTop from '../../components/HomeComponent/headerTop';
 import {
@@ -19,20 +19,21 @@ import {Strings} from '../../theme/strings';
 import {Images} from '../../theme/Images';
 import {FlatGrid} from 'react-native-super-grid';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ImageZoom from 'react-native-image-pan-zoom';
 
 // create a component
-const SeePhotos = ({navigation,item,index}) => {
+const SeePhotos = ({navigation, item, index}) => {
   const [Visible, SetVisible] = useState(false);
-  const [selectedImg,SetselectedImg] = useState('');
-  const [Index,SetIndex] = useState(0);
-  const [activeIndex,SetactiveIndex] = useState(0);
+  const [selectedImg, SetselectedImg] = useState('');
+  const [Index, SetIndex] = useState(0);
+  const [activeIndex, SetactiveIndex] = useState(0);
 
-  const setImage = (index,item) => {
-    Index === index ? selectedImg(item.img) : null 
-    Index === index ? console.log(Index,index,'okok') : console.log(Index,index,'not okay');
-  }
-
-  
+  const setImage = (index, item) => {
+    Index === index ? selectedImg(item.img) : null;
+    Index === index
+      ? console.log(Index, index, 'okok')
+      : console.log(Index, index, 'not okay');
+  };
 
   const UserData = [
     {
@@ -109,6 +110,22 @@ const SeePhotos = ({navigation,item,index}) => {
     },
   ];
 
+  const images = [
+    {
+      // Simplest usage.
+      url: selectedImg,
+
+      width: wp(100),
+      height: hp(40),
+      // Optional, if you know the image size, you can set the optimization performance
+
+      // You can pass props to <Image />.
+    },
+    {
+      url: '',
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTop
@@ -122,77 +139,88 @@ const SeePhotos = ({navigation,item,index}) => {
         data={UserData}
         style={{marginTop: 10}}
         spacing={13}
-        renderItem={({item,index}) => (
+        renderItem={({item, index}) => (
           <View>
-          <TouchableOpacity
-            onPress={() => {
-              // console.log(index,'===Index====');
-              SetIndex(index)
-              SetactiveIndex(index)
-              SetVisible(true)
-              index === Index ? SetselectedImg(item.img) :  SetselectedImg(item.img)
-            }}>
-            <View
-              style={{
-                backgroundColor: 'lightgrey',
-                justifyContent: 'flex-end',
-                borderRadius: 15,
-                height: 170,
-                overflow: 'hidden',
+            <TouchableOpacity
+              onPress={() => {
+                console.log(item);
+                console.log(selectedImg, '===Index====');
+                SetIndex(index);
+                SetactiveIndex(index);
+                SetVisible(true);
+                index === Index
+                  ? SetselectedImg(item.img)
+                  : SetselectedImg(item.img);
               }}>
-              <Image
-                style={{height: '100%', width: '100%'}}
-                source={item.img}
-              />
-            </View>
-          </TouchableOpacity>
+              <View
+                style={{
+                  backgroundColor: 'lightgrey',
+                  justifyContent: 'flex-end',
+                  borderRadius: 15,
+                  height: 170,
+                  overflow: 'hidden',
+                }}>
+                <Image
+                  style={{height: '100%', width: '100%'}}
+                  source={item.img}
+                />
+              </View>
+            </TouchableOpacity>
 
-          <Modal
+            <Modal
               animationType="fade"
               transparent={true}
               visible={Visible}
               onRequestClose={() => {
                 SetVisible(false);
               }}>
-                
               <SafeAreaView
                 style={{
                   flex: 1,
-                  backgroundColor: Platform.OS === 'ios' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.25)',
+                  backgroundColor:
+                    Platform.OS === 'ios'
+                      ? 'rgba(0,0,0,0.7)'
+                      : 'rgba(0,0,0,0.25)',
                   height: hp(100),
                   width: wp(100),
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <TouchableOpacity 
-                onPress={()=>{
-                  SetVisible(false)
-                }}
-                style={{position: 'absolute', top: hp(5), right: wp(5)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    SetVisible(false);
+                  }}
+                  style={{position: 'absolute', top: hp(5), right: wp(5)}}>
                   <Image
-                  resizeMode='contain'
+                    resizeMode="contain"
                     style={{width: hp(3), height: hp(3)}}
                     source={Images.cross}
                   />
                 </TouchableOpacity>
-                <Image 
-                resizeMode='cover'
-                style={{
-                  width: wp(100),
-                  // height:hp(40)
-                }}  
-                source={selectedImg} 
-                />
+                <ImageZoom
+                
+                enableSwipeDown={true}
+                onSwipeDown={()=>{
+                  SetVisible(false);
+                }}
+                  cropWidth={wp(100)}
+                  cropHeight={hp(100)}
+                  imageWidth={wp(100)}
+                  imageHeight={hp(40)}>
+                  <Image
+                    resizeMode="cover"
+                    style={{
+                      width: wp(100),
+                      height:hp(40)
+                    }}
+                    source={selectedImg}
+                  />
+                </ImageZoom>
               </SafeAreaView>
-
             </Modal>
-
-           </View>
+          </View>
         )}
-      
-    
       />
-   
     </SafeAreaView>
   );
 };

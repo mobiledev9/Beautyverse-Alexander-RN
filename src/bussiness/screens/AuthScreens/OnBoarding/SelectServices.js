@@ -12,6 +12,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../../theme/layout';
+import { FONTS } from '../../../theme/fonts';
 
 const SelectServices = ({navigation}) => {
   const [id, setId] = useState([]);
@@ -40,7 +41,7 @@ const SelectServices = ({navigation}) => {
       <View style={styles.services}>
         <Label
           label={Strings.servicesOffer}
-          bold
+          fontFamily={FONTS.InterBold}
           size={hp(2.5)}
           left
           color={Colors.primary_dark}

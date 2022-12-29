@@ -14,6 +14,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from '../../../theme/layout';
+import { FONTS } from '../../../theme/fonts';
 
 const BookingDetails = ({navigation}) => {
   return (
@@ -27,7 +28,7 @@ const BookingDetails = ({navigation}) => {
           <Label
             label={Strings.customerInfo}
             left
-            bold
+            fontFamily={FONTS.InterBold}
             size={hp(3)}
             paddingVertical={hp(2)}
             color={Colors.primary_dark}
@@ -44,7 +45,7 @@ const BookingDetails = ({navigation}) => {
                 <Label
                   label="Kynthia Johnson"
                   left
-                  bold
+                  fontFamily={FONTS.InterBold}
                   size={hp(2)}
                   color={Colors.primary_dark}
                   paddingVertical={hp(1)}
@@ -54,7 +55,7 @@ const BookingDetails = ({navigation}) => {
                   <Label
                     label="5.0"
                     left
-                    bold
+                    fontFamily={FONTS.InterBold}
                     marginLeft={wp(2)}
                     color={Colors.primary_dark}
                   />
@@ -62,12 +63,14 @@ const BookingDetails = ({navigation}) => {
               </View>
               <Label
                 label="kynthiajohnson@email.com"
+                fontFamily={FONTS.InterRegular}
                 left
                 marginBottom={hp(1)}
                 color={Colors.lightGray3}
               />
               <Label
                 label="+123 456 7890"
+                fontFamily={FONTS.InterRegular}
                 left
                 marginBottom={hp(1)}
                 color={Colors.lightGray3}
@@ -78,7 +81,7 @@ const BookingDetails = ({navigation}) => {
             <Label
               label={Strings.detail}
               left
-              bold
+              fontFamily={FONTS.InterBold}
               size={hp(3)}
               color={Colors.primary_dark}
               marginBottom={hp(3)}
@@ -110,6 +113,7 @@ const BookingDetails = ({navigation}) => {
                   bold
                   size={hp(2)}
                   color={Colors.primary_dark}
+                  lineHeight={hp(3)}
                 />
               </View>
             </View>
@@ -118,7 +122,7 @@ const BookingDetails = ({navigation}) => {
             <Label
               label={Strings.costBreakdown}
               left
-              bold
+              fontFamily={FONTS.InterBold}
               size={hp(3)}
               color={Colors.primary_dark}
               marginBottom={hp(3)}
@@ -141,7 +145,7 @@ const BookingDetails = ({navigation}) => {
             <Label
               label={Strings.address}
               left
-              bold
+              fontFamily={FONTS.InterBold}
               size={hp(3)}
               color={Colors.primary_dark}
               marginBottom={hp(3)}
@@ -167,13 +171,13 @@ const BookingDetails = ({navigation}) => {
                 <View style={styles.editView}>
                   <Label
                     label={Strings.locationName}
-                    bold
+                    fontFamily={FONTS.InterBold}
                     left
                     color={Colors.primary_dark1}
                   />
                   <Label
                     label={Strings.locationgoeshere}
-                    medium
+                    fontFamily={FONTS.InterRegular}
                     left
                     color={Colors.lightGray3}
                   />

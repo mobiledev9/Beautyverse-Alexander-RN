@@ -7,6 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from '../../theme/layout';
 import Icon from '../Icon';
+import {FONTS} from '../../theme/fonts';
 
 const Index = ({
   title,
@@ -27,8 +28,8 @@ const Index = ({
       <Label
         label={title}
         color={titleColor ? titleColor : Colors.primary_dark1}
-        size={hp(2)}
-        bold={bold}
+        size={hp(1.8)}
+        fontFamily={bold ? FONTS.InterBold : FONTS.InterRegular}
       />
       {icon ? (
         <TouchableOpacity onPress={() => onPressIcon()} ref={ref}>
@@ -38,8 +39,8 @@ const Index = ({
         <Label
           label={subTitle}
           medium={mediumSub}
-          bold={boldSub}
-          size={hp(2)}
+          fontFamily={boldSub ? FONTS.InterBold : FONTS.InterRegular}
+          size={hp(1.8)}
           paddingVertical={0}
           color={color ? color : Colors.primary_dark}
         />

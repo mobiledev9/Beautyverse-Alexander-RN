@@ -33,12 +33,8 @@ const AddLocation = ({navigation, route}) => {
   const [longitude, setLongitude] = useState(144.9631);
   const [place, setPlace] = useState('');
   const [bottom, setBottom] = useState(1);
-  const [isGranted, setGranted] = useState(false);
-
- 
 
   const getCurrentLocation = () => {
-    locationPermission()
     Geolocation.getCurrentPosition(
       position => {
         console.log('position =>', position);
@@ -69,6 +65,7 @@ const AddLocation = ({navigation, route}) => {
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           console.log('granted');
+          getCurrentLocation();
         } else {
           console.log('denied');
         }
@@ -79,6 +76,7 @@ const AddLocation = ({navigation, route}) => {
       const status = await Geolocation.requestAuthorization('whenInUse');
       console.log('Status', status);
       if (status === 'granted') {
+        getCurrentLocation();
       } else {
       }
     }
@@ -102,16 +100,7 @@ const AddLocation = ({navigation, route}) => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-        // showsUserLocation={true}
-        // showsMyLocationButton={true}
         onMapReady={() => setBottom(5)}>
-        <View style={styles.backView}>
-          {params.from == 'profile' && (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Icon source={Images.roundback} size={hp(5.5)} />
-            </TouchableOpacity>
-          )}
-        </View>
         <Marker
           coordinate={{
             latitude: latitude,
@@ -120,10 +109,17 @@ const AddLocation = ({navigation, route}) => {
           <Image source={Images.marker} style={styles.marker} />
         </Marker>
       </MapView>
+      <View style={styles.backView}>
+        {params.from == 'profile' && (
+          <TouchableOpacity onPress={() => navigation.navigate('Address')}>
+            <Icon source={Images.roundback} size={hp(5.5)} />
+          </TouchableOpacity>
+        )}
+      </View>
       <View style={styles.bottomView}>
         <TouchableOpacity
           style={styles.markerBtn}
-          onPress={() => getCurrentLocation()}>
+          onPress={() => locationPermission()}>
           <Icon source={Images.locationMarker} size={hp(5.5)} />
         </TouchableOpacity>
         <SearchField onTouchStart={() => setSerachModal(true)} value={place} />
@@ -148,12 +144,6 @@ const AddLocation = ({navigation, route}) => {
         onRequestClose={() => setSerachModal(false)}>
         <SafeAreaView style={styles.serachModal}>
           <View style={styles.serachWrapper}>
-            <TouchableOpacity
-              onPress={() => setSerachModal(false)}
-              style={{paddingTop: hp(2)}}>
-              <Image source={Images.back} style={styles.backBtn} />
-            </TouchableOpacity>
-
             <GooglePlacesAutocomplete
               GooglePlacesDetailsQuery={{fields: 'geometry'}}
               fetchDetails={true}
@@ -169,23 +159,28 @@ const AddLocation = ({navigation, route}) => {
                 setSerachModal(false);
               }}
               styles={{
+                listView: {
+                  width: wp(100),
+                  marginRight: wp(8),
+                  marginTop: hp(2),
+                },
                 container: {
+                  paddingLeft: wp(10),
+                  width: wp(100),
                   overflow: 'hidden',
                   backgroundColor: Colors.white,
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  marginLeft: wp(3),
                   flex: 1,
                 },
                 textInputContainer: {
                   backgroundColor: Colors.lightGray,
                   borderRadius: 100,
-                  paddingHorizontal: wp(4),
                 },
                 textInput: {
-                  backgroundColor: Colors.lightGray,
-                  marginLeft: wp(2),
+                  backgroundColor: 'transparent',
                   color: Colors.primary_dark,
+                  width: wp(100),
                 },
               }}
               query={{
@@ -228,8 +223,18 @@ const AddLocation = ({navigation, route}) => {
                 </View>
               )}
               renderLeftButton={() => (
-                <View style={{alignSelf: 'center'}}>
-                  <Icon source={Images.search} size={hp(3)} />
+                <View
+                  style={{
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <TouchableOpacity
+                    onPress={() => setSerachModal(false)}
+                    style={{position: 'absolute', left: wp(-8)}}>
+                    <Image source={Images.back} style={styles.backBtn} />
+                  </TouchableOpacity>
+                  <Icon source={Images.search} size={hp(3)} left={wp(5)} />
                 </View>
               )}
             />

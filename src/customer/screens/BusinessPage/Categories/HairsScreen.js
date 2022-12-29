@@ -114,7 +114,7 @@ const HairsScreen = ({navigation}) => {
       <View style={BusinessPageStyles.hairsercontainer}>
         <View>
           <SemiBold EnterText={item.service} />
-          <Text>Duration: 45 minutes</Text>
+          <Text style={{fontFamily:'InterV',color:Colors.Brown}}>Duration: 45 minutes</Text>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <PriceAmt Amount={'$60.00'} />

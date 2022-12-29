@@ -10,7 +10,7 @@ import {
   TextInput,
   Text,
   PermissionsAndroid,
-  Platform
+  Platform,
 } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import {Images} from '../../theme/Images';
@@ -31,12 +31,11 @@ import {styles} from '../../../bussiness/screens/AuthScreens/OnBoarding/styles';
 import Icon from '../../../bussiness/components/Icon';
 import Label from '../../../bussiness/components/Label';
 import Geolocation from 'react-native-geolocation-service';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // create a component
-const AddAddress = ({navigation,route}) => {
-
-  console.log(route.params.screen,'===route===');
+const AddAddress = ({navigation, route}) => {
+  // console.log(route.params.screen,'===route===');
 
   const map = useRef();
 
@@ -45,9 +44,14 @@ const AddAddress = ({navigation,route}) => {
   const [longitude, setLongitude] = useState(144.9631);
   const [place, setPlace] = useState('');
 
+  const SetLocation = async () => {
+    await AsyncStorage.removeItem('Location').then(
+      await AsyncStorage.setItem('Location', place),
+    );
+  };
 
   const getCurrentLocation = () => {
-    locationPermission()
+    locationPermission();
     Geolocation.getCurrentPosition(
       position => {
         console.log('position =>', position);
@@ -60,7 +64,6 @@ const AddAddress = ({navigation,route}) => {
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
   };
-
 
   const locationPermission = async () => {
     if (Platform.OS == 'android') {
@@ -90,7 +93,6 @@ const AddAddress = ({navigation,route}) => {
       console.log('Status', status);
       if (status === 'granted') {
       } else {
-
       }
     }
   };
@@ -119,7 +121,6 @@ const AddAddress = ({navigation,route}) => {
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <MapView
-
         followsUserLocation={true}
         // showsUserLocation={true}
         // showsMyLocationButton={true}
@@ -129,11 +130,8 @@ const AddAddress = ({navigation,route}) => {
           longitude: longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}
-      >
-
-        
-        <Marker                                                                                               
+        }}>
+        <Marker
           coordinate={{
             latitude: latitude,
             longitude: longitude,
@@ -145,9 +143,9 @@ const AddAddress = ({navigation,route}) => {
         </Marker>
       </MapView>
       <TouchableOpacity
-      onPress={()=>{
-        navigation.goBack();
-      }}
+        onPress={() => {
+          navigation.goBack();
+        }}
         style={{
           position: 'absolute',
           top: hp(5),
@@ -172,11 +170,11 @@ const AddAddress = ({navigation,route}) => {
           alignItems: 'center',
           left: wp(5),
         }}>
-        <TouchableOpacity 
-        onPress={()=>{
-          getCurrentLocation();
-        }}
-        style={BusinessPageStyles.maplocbutton}>
+        <TouchableOpacity
+          onPress={() => {
+            getCurrentLocation();
+          }}
+          style={BusinessPageStyles.maplocbutton}>
           <Image
             resizeMode="contain"
             style={{
@@ -195,10 +193,11 @@ const AddAddress = ({navigation,route}) => {
         />
         <Button
           onPress={() => {
+            SetLocation();
             navigation.navigate('InsertAdd', {
               latitude: latitude,
               longitude: longitude,
-              place: place ? place : 'Melbourne, VIC, Australia',
+              // place: place ? place : 'Melbourne, VIC, Australia',
             });
           }}
           titleColor={Colors.white}
@@ -210,13 +209,7 @@ const AddAddress = ({navigation,route}) => {
 
       <Modal visible={isSearchModal} animationType="slide">
         <SafeAreaView style={styles.serachModal}>
-          <View style={styles.serachWrapper}>
-            <TouchableOpacity
-              onPress={() => setSearchModal(false)}
-              style={{paddingTop: hp(2)}}>
-              <Image source={Images.back} style={styles.backBtn} />
-            </TouchableOpacity>
-
+          <View style={[styles.serachWrapper, {}]}>
             <GooglePlacesAutocomplete
               GooglePlacesDetailsQuery={{fields: 'geometry'}}
               fetchDetails={true}
@@ -233,26 +226,28 @@ const AddAddress = ({navigation,route}) => {
               }}
               styles={{
                 listView: {
-                  width: '100%',
+                  width: wp(100),
+                  marginRight: wp(10),
+                  marginTop: hp(2),
                 },
                 container: {
+                  paddingLeft: wp(10),
+                  width: wp(100),
                   overflow: 'hidden',
                   backgroundColor: Colors.white,
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  marginLeft: wp(3),
                   flex: 1,
                 },
                 textInputContainer: {
                   backgroundColor: Colors.lightgrey,
                   borderRadius: 100,
-                  paddingHorizontal: wp(4),
-                  borderRadius: 30,
+                  // paddingHorizontal: wp(4),
                 },
                 textInput: {
-                  backgroundColor: Colors.lightGray,
-                  marginLeft: wp(2),
+                  backgroundColor: 'transparent',
                   color: Colors.primaryDark,
+                  width: wp(100),
                 },
               }}
               query={{
@@ -267,7 +262,7 @@ const AddAddress = ({navigation,route}) => {
                   }}>
                   <View
                     style={{
-                      backgroundColor: Colors.lightGray,
+                      backgroundColor: Colors.lightgrey,
                       height: hp(5),
                       width: hp(5),
                       borderRadius: 100,
@@ -283,7 +278,7 @@ const AddAddress = ({navigation,route}) => {
                       left
                       bold
                       size={hp(2)}
-                      color={Colors.primary_dark1}
+                      color={Colors.primaryDark}
                     />
                     <Label
                       label={Strings.detailedLocation}
@@ -295,8 +290,22 @@ const AddAddress = ({navigation,route}) => {
                 </View>
               )}
               renderLeftButton={() => (
-                <View style={{alignSelf: 'center'}}>
-                  <Icon source={Images.search} size={hp(3)} />
+                <View
+                  style={{
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <TouchableOpacity
+                    onPress={() => setSearchModal(false)}
+                    style={{position: 'absolute', left: wp(-8)}}>
+                    <Image source={Images.back} style={styles.backBtn} />
+                  </TouchableOpacity>
+                  <Icon
+                    marginLeft={wp(5)}
+                    source={Images.smallsearch}
+                    size={hp(3)}
+                  />
                 </View>
               )}
             />
